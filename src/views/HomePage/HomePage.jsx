@@ -1,5 +1,3 @@
-HomePage.jsx
-
 import React from 'react';
 import styles from './components/styles.module.css';
 import SearchBox from '../ActorsIntroduction/components/SearchBox';

@@ -1,27 +1,30 @@
-import { useState } from 'react'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react';
+import { Dialog, DialogPanel } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useLocation } from 'react-router-dom';
 
 const navigation = [
-    { name: 'Product', href: '#' },
-    { name: 'Features', href: '#' },
-    { name: 'Marketplace', href: '#' },
-    { name: 'Company', href: '#' },
-  ]
+    { name: '演出计划', href: '/plans' },
+    { name: '演员介绍', href: '/actors' },
+    { name: '选座购票', href: '/tickets' },
+    { name: '会员计划', href: '/memberships' },
+    { name: '联系我们', href: '/contact' },
+];
 
-function NavBar (){
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
-    return (
-    <header className="bg-white">
-      <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
+function NavBar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  return (
+    <header className="bg-orange-400 rounded-full shadow-md max-w-5xl mx-auto my-4">
+      <nav aria-label="Global" className="flex items-center justify-between px-8 py-3">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img
-              alt=""
-              src="https://tailwindui.starxg.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-              className="h-8 w-auto"
+              alt="Avatar"
+              src="/images/Avatar.jpg"
+              style={{ height: '60px', width: 'auto' }}
             />
           </a>
         </div>
@@ -32,20 +35,48 @@ function NavBar (){
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
           >
             <span className="sr-only">Open main menu</span>
-            <Bars3Icon aria-hidden="true" className="size-6" />
+            <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
-            <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-gray-900">
+            <a
+              key={item.name}
+              href={item.href}
+              className={`text-lg font-bold ${
+                location.pathname === item.href ? 'text-orange-500 underline' : 'text-black'
+              }`}
+            >
               {item.name}
             </a>
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm/6 font-semibold text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
+            Login <span aria-hidden="true">&rarr;</span>
           </a>
+          <button
+            type="button"
+            className="text-gray-900 hover:text-gray-700"
+            aria-label="Translate"
+          >
+            <img
+              src="/images/translate-icon.svg"
+              alt="Translate"
+              className="h-6 w-6"
+            />
+          </button>
+          <button
+            type="button"
+            className="text-gray-900 hover:text-gray-700"
+            aria-label="Share"
+          >
+            <img
+              src="/images/share-icon.svg"
+              alt="Share"
+              className="h-6 w-6"
+            />
+          </button>
         </div>
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -76,7 +107,7 @@ function NavBar (){
                   <a
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-semibold text-gray-900 hover:bg-gray-50"
                   >
                     {item.name}
                   </a>
@@ -96,6 +127,7 @@ function NavBar (){
       </Dialog>
     </header>
   );
-};
+  
+}
 
 export default NavBar;
