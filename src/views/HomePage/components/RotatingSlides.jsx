@@ -1,15 +1,15 @@
-import React,{ useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const images = [
-    "/images/slides1.jpg",
-    "/images/slides2.jpg",
-    "/images/slides3.jpg",
-  ];
+  "/images/slides1.jpg",
+  "/images/slides2.jpg",
+  "/images/slides3.jpg",
+];
 
 function RotatingSlides() {
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-slide every 5 seconds (optional)
+  // Auto-slide every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
@@ -28,7 +28,7 @@ function RotatingSlides() {
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto overflow-hidden rounded-xl shadow-lg">
+    <div className="relative w-full overflow-hidden rounded-xl shadow-lg">
       {/* Slides */}
       <div
         className="flex transition-transform duration-500"
@@ -37,17 +37,16 @@ function RotatingSlides() {
           width: `${images.length * 100}%`,
         }}
       >
-
-    {images.map((src, index) => (
+        {images.map((src, index) => (
           <div
             key={index}
-            className="w-full flex-shrink-0"
-            style={{ width: "100%" }} 
+            className="flex-shrink-0 w-full"
+            style={{ width: "100%" }}
           >
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="w-full h-64 object-cover"
+              className="w-full h-[400px] object-contain"
             />
           </div>
         ))}
