@@ -9,11 +9,11 @@ const images = [
 function RotatingSlides() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-slide every 5 seconds
+  // Auto-slide every 10 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 10000);
     return () => clearInterval(timer);
   }, [currentIndex]);
 
@@ -46,7 +46,7 @@ function RotatingSlides() {
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="w-full h-[400px] object-contain"
+              className="w-full h-[400px] object-cover"
             />
           </div>
         ))}
