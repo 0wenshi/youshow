@@ -51,7 +51,7 @@ function NavBar() {
             </a>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-2">
           <a href="#" className="text-sm/6 font-semibold text-gray-900">
             Login <span aria-hidden="true">&rarr;</span>
           </a>
