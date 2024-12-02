@@ -97,7 +97,7 @@ function RotatingSlides() {
 
     {/* Description Section */}
     <div className="w-1/3 pl-18 relative">
-      <div className="absolute inset-0 bg-white bg-opacity-40 rounded-lg"></div>
+      <div className="absolute inset-2 bg-white bg-opacity-20 rounded-lg"></div>
       <div className="relative z-10">
         <h2 className="text-4xl font-bold text-orange-500 mb-6 drop-shadow-lg">
           {slides[currentIndex].title}
@@ -109,7 +109,6 @@ function RotatingSlides() {
     </div>
   </div>
 </div>
-
   );
 }
 
