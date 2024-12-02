@@ -4,8 +4,7 @@ const slides = [
   {
     image: "/images/slides1.jpg",
     title: "The biggest show of the year",
-    description:
-      "YOU SHOW All Stars The biggest show of the year",
+    description: "YOU SHOW All Stars The biggest show of the year",
   },
   {
     image: "/images/slides2.jpg",
@@ -45,19 +44,24 @@ function RotatingSlides() {
   return (
     <div className="flex flex-col pt-24">
       {/* Combined RotatingSlides and Description */}
-      <div className="flex justify-between items-start mx-auto max-w-6xl w-full">
+      <div className="flex justify-between items-start mx-auto w-[1000px] h-[600px]">
         {/* Rotating Slides */}
-        <div className="w-2/3 relative overflow-hidden rounded-xl shadow-lg">
-          <div className="relative h-[400px]">
+        <div className="relative w-[1000px] h-[600px] overflow-hidden rounded-xl shadow-lg">
+          <div
+            className="flex transition-transform duration-500"
+            style={{
+              transform: `translateX(-${currentIndex * 100}%)`,
+              width: `${slides.length * 100}%`,
+            }}
+          >
             {slides.map((slide, index) => (
-              <img
-                key={index}
-                src={slide.image}
-                alt={`Slide ${index + 1}`}
-                className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${
-                  index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-                }`}
-              />
+              <div key={index} className="w-full h-full flex-shrink-0">
+                <img
+                  src={slide.image}
+                  alt={`Slide ${index + 1}`}
+                  className="w-[35%] h-full object-cover rounded-lg"
+                />
+              </div>
             ))}
           </div>
 

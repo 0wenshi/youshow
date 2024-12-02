@@ -13,7 +13,7 @@ function HomePage() {
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-col pt-24">
+      <div className="flex flex-col pt-15">
         {/* RotatingSlides and Description */}
         <div className="flex justify-between items-start mx-auto max-w-6xl w-full">
           {/* Rotating Slides */}
