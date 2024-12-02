@@ -20,18 +20,6 @@ function HomePage() {
           <div className="w-2/3">
             <RotatingSlides />
           </div>
-
-          {/* Description Section */}
-          <div className="w-1/3 pl-8">
-            <h2 className="text-4xl font-bold text-orange-500 mb-6">
-              Discover Our Performances
-            </h2>
-            <p className="text-lg text-black-700 leading-relaxed">
-              Explore our latest shows and events featuring top performers from
-              around the world. Enjoy exclusive experiences, discover new
-              talents, and immerse yourself in the magic of live performances!
-            </p>
-          </div>
         </div>
       </div>
 

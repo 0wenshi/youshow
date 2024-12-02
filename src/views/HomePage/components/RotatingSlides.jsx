@@ -1,9 +1,24 @@
 import React, { useState, useEffect } from "react";
 
-const images = [
-  "/images/slides1.jpg",
-  "/images/slides2.jpg",
-  "/images/slides3.jpg",
+const slides = [
+  {
+    image: "/images/slides1.jpg",
+    title: "The biggest show of the year",
+    description:
+      "YOU SHOW All Stars The biggest show of the year",
+  },
+  {
+    image: "/images/slides2.jpg",
+    title: "Exclusive Experiences",
+    description:
+      "Experience the thrill of live shows with exclusive VIP access, backstage tours, and meet-and-greet opportunities with your favorite performers.",
+  },
+  {
+    image: "/images/slides3.jpg",
+    title: "Unforgettable Memories",
+    description:
+      "Capture unforgettable moments and create lifelong memories as you witness performances that inspire and entertain.",
+  },
 ];
 
 function RotatingSlides() {
@@ -18,102 +33,76 @@ function RotatingSlides() {
   }, [currentIndex]);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
     );
   };
 
   return (
-    <div className="relative w-full overflow-hidden rounded-xl shadow-lg max-w-lg mx-auto">
-      {/* Slides */}
-      <div className="relative h-[400px]">
-        {images.map((src, index) => {
-          const position = getPosition(index, currentIndex, images.length);
-          return (
-            <div
-              key={index}
-              className={`absolute top-0 left-0 w-full h-full transition-transform duration-500 ease-in-out`}
-              style={{
-                transform: position.transform,
-                zIndex: position.zIndex,
-                opacity: position.opacity,
-              }}
-            >
+    <div className="flex flex-col pt-24">
+      {/* Combined RotatingSlides and Description */}
+      <div className="flex justify-between items-start mx-auto max-w-6xl w-full">
+        {/* Rotating Slides */}
+        <div className="w-2/3 relative overflow-hidden rounded-xl shadow-lg">
+          <div className="relative h-[400px]">
+            {slides.map((slide, index) => (
               <img
-                src={src}
+                key={index}
+                src={slide.image}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover rounded-lg"
+                className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${
+                  index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
               />
-            </div>
-          );
-        })}
-      </div>
+            ))}
+          </div>
 
-      {/* Previous Button */}
-      <button
-        onClick={prevSlide}
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 z-10"
-      >
-        &#8249;
-      </button>
-
-      {/* Next Button */}
-      <button
-        onClick={nextSlide}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 z-10"
-      >
-        &#8250;
-      </button>
-
-      {/* Dots */}
-      <div className="absolute bottom-4 w-full flex justify-center space-x-2 z-10">
-        {images.map((_, index) => (
+          {/* Previous Button */}
           <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? "bg-orange-500" : "bg-gray-300"
-            }`}
-          ></button>
-        ))}
+            onClick={prevSlide}
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 z-20"
+          >
+            &#8249;
+          </button>
+
+          {/* Next Button */}
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 z-20"
+          >
+            &#8250;
+          </button>
+
+          {/* Dots */}
+          <div className="absolute bottom-4 w-full flex justify-center space-x-2 z-20">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full ${
+                  index === currentIndex ? "bg-orange-500" : "bg-gray-300"
+                }`}
+              ></button>
+            ))}
+          </div>
+        </div>
+
+        {/* Description Section */}
+        <div className="w-1/3 pl-8">
+          <h2 className="text-4xl font-bold text-orange-500 mb-6">
+            {slides[currentIndex].title}
+          </h2>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            {slides[currentIndex].description}
+          </p>
+        </div>
       </div>
     </div>
   );
-}
-
-// Helper function to determine the position of slides
-function getPosition(index, currentIndex, length) {
-  if (index === currentIndex) {
-    return {
-      transform: "translateX(0) scale(1)",
-      zIndex: 3,
-      opacity: 1,
-    };
-  } else if (
-    index === (currentIndex - 1 + length) % length // Previous slide
-  ) {
-    return {
-      transform: "translateX(-50%) scale(0.9)",
-      zIndex: 2,
-      opacity: 0.8,
-    };
-  } else if (index === (currentIndex + 1) % length) {
-    return {
-      transform: "translateX(50%) scale(0.9)",
-      zIndex: 2,
-      opacity: 0.8,
-    };
-  } else {
-    return {
-      transform: "translateX(100%) scale(0.8)",
-      zIndex: 1,
-      opacity: 0,
-    };
-  }
 }
 
 export default RotatingSlides;
