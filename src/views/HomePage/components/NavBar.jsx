@@ -16,7 +16,7 @@ function NavBar() {
   const location = useLocation();
 
   return (
-    <header className="bg-orange-200 rounded-full shadow-md max-w-5xl mx-auto my-4">
+    <header className="bg-orange-500 rounded-full shadow-md max-w-5xl mx-auto my-4">
       <nav aria-label="Global" className="flex items-center justify-between px-8 py-3">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
@@ -44,7 +44,7 @@ function NavBar() {
               key={item.name}
               href={item.href}
               className={`text-lg font-bold ${
-                location.pathname === item.href ? 'text-orange-500 underline' : 'text-black'
+                location.pathname === item.href ? 'text-white underline' : 'text-black'
               }`}
             >
               {item.name}
@@ -52,12 +52,12 @@ function NavBar() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-2">
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
+          <a href="#" className="text-sm/6 font-semibold text-black">
             Login <span aria-hidden="true">&rarr;</span>
           </a>
           <button
             type="button"
-            className="text-gray-900 hover:text-gray-700"
+            className="text-black hover:text-gray-700"
             aria-label="Translate"
           >
             <img
@@ -68,7 +68,7 @@ function NavBar() {
           </button>
           <button
             type="button"
-            className="text-gray-900 hover:text-gray-700"
+            className="text-black hover:text-gray-700"
             aria-label="Share"
           >
             <img
@@ -79,6 +79,7 @@ function NavBar() {
           </button>
         </div>
       </nav>
+
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -107,7 +108,7 @@ function NavBar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-semibold text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-semibold text-black hover:bg-gray-50"
                   >
                     {item.name}
                   </a>
@@ -116,7 +117,7 @@ function NavBar() {
               <div className="py-6">
                 <a
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-black hover:bg-gray-50"
                 >
                   Log in
                 </a>
@@ -125,6 +126,7 @@ function NavBar() {
           </div>
         </DialogPanel>
       </Dialog>
+      
     </header>
   );
   

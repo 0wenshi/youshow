@@ -1,30 +1,40 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const cards = [
   {
     image: "/images/slides1.jpg",
     title: "年度大咖秀",
-    description: "7 Nov / 19:30 (Thur) @ Skycity Theatre",
-    price: "SVIP $136.99",
+    description: "7 Nov / 19:30 (Thur) @ Skycity Theatre, Auckland",
+    price: "$136.99",
     button: "选座购票",
+    link:"/tickets?event=show1",
   },
   {
     image: "/images/slides2.jpg",
     title: "流浪计划",
-    description: "22 Nov / 19:00 (Fri) @ Pinehurst Theatre",
-    price: "SVIP $79.99",
+    description: "22 Nov / 19:00 (Fri) @ Pinehurst Theatre, Auckland",
+    price: "$79.99",
     button: "选座购票",
+    link:"/tickets?event=show2",
   },
   {
-    image: "/images/slides3.jpg",
+    image: "/images/slides4.jpg",
     title: "开放麦",
-    description: "8 Nov / 7:30 PM @ Albany, Auckland",
-    price: "票价 $19",
+    description: "8 Nov / 19:30 (Fri) @ Albany, Auckland",
+    price: "$19",
     button: "选座购票",
+    link:"/tickets?event=show3",
   },
 ];
 
 function EventCards() {
+  const navigate = useNavigate();
+
+  const handleNavigation = (link) => {
+    navigate(link);
+  };
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
       {cards.map((card, index) => (
@@ -60,14 +70,16 @@ function EventCards() {
 
           {/* Text Section */}
           <div className="p-4 space-y-3">
-            <h2 className="text-xl font-bold text-gray-900">{card.title}</h2>
+            <h2 className="text-xl font-bold text-black">{card.title}</h2>
             <p className="text-sm text-gray-500">{card.description}</p>
             <p className="text-orange-500 font-semibold">{card.price}</p>
           </div>
 
           {/* Button Section */}
           <div className="p-4">
-            <button className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-orange-600 transition-colors">
+            <button 
+            onClick={() => handleNavigation(card.link)}
+            className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-orange-600 transition-colors">
               {card.button}
             </button>
           </div>

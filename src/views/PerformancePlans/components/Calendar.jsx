@@ -59,21 +59,21 @@ function Calendar() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-12">
+    <div className="max-w-2xl mx-auto p-12">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={handlePrevMonth}
-          className="p-3 bg-white rounded-full hover:bg-gray-300"
+          className="p-3 bg-white rounded-full hover:bg-orange-500"
         >
           &#8249;
         </button>
-        <h1 className="text-3xl font-bold text-gray-800">
+        <h1 className="p-3 text-7xl font-bold text-black">
           {monthNames[currentMonth]} {currentYear}
         </h1>
         <button
           onClick={handleNextMonth}
-          className="p-3 bg-white rounded-full hover:bg-gray-300"
+          className="p-3 bg-white rounded-full hover:bg-orange-500"
         >
           &#8250;
         </button>
