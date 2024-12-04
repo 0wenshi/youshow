@@ -16,7 +16,7 @@ function NavBar() {
   const location = useLocation();
 
   return (
-    <header className="bg-orange-400 rounded-full shadow-md max-w-5xl mx-auto my-4">
+    <header className="bg-orange-200 rounded-full shadow-md max-w-5xl mx-auto my-4">
       <nav aria-label="Global" className="flex items-center justify-between px-8 py-3">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">

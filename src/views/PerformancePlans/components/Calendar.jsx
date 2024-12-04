@@ -16,7 +16,7 @@ const monthNames = [
 ];
 
 function Calendar() {
-  const today = new Date(); // 获取今天的日期
+  const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
 
@@ -43,10 +43,10 @@ function Calendar() {
 
   const dates = [];
   for (let i = 0; i < firstDayOfMonth; i++) {
-    dates.push(null); // 填充空白占位
+    dates.push(null);
   }
   for (let i = 1; i <= daysInMonth; i++) {
-    dates.push(i); // 添加日期
+    dates.push(i);
   }
 
   const isToday = (day) => {
@@ -59,28 +59,28 @@ function Calendar() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 rounded-lg shadow-lg">
+    <div className="max-w-xl mx-auto p-12">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-6">
         <button
           onClick={handlePrevMonth}
-          className="p-2 bg-gray-200 rounded-full hover:bg-gray-300"
+          className="p-3 bg-white rounded-full hover:bg-gray-300"
         >
           &#8249;
         </button>
-        <h1 className="text-2xl font-bold text-gray-800">
+        <h1 className="text-3xl font-bold text-gray-800">
           {monthNames[currentMonth]} {currentYear}
         </h1>
         <button
           onClick={handleNextMonth}
-          className="p-2 bg-gray-200 rounded-full hover:bg-gray-300"
+          className="p-3 bg-white rounded-full hover:bg-gray-300"
         >
           &#8250;
         </button>
       </div>
 
       {/* Weekdays */}
-      <div className="grid grid-cols-7 text-center font-bold text-gray-700 mb-2">
+      <div className="grid grid-cols-7 text-center font-bold text-lg text-black mb-4">
         <div>Sun</div>
         <div>Mon</div>
         <div>Tue</div>
@@ -91,14 +91,14 @@ function Calendar() {
       </div>
 
       {/* Dates */}
-      <div className="grid grid-cols-7 gap-2">
+      <div className="grid grid-cols-7 gap-4">
         {dates.map((day, index) => (
           <div
             key={index}
-            className={`h-10 flex items-center justify-center rounded-full ${
+            className={`h-16 w-16 flex items-center justify-center rounded-full text-lg ${
               isToday(day)
                 ? "bg-orange-500 text-white font-bold"
-                : "bg-white text-gray-800"
+                : "bg-white text-black"
             }`}
           >
             {day}
