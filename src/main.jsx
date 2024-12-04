@@ -8,6 +8,8 @@ import ActorsIntroduction from './views/ActorsIntroduction/ActorsIntroduction';
 import MembershipsProgram from './views/MembershipsProgram/MembershipsProgram';
 import LandingPage from './views/LandingPage/LandingPage';
 import HomePage from './views/HomePage/HomePage';
+import PerformancePlans from './views/PerformancePlans/PerformancePlans';
+import Tickets from './views/Tickets/Tickets';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -15,9 +17,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/homepage" element={<HomePage />} />
-        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/plans" element={<PerformancePlans />} />
         <Route path="/actors" element={<ActorsIntroduction />} />
+        <Route path="/tickets" element={<Tickets />} />
         <Route path="/memberships" element={<MembershipsProgram />} />
+        <Route path="/contact" element={<ContactUs />} />
+
       </Routes>
     </Router>
   </React.StrictMode>

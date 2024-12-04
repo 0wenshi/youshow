@@ -1,0 +1,17 @@
+.background {
+    background-image: url('/images/startbackground.jpg');
+    background-size: cover;           
+    background-position: center;
+    background-repeat: no-repeat;   
+    height: 100vh;              
+    width: 100vw;                
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rotating-slides-container {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+  
