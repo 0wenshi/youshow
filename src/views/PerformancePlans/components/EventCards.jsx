@@ -41,13 +41,14 @@ function EventCards() {
         <div
           key={index}
           className="bg-white rounded-xl shadow-lg overflow-hidden relative hover:shadow-2xl transition-shadow duration-300"
+          style={{ minHeight: "450px" }}
         >
           {/* Image Section */}
           <div className="relative">
             <img
               src={card.image}
               alt={card.title}
-              className="w-full h-56 object-cover"
+              className="w-full h-72 object-cover"
             />
             {/* Heart Icon */}
             <div className="absolute top-4 right-4 bg-white bg-opacity-70 p-2 rounded-full">
@@ -69,7 +70,7 @@ function EventCards() {
           </div>
 
           {/* Text Section */}
-          <div className="p-4 space-y-3">
+          <div className="p-6 space-y-3">
             <h2 className="text-xl font-bold text-black">{card.title}</h2>
             <p className="text-sm text-gray-500">{card.description}</p>
             <p className="text-orange-500 font-semibold">{card.price}</p>
@@ -77,9 +78,10 @@ function EventCards() {
 
           {/* Button Section */}
           <div className="p-4">
-            <button 
-            onClick={() => handleNavigation(card.link)}
-            className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-orange-600 transition-colors">
+            <button
+              onClick={() => handleNavigation(card.link)}
+              className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-orange-600 transition-colors"
+            >
               {card.button}
             </button>
           </div>
