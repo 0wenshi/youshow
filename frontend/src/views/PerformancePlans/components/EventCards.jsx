@@ -40,7 +40,7 @@ function EventCards() {
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/favorites");
+        const response = await axios.get("http://localhost:3000/favorites");
         setFavorites(response.data);
       } catch (error) {
         console.error("Error fetching favorites:", error);
@@ -53,7 +53,7 @@ function EventCards() {
   const toggleFavorite = async (id) => {
     const isFavorited = favorites.includes(id);
     try {
-      const response = await axios.post("http://localhost:5001/favorites", {
+      const response = await axios.post("http://localhost:3000/favorites", {
         id,
         isFavorited: !isFavorited,
       });
@@ -72,7 +72,7 @@ function EventCards() {
       {cards.map((card) => (
         <div
           key={card.id}
-          className="bg-white rounded-xl shadow-lg overflow-hidden relative hover:shadow-2xl transition-shadow duration-300"
+          className="bg-white rounded-xl shadow-lg overflow-hidden relative hover:shadow-2xl transition-shadow duration-300 flex flex-col justify-between"
         >
           {/* Image Section */}
           <div className="relative">
