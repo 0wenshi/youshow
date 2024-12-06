@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const navigation = [
-    { name: '演出计划', href: '/plans' },
-    { name: '演员介绍', href: '/actors' },
-    { name: '选座购票', href: '/tickets' },
-    { name: '会员计划', href: '/memberships' },
-    { name: '联系我们', href: '/contact' },
+  { name: '演出计划', href: '/plans' },
+  { name: '演员介绍', href: '/actors' },
+  { name: '选座购票', href: '/tickets' },
+  { name: '会员计划', href: '/memberships' },
+  { name: '联系我们', href: '/contact' },
 ];
 
 function NavBar() {
@@ -15,7 +15,10 @@ function NavBar() {
 
   return (
     <header className="bg-orange-500 rounded-full shadow-md max-w-5xl mx-auto my-4">
-      <nav aria-label="Global" className="flex items-center justify-between px-8 py-3">
+      <nav
+        aria-label="Global"
+        className="flex items-center justify-between px-8 py-3"
+      >
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
@@ -59,7 +62,9 @@ function NavBar() {
               key={item.name}
               href={item.href}
               className={`text-lg font-bold ${
-                location.pathname === item.href ? 'text-white underline' : 'text-black'
+                location.pathname === item.href
+                  ? 'text-white underline'
+                  : 'text-black'
               }`}
             >
               {item.name}
@@ -88,11 +93,7 @@ function NavBar() {
             className="text-black hover:text-gray-700"
             aria-label="Share"
           >
-            <img
-              src="/images/share-icon.svg"
-              alt="Share"
-              className="h-6 w-6"
-            />
+            <img src="/images/share-icon.svg" alt="Share" className="h-6 w-6" />
           </button>
         </div>
       </nav>
@@ -106,7 +107,9 @@ function NavBar() {
                 key={item.name}
                 href={item.href}
                 className={`block text-lg font-semibold ${
-                  location.pathname === item.href ? 'text-orange-500' : 'text-black'
+                  location.pathname === item.href
+                    ? 'text-orange-500'
+                    : 'text-black'
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >

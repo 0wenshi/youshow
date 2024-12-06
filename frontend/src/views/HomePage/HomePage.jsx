@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./components/styles.module.css";
-import SearchBox from "../ActorsIntroduction/components/SearchBox";
-import NavBar from "./components/NavBar";
-import RotatingSlides from "./components/RotatingSlides";
+import React from 'react';
+import styles from './components/styles.module.css';
+import SearchBox from '../ActorsIntroduction/components/SearchBox';
+import NavBar from './components/NavBar';
+import RotatingSlides from './components/RotatingSlides';
 
 function HomePage() {
   return (

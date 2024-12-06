@@ -1,13 +1,10 @@
 .background {
   background-image: url('/images/background.jpg');
-  background-size: cover;           
-  background-position: center;      
-  min-height: 100vh;                
-  min-width: 1024px;                      
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  min-width: 1024px;
   display: flex;
   align-items: center;
   padding: 20px;
 }
-
-
-

@@ -11,7 +11,7 @@ import HomePage from './views/HomePage/HomePage';
 import PerformancePlans from './views/PerformancePlans/PerformancePlans';
 import Tickets from './views/Tickets/Tickets';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
       <Routes>
@@ -22,7 +22,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/tickets" element={<Tickets />} />
         <Route path="/memberships" element={<MembershipsProgram />} />
         <Route path="/contact" element={<ContactUs />} />
-
       </Routes>
     </Router>
   </React.StrictMode>

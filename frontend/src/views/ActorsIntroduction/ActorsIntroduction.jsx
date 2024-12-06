@@ -7,7 +7,6 @@ import NavBar from '../HomePage/components/NavBar';
 function ActorsIntroduction() {
   return (
     <div className={styles.background}>
-
       <div className="flex flex-col items-center w-full max-w-6xl mx-auto">
         <div className="w-full -mt-5">
           <NavBar />

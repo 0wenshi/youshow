@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 function Calendar() {
@@ -97,8 +97,8 @@ function Calendar() {
             key={index}
             className={`h-16 w-16 flex items-center justify-center rounded-full text-lg ${
               isToday(day)
-                ? "bg-orange-500 text-white font-bold"
-                : "bg-white text-black"
+                ? 'bg-orange-500 text-white font-bold'
+                : 'bg-white text-black'
             }`}
           >
             {day}

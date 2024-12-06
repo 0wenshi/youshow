@@ -3,7 +3,7 @@ import styles from './components/styles.module.css';
 import Memberships from './components/Memberships';
 import SearchBox from '../ActorsIntroduction/components/SearchBox';
 import CurrentUserLevel from './components/CurrentUserLevel';
-import NavBar from "../HomePage/components/NavBar";
+import NavBar from '../HomePage/components/NavBar';
 
 function MembershipsProgram() {
   return (
@@ -14,11 +14,11 @@ function MembershipsProgram() {
       <div className="w-full max-w-7xl mb-24">
         <CurrentUserLevel />
       </div>
-   
+
       <div className="w-full max-w-7xl mb-24">
         <Memberships />
       </div>
-  
+
       <div className="fixed bottom-10 right-10">
         <SearchBox />
       </div>

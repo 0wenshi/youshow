@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./components/styles.module.css";
-import SearchBox from "../ActorsIntroduction/components/SearchBox";
-import NavBar from "../HomePage/components/NavBar";
+import React from 'react';
+import styles from './components/styles.module.css';
+import SearchBox from '../ActorsIntroduction/components/SearchBox';
+import NavBar from '../HomePage/components/NavBar';
 
 function Tickets() {
   return (

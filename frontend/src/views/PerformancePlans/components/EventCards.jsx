@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const cards = [
   {
-    id: "1",
-    image: "/images/slides1.jpg",
-    title: "年度大咖秀",
-    description: "7 Nov / 19:30 (Thur) @ Skycity Theatre, Auckland",
-    price: "$136.99",
-    button: "选座购票",
-    link: "/tickets?event=show1",
+    id: '1',
+    image: '/images/slides1.jpg',
+    title: '年度大咖秀',
+    description: '7 Nov / 19:30 (Thur) @ Skycity Theatre, Auckland',
+    price: '$136.99',
+    button: '选座购票',
+    link: '/tickets?event=show1',
   },
   {
-    id: "2",
-    image: "/images/slides2.jpg",
-    title: "流浪计划",
-    description: "22 Nov / 19:00 (Fri) @ Pinehurst Theatre, Auckland",
-    price: "$79.99",
-    button: "选座购票",
-    link: "/tickets?event=show2",
+    id: '2',
+    image: '/images/slides2.jpg',
+    title: '流浪计划',
+    description: '22 Nov / 19:00 (Fri) @ Pinehurst Theatre, Auckland',
+    price: '$79.99',
+    button: '选座购票',
+    link: '/tickets?event=show2',
   },
   {
-    id: "3",
-    image: "/images/slides4.jpg",
-    title: "开放麦",
-    description: "8 Nov / 19:30 (Fri) @ Albany, Auckland",
-    price: "$19",
-    button: "选座购票",
-    link: "/tickets?event=show3",
+    id: '3',
+    image: '/images/slides4.jpg',
+    title: '开放麦',
+    description: '8 Nov / 19:30 (Fri) @ Albany, Auckland',
+    price: '$19',
+    button: '选座购票',
+    link: '/tickets?event=show3',
   },
 ];
 
@@ -40,10 +40,10 @@ function EventCards() {
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/favorites");
+        const response = await axios.get('http://localhost:3000/favorites');
         setFavorites(response.data);
       } catch (error) {
-        console.error("Error fetching favorites:", error);
+        console.error('Error fetching favorites:', error);
       }
     };
     fetchFavorites();
@@ -53,13 +53,13 @@ function EventCards() {
   const toggleFavorite = async (id) => {
     const isFavorited = favorites.includes(id);
     try {
-      const response = await axios.post("http://localhost:3000/favorites", {
+      const response = await axios.post('http://localhost:3000/favorites', {
         id,
         isFavorited: !isFavorited,
       });
       setFavorites(response.data.favorites);
     } catch (error) {
-      console.error("Error updating favorite:", error);
+      console.error('Error updating favorite:', error);
     }
   };
 
@@ -88,10 +88,10 @@ function EventCards() {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill={favorites.includes(card.id) ? "red" : "none"}
+                fill={favorites.includes(card.id) ? 'red' : 'none'}
                 viewBox="0 0 24 24"
                 strokeWidth={2}
-                stroke={favorites.includes(card.id) ? "red" : "gray"}
+                stroke={favorites.includes(card.id) ? 'red' : 'gray'}
                 className="w-6 h-6"
               >
                 <path

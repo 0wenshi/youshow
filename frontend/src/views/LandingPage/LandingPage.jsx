@@ -2,7 +2,7 @@ import React from 'react';
 import GetStartButton from './components/GetStartButton';
 import styles from './components/styles.module.css';
 
-function LandingPage (){
+function LandingPage() {
   return (
     <div className={styles.background}>
       <div className="text-center z-10">
@@ -13,6 +13,6 @@ function LandingPage (){
       </div>
     </div>
   );
-};
+}
 
 export default LandingPage;
