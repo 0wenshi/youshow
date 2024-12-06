@@ -41,26 +41,26 @@ const files = [
   ];
 
 function Actors() {
-    return (
-<ul role="list" className="grid grid-cols-1 md:grid-cols-2 gap-6">
-  {files.map((file, index) => (
-    <li key={index} className={`p-4 rounded-lg flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'mt-0' : '-mt-48'}`}>
-      <div className="flex items-center">
-        <img 
-            src={file.source} 
-            alt={file.title} 
-            style={{ width: '194px', height: '259px', objectFit: 'cover' }} 
-            className="rounded-2xl mb-4 md:mb-0 md:mr-8" 
-        />
-<div className="text-left w-[300px]">
-  <h3 className="text-orange-500 font-black text-3xl mb-6">{file.title}</h3>
-  <h4 className="font-extrabold text-sm mb-3">{file.subtitle}</h4> 
-  <p className="font-semibold text-sm -mb-12">{file.description}</p>
-</div>
-      </div>
-    </li>
-  ))}
-</ul>
+return (
+  <ul role="list" className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {files.map((file, index) => (
+      <li key={index} className={`p-4 rounded-lg flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'mt-0' : '-mt-48'}`}>
+        <div className="flex items-center">
+          <img 
+              src={file.source} 
+              alt={file.title} 
+              style={{ width: '194px', height: '259px', objectFit: 'cover' }} 
+              className="rounded-2xl mb-4 md:mb-0 md:mr-8" 
+          />
+          <div className="text-left w-[300px]">
+            <h3 className="text-orange-600 font-black text-3xl mb-6">{file.title}</h3>
+            <h4 className="font-extrabold text-sm mb-3">{file.subtitle}</h4> 
+            <p className="font-semibold text-sm -mb-12">{file.description}</p>
+          </div>
+        </div>
+      </li>
+    ))}
+  </ul>
     );
 }
 
