@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import actor1 from '/images/lianghaiyuan.jpeg';
 import actor2 from '/images/wangdefa.jpeg';
