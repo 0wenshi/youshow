@@ -48,7 +48,7 @@ function NavBar() {
 
         {/* Additional Buttons */}
         <div className="flex flex-1 justify-end gap-x-2">
-          <a href="#" className="text-sm font-semibold text-black">
+          <a href="/login" className="text-sm font-semibold text-black">
             Login <span aria-hidden="true">&rarr;</span>
           </a>
           <button
