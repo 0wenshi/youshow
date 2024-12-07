@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './components/styles.module.css';
 import youshowlogo from '/images/WechatIMG19.jpg';
-import NavBar from '../HomePage/components/NavBar';
+import NavBar from '../CommonComponents/NavBar';
 
 function ContactUs() {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './components/styles.module.css';
-import SearchBox from '../ActorsIntroduction/components/SearchBox';
-import NavBar from '../HomePage/components/NavBar';
+import SearchBox from '../CommonComponents/SearchBox';
+import NavBar from '../CommonComponents/NavBar';
 import Calendar from './components/Calendar';
 import EventCards from './components/EventCards';
 

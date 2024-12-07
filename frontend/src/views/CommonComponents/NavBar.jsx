@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const navigation = [
-  { name: '演出计划', href: '/plans' },
-  { name: '演员介绍', href: '/actors' },
-  { name: '选座购票', href: '/tickets' },
-  { name: '会员计划', href: '/memberships' },
-  { name: '联系我们', href: '/contact' },
+  { name: 'Perfromance Plans', href: '/plans' },
+  { name: 'Actors Introduction', href: '/actors' },
+  { name: 'Tickets', href: '/tickets' },
+  { name: 'Memberships Program', href: '/memberships' },
+  { name: 'Contact Us', href: '/contact' },
 ];
 
 function NavBar() {
@@ -14,7 +14,7 @@ function NavBar() {
   const location = useLocation();
 
   return (
-    <header className="bg-orange-500 rounded-full shadow-md max-w-5xl mx-auto my-4">
+    <header className="bg-orange-500 rounded-full shadow-md max-w-7xl mx-auto my-4">
       <nav
         aria-label="Global"
         className="flex items-center justify-between px-8 py-3"

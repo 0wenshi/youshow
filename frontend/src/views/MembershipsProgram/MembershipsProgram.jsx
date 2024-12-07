@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './components/styles.module.css';
 import Memberships from './components/Memberships';
-import SearchBox from '../ActorsIntroduction/components/SearchBox';
+import SearchBox from '../CommonComponents/SearchBox';
 import CurrentUserLevel from './components/CurrentUserLevel';
-import NavBar from '../HomePage/components/NavBar';
+import NavBar from '../CommonComponents/NavBar';
 
 function MembershipsProgram() {
   return (
@@ -11,14 +11,14 @@ function MembershipsProgram() {
       <div className="fixed top-0 left-0 right-0 z-50">
         <NavBar />
       </div>
-      <div className="w-full max-w-7xl mb-24">
-        <CurrentUserLevel />
+      <div className="flex flex-col items-center w-full max-w-4xl mx-auto">
+        <div className="w-full py-4 mt-10 mb-4 rounded-lg">
+          <CurrentUserLevel />
+        </div>
+        <div className="w-full mt-2 mb-2 rounded-lg">
+          <Memberships />
+        </div>
       </div>
-
-      <div className="w-full max-w-7xl mb-24">
-        <Memberships />
-      </div>
-
       <div className="fixed bottom-10 right-10">
         <SearchBox />
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './components/styles.module.css';
-import SearchBox from '../ActorsIntroduction/components/SearchBox';
-import NavBar from './components/NavBar';
+import SearchBox from '../CommonComponents/SearchBox';
+import NavBar from '../CommonComponents/NavBar';
 import RotatingSlides from './components/RotatingSlides';
 
 function HomePage() {
