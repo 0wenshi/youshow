@@ -3,17 +3,17 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedUsername = localStorage.getItem('rememberUsername');
+    const savedUsernameOrEmail = localStorage.getItem('rememberUsernameOrEmail');
     const savedPassword = localStorage.getItem('rememberPassword');
-    if (savedUsername && savedPassword) {
-      setUsername(savedUsername);
+    if (savedUsernameOrEmail && savedPassword) {
+      setUsernameOrEmail(savedUsernameOrEmail);
       setPassword(savedPassword);
       setRememberMe(true);
     }
@@ -23,15 +23,15 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/auth/login', {
-        username,
+        usernameOrEmail,
         password,
       });
 
       if (rememberMe) {
-        localStorage.setItem('rememberUsername', username);
+        localStorage.setItem('rememberUsernameOrEmail', usernameOrEmail);
         localStorage.setItem('rememberPassword', password);
       } else {
-        localStorage.removeItem('rememberUsername');
+        localStorage.removeItem('rememberUsernameOrEmail');
         localStorage.removeItem('rememberPassword');
       }
 
@@ -60,11 +60,11 @@ function Login() {
           <h2 className="text-3xl font-bold mb-6 text-gray-800">Sign in</h2>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-600">Username</label>
+              <label className="block text-sm font-medium text-gray-600">Username or Email</label>
               <input
                 type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={usernameOrEmail}
+                onChange={(e) => setUsernameOrEmail(e.target.value)}
                 required
                 className="w-full border border-gray-300 rounded-md p-2"
               />

@@ -4,15 +4,24 @@ import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
     try {
       await axios.post('http://localhost:3000/auth/register', {
         username,
+        email,
         password,
       });
       alert('Registration successful!');
@@ -40,6 +49,16 @@ function Register() {
               />
             </div>
             <div>
+              <label className="block text-sm font-medium text-gray-600">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+            <div>
               <label className="block text-sm font-medium text-gray-600">Password</label>
               <input
                 type="password"
@@ -49,7 +68,27 @@ function Register() {
                 className="w-full border border-gray-300 rounded-md p-2"
               />
             </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-600">Repeat Password</label>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                className="w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                required
+                className="mr-2"
+              />
+              <label className="text-sm text-gray-600">
+                I agree to all statements in <a href="/terms" className="text-blue-500 hover:underline">Terms of Service</a>
+              </label>
+            </div>
             <button
               type="submit"
               className="w-full bg-blue-500 text-white py-2 rounded-md font-semibold hover:bg-blue-600"
