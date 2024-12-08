@@ -19,12 +19,11 @@ function NavBar() {
       >
         {/* Logo */}
         <div className="flex flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <a href="/" className="-m-1.5 p-1.5">
             <img
               alt="Avatar"
               src="/images/Avatar.jpg"
-              style={{ height: '60px', width: 'auto' }}
+              style={{ height: '70px', width: '100px' }}
             />
           </a>
         </div>

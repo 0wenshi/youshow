@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
-const favoritesRoutes = require('./routes/favorites'); // 引入收藏路由
+const favoritesRoutes = require('./routes/favorites'); 
 
 const app = express();
 const port = process.env.PORT;
@@ -15,9 +15,8 @@ app.use(bodyParser.json());
 
 // 路由挂载
 app.use('/auth', authRoutes);
-app.use('/favorites', favoritesRoutes); // 挂载收藏功能路由
+app.use('/favorites', favoritesRoutes);
 
-// 启动服务
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
