@@ -8,6 +8,19 @@ const favoritesRoutes = require('./routes/favorites');
 
 const app = express();
 const port = process.env.PORT;
+const sequelize = require('./config/db');
+const User = require('./modles/User');
+
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Database connected.');
+    await sequelize.sync({ alter: true }); // 同步模型到数据库
+    console.log('Models synchronized.');
+  } catch (err) {
+    console.error('Database connection failed:', err);
+  }
+})();
 
 // 允许跨域
 app.use(cors());
