@@ -9,7 +9,7 @@ const favoritesRoutes = require('./routes/favorites');
 const app = express();
 const port = process.env.PORT;
 const sequelize = require('./config/db');
-const User = require('./modles/User');
+const User = require('./models/User');
 
 (async () => {
   try {
