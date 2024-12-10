@@ -23,10 +23,10 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/auth/login', {
-        usernameOrEmail,
+        identifier: usernameOrEmail,
         password,
       });
-
+  
       if (rememberMe) {
         localStorage.setItem('rememberUsernameOrEmail', usernameOrEmail);
         localStorage.setItem('rememberPassword', password);
@@ -34,7 +34,7 @@ function Login() {
         localStorage.removeItem('rememberUsernameOrEmail');
         localStorage.removeItem('rememberPassword');
       }
-
+  
       localStorage.setItem('token', response.data.token);
       alert('Login successful!');
       navigate('/homepage');
@@ -42,6 +42,7 @@ function Login() {
       setError(error.response?.data?.message || 'Login failed');
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 bg-[url('/images/startbackground.jpg')]">

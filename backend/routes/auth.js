@@ -37,33 +37,29 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { identifier, password } = req.body;
 
   console.log('Request body:', req.body);
 
   try {
-    // 确保至少提供 `username` 或 `email`
-    if (!username && !email) {
-      return res.status(400).json({ message: 'Username or email is required' });
+    if (!identifier || !password) {
+      return res.status(400).json({ message: 'Identifier and password are required' });
     }
 
-    // 查找用户（支持用户名或邮箱登录）
     const user = await User.findOne({
       where: {
-        [Sequelize.Op.or]: [{ username }, { email }],
+        [Sequelize.Op.or]: [{ username: identifier }, { email: identifier }],
       },
     });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // 检查密码是否正确
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // 生成 JWT token
     const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1h' });
     res.status(200).json({ message: 'Login successful', token });
   } catch (error) {
