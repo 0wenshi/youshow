@@ -64,12 +64,12 @@ function NavBar() {
           {isLoggedIn ? (
             <button
               onClick={handleLogout}
-              className="text-sm font-semibold text-black hover:text-orange-200"
+              className="text-sm font-bold text-black hover:text-orange-200"
             >
               Logout <span aria-hidden="true">&rarr;</span>
             </button>
           ) : (
-            <a href="/login" className="text-sm font-semibold text-black hover:text-orange-200">
+            <a href="/login" className="text-sm font-bold text-black hover:text-orange-200">
               Login <span aria-hidden="true">&rarr;</span>
             </a>
           )}
