@@ -15,6 +15,15 @@ const monthNames = [
   'December',
 ];
 
+const events = {
+  12: '19:30',
+  13: '19:30',
+  14: '19:30',
+  19: '19:30',
+  20: '19:30',
+  26: '19:30',
+};
+
 function Calendar() {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
@@ -59,18 +68,24 @@ function Calendar() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-12">
+    <div className="max-w-2xl mx-auto p-8 ">
       {/* Header */}
-      <div className="flex items-center justify-between mb-5">
+      <div className="text-center mb-1">
+        <img
+          src="/images/showcase calendar.png"
+          style={{ height: '100px', width: '200px' }}
+        ></img>
+        <h2 className="text-5xl font-semibold text-orange-700 -mt-4">
+          {monthNames[currentMonth]} {currentYear}
+        </h2>
+      </div>
+      <div className="flex items-center justify-between mb-1">
         <button
           onClick={handlePrevMonth}
           className="p-3 bg-white rounded-full hover:bg-orange-500"
         >
           &#8249;
         </button>
-        <h1 className="p-3 text-5xl font-bold text-black">
-          {monthNames[currentMonth]} {currentYear}
-        </h1>
         <button
           onClick={handleNextMonth}
           className="p-3 bg-white rounded-full hover:bg-orange-500"
@@ -91,17 +106,22 @@ function Calendar() {
       </div>
 
       {/* Dates */}
-      <div className="grid grid-cols-7 gap-4">
+      <div className="grid grid-cols-7 gap-2">
         {dates.map((day, index) => (
           <div
             key={index}
-            className={`h-16 w-16 flex items-center justify-center rounded-full text-lg ${
-              isToday(day)
-                ? 'bg-orange-500 text-white font-bold'
-                : 'bg-white text-black'
-            }`}
+            className={`h-20 w-20 flex flex-col items-center justify-center rounded-lg text-lg font-medium ${
+              isToday(day) ? 'bg-orange-500 text-white font-bold' : 'text-black'
+            } ${events[day] ? ' border-orange-400' : ''}`}
           >
-            {day}
+            <span>{day || ''}</span>
+            <span
+              className={`text-base mt-1 ${
+                events[day] ? 'bg-orange-400 px-1 ' : 'text-gray-900'
+              }`}
+            >
+              {events[day] || 'Break'}
+            </span>
           </div>
         ))}
       </div>

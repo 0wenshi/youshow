@@ -11,7 +11,7 @@ function ActorsIntroduction() {
         <div className="w-full -mt-5">
           <NavBar />
         </div>
-        <div className="w-full pt-24">
+        <div className="w-full pt-28">
           <Actors />
         </div>
       </div>

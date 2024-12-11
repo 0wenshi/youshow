@@ -5,30 +5,32 @@ import axios from 'axios';
 const cards = [
   {
     id: '1',
-    image: '/images/slides1.jpg',
-    title: '年度大咖秀',
-    description: '7 Nov / 19:30 (Thur) @ Skycity Theatre, Auckland',
+    image: '/images/xiaolu.jpg',
+    title: '我的中女时代 小鹿 全球巡演',
+    description: '13/14 Feb 2025 / 19:30 @ Skycity Theatre, Auckland',
     price: '$136.99',
     button: '选座购票',
-    link: '/tickets?event=show1',
+    link: 'www.eventbrite.com/',
   },
   {
     id: '2',
-    image: '/images/slides2.jpg',
-    title: '流浪计划',
-    description: '22 Nov / 19:00 (Fri) @ Pinehurst Theatre, Auckland',
-    price: '$79.99',
+    image: '/images/open_mic_Chinese.png',
+    title: '中文开放麦',
+    description:
+      '20 Feb 2025 / 19:30 @ 5/7 Corinthinn Drive Albany, Auckland 0632',
+    price: '$19',
     button: '选座购票',
-    link: '/tickets?event=show2',
+    link: 'www.eventbrite.com/',
   },
   {
     id: '3',
-    image: '/images/slides4.jpg',
-    title: '开放麦',
-    description: '8 Nov / 19:30 (Fri) @ Albany, Auckland',
+    image: '/images/open_mic_English.png',
+    title: '英文开放麦',
+    description:
+      '26 Feb 2025 / 19:30 @ 5/7 Corinthinn Drive Albany, Auckland 0632',
     price: '$19',
     button: '选座购票',
-    link: '/tickets?event=show3',
+    link: 'www.eventbrite.com/',
   },
 ];
 
@@ -64,7 +66,12 @@ function EventCards() {
   };
 
   const handleNavigation = (link) => {
-    navigate(link);
+    if (link.startsWith('http') || link.startsWith('www')) {
+      const externalLink = link.startsWith('www') ? `https://${link}` : link;
+      window.location.href = externalLink;
+    } else {
+      navigate(link);
+    }
   };
 
   return (

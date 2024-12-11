@@ -9,7 +9,6 @@ import MembershipsProgram from './views/MembershipsProgram/MembershipsProgram';
 import LandingPage from './views/LandingPage/LandingPage';
 import HomePage from './views/HomePage/HomePage';
 import PerformancePlans from './views/PerformancePlans/PerformancePlans';
-import Tickets from './views/Tickets/Tickets';
 import Login from './views/LoginIn/Login';
 import Register from './views/SignUp/Register';
 
@@ -23,7 +22,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/plans" element={<PerformancePlans />} />
         <Route path="/actors" element={<ActorsIntroduction />} />
-        <Route path="/tickets" element={<Tickets />} />
         <Route path="/memberships" element={<MembershipsProgram />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>

@@ -11,11 +11,14 @@ function PerformancePlans() {
       <div className="fixed top-0 left-0 right-0 z-50">
         <NavBar />
       </div>
-      <div className="min-h-screen flex items-center justify-center">
-        <Calendar />
-      </div>
-      <div>
-        <EventCards />
+      <div className="min-h-screen flex">
+        <div className="w-1/3 flex items-center justify-center">
+          <Calendar />
+        </div>
+
+        <div className="w-2/3 flex items-center justify-center">
+          <EventCards />
+        </div>
       </div>
       <div className="fixed bottom-10 right-10">
         <SearchBox />

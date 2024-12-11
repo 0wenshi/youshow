@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 const navigation = [
   { name: 'Performance Plans', href: '/plans' },
   { name: 'Actors Introduction', href: '/actors' },
-  { name: 'Tickets', href: '/tickets' },
   { name: 'Memberships Program', href: '/memberships' },
   { name: 'Contact Us', href: '/contact' },
 ];
@@ -16,7 +15,7 @@ function NavBar() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-      setIsLoggedIn(!!token);
+    setIsLoggedIn(!!token);
   }, []);
 
   const handleLogout = () => {
@@ -26,18 +25,23 @@ function NavBar() {
   };
 
   return (
-    <header className="bg-orange-500 rounded-full shadow-md max-w-7xl mx-auto my-2">
+    <header className="bg-orange-500 rounded-full shadow-md max-w-6xl mx-auto my-2">
       <nav
         aria-label="Global"
-        className="flex items-center justify-between px-4 py-0"
+        className="flex items-center justify-between px-6 py-0"
       >
         {/* Logo */}
         <div className="flex flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-2.5 p-0.5">
             <img
               alt="Avatar"
               src="/images/Avatar.jpg"
-              style={{ height: '80px', width: '80px' , borderRadius: '50%', objectFit: 'cover'}}
+              style={{
+                height: '80px',
+                width: '80px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+              }}
             />
           </a>
         </div>
@@ -69,7 +73,10 @@ function NavBar() {
               Logout <span aria-hidden="true">&rarr;</span>
             </button>
           ) : (
-            <a href="/login" className="text-sm font-bold text-black hover:text-orange-200">
+            <a
+              href="/login"
+              className="text-sm font-bold text-black hover:text-orange-200"
+            >
               Login <span aria-hidden="true">&rarr;</span>
             </a>
           )}
