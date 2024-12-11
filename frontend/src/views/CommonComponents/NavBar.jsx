@@ -1,4 +1,5 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const navigation = [
   { name: 'Performance Plans', href: '/plans' },
@@ -10,12 +11,25 @@ const navigation = [
 
 function NavBar() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+      setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    navigate('/login');
+  };
 
   return (
-    <header className="bg-orange-500 rounded-full shadow-md max-w-7xl mx-auto my-4">
+    <header className="bg-orange-500 rounded-full shadow-md max-w-7xl mx-auto my-2">
       <nav
         aria-label="Global"
-        className="flex items-center justify-between px-8 py-3"
+        className="flex items-center justify-between px-4 py-0"
       >
         {/* Logo */}
         <div className="flex flex-1">
@@ -23,21 +37,21 @@ function NavBar() {
             <img
               alt="Avatar"
               src="/images/Avatar.jpg"
-              style={{ height: '70px', width: '100px' }}
+              style={{ height: '80px', width: '80px' , borderRadius: '50%', objectFit: 'cover'}}
             />
           </a>
         </div>
 
         {/* Navigation Links */}
-        <div className="flex gap-x-12">
+        <div className="flex gap-x-16">
           {navigation.map((item) => (
             <a
               key={item.name}
               href={item.href}
               className={`text-lg font-bold ${
                 location.pathname === item.href
-                  ? 'text-white underline'
-                  : 'text-black'
+                  ? 'text-orange-200 underline'
+                  : 'text-black hover:text-orange-200'
               }`}
             >
               {item.name}
@@ -47,9 +61,18 @@ function NavBar() {
 
         {/* Additional Buttons */}
         <div className="flex flex-1 justify-end gap-x-2">
-          <a href="/login" className="text-sm font-semibold text-black">
-            Login <span aria-hidden="true">&rarr;</span>
-          </a>
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="text-sm font-semibold text-black hover:text-orange-200"
+            >
+              Logout <span aria-hidden="true">&rarr;</span>
+            </button>
+          ) : (
+            <a href="/login" className="text-sm font-semibold text-black hover:text-orange-200">
+              Login <span aria-hidden="true">&rarr;</span>
+            </a>
+          )}
           <button
             type="button"
             className="text-black hover:text-gray-700"

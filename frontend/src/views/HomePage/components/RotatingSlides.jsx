@@ -23,11 +23,11 @@ const slides = [
 function RotatingSlides() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-slide every 10 seconds
+  // Auto-slide every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 10000);
+    }, 5000);
     return () => clearInterval(timer);
   }, [currentIndex]);
 
