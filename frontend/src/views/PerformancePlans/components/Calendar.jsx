@@ -75,20 +75,20 @@ function Calendar() {
           src="/images/showcase calendar.png"
           style={{ height: '100px', width: '200px' }}
         ></img>
-        <h2 className="text-5xl font-semibold text-orange-700 -mt-4">
+        <h2 className="text-5xl font-semibold text-orange-700 -mt-7">
           {monthNames[currentMonth]} {currentYear}
         </h2>
       </div>
-      <div className="flex items-center justify-between mb-1">
+      <div className="flex items-center justify-between mb-0">
         <button
           onClick={handlePrevMonth}
-          className="p-3 bg-white rounded-full hover:bg-orange-500"
+          className="p-3 bg-orange-500 rounded-full hover:bg-white"
         >
           &#8249;
         </button>
         <button
           onClick={handleNextMonth}
-          className="p-3 bg-white rounded-full hover:bg-orange-500"
+          className="p-3 bg-orange-500 rounded-full hover:bg-white"
         >
           &#8250;
         </button>
