@@ -18,7 +18,9 @@ router.post('/register', async (req, res) => {
       },
     });
     if (existingUser) {
-      return res.status(400).json({ message: 'Username or email already exists' });
+      return res
+        .status(400)
+        .json({ message: 'Username or email already exists' });
     }
 
     // 哈希密码并保存用户
@@ -43,7 +45,9 @@ router.post('/login', async (req, res) => {
 
   try {
     if (!identifier || !password) {
-      return res.status(400).json({ message: 'Identifier and password are required' });
+      return res
+        .status(400)
+        .json({ message: 'Identifier and password are required' });
     }
 
     const user = await User.findOne({

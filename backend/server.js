@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
-const favoritesRoutes = require('./routes/favorites'); 
+const favoritesRoutes = require('./routes/favorites');
 
 const app = express();
 const port = process.env.PORT;

@@ -10,7 +10,9 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedUsernameOrEmail = localStorage.getItem('rememberUsernameOrEmail');
+    const savedUsernameOrEmail = localStorage.getItem(
+      'rememberUsernameOrEmail'
+    );
     const savedPassword = localStorage.getItem('rememberPassword');
     if (savedUsernameOrEmail && savedPassword) {
       setUsernameOrEmail(savedUsernameOrEmail);
@@ -26,7 +28,7 @@ function Login() {
         identifier: usernameOrEmail,
         password,
       });
-  
+
       if (rememberMe) {
         localStorage.setItem('rememberUsernameOrEmail', usernameOrEmail);
         localStorage.setItem('rememberPassword', password);
@@ -34,7 +36,7 @@ function Login() {
         localStorage.removeItem('rememberUsernameOrEmail');
         localStorage.removeItem('rememberPassword');
       }
-  
+
       localStorage.setItem('token', response.data.token);
       alert('Login successful!');
       navigate('/homepage');
@@ -42,7 +44,6 @@ function Login() {
       setError(error.response?.data?.message || 'Login failed');
     }
   };
-  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 bg-[url('/images/startbackground.jpg')]">
@@ -61,7 +62,9 @@ function Login() {
           <h2 className="text-3xl font-bold mb-6 text-gray-800">Sign in</h2>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-600">Username or Email</label>
+              <label className="block text-sm font-medium text-gray-600">
+                Username or Email
+              </label>
               <input
                 type="text"
                 value={usernameOrEmail}
@@ -71,7 +74,9 @@ function Login() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-600">Password</label>
+              <label className="block text-sm font-medium text-gray-600">
+                Password
+              </label>
               <input
                 type="password"
                 value={password}
@@ -101,7 +106,10 @@ function Login() {
             </button>
           </form>
           <div className="flex justify-between items-center mt-4">
-            <a href="/register" className="text-sm text-blue-500 hover:underline">
+            <a
+              href="/register"
+              className="text-sm text-blue-500 hover:underline"
+            >
               Create an account
             </a>
           </div>

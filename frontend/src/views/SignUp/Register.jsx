@@ -39,7 +39,9 @@ function Register() {
           <h2 className="text-3xl font-bold mb-6 text-gray-800">Sign up</h2>
           <form onSubmit={handleRegister} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-600">Username</label>
+              <label className="block text-sm font-medium text-gray-600">
+                Username
+              </label>
               <input
                 type="text"
                 value={username}
@@ -49,7 +51,9 @@ function Register() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-600">Email</label>
+              <label className="block text-sm font-medium text-gray-600">
+                Email
+              </label>
               <input
                 type="email"
                 value={email}
@@ -59,7 +63,9 @@ function Register() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-600">Password</label>
+              <label className="block text-sm font-medium text-gray-600">
+                Password
+              </label>
               <input
                 type="password"
                 value={password}
@@ -69,7 +75,9 @@ function Register() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-600">Repeat Password</label>
+              <label className="block text-sm font-medium text-gray-600">
+                Repeat Password
+              </label>
               <input
                 type="password"
                 value={confirmPassword}
@@ -80,13 +88,12 @@ function Register() {
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
             <div className="flex items-center">
-              <input
-                type="checkbox"
-                required
-                className="mr-2"
-              />
+              <input type="checkbox" required className="mr-2" />
               <label className="text-sm text-gray-600">
-                I agree to all statements in <a href="/terms" className="text-blue-500 hover:underline">Terms of Service</a>
+                I agree to all statements in{' '}
+                <a href="/terms" className="text-blue-500 hover:underline">
+                  Terms of Service
+                </a>
               </label>
             </div>
             <button

@@ -1,15 +1,25 @@
 import React from 'react';
-import GetStartButton from './components/GetStartButton';
-import styles from './components/styles.module.css';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
   return (
-    <div className={styles.background}>
-      <div className="text-center z-10">
-        <h1 className="text-8xl font-black text-black tracking-widest">
-          YOU <span className="block">SHOW</span>
-        </h1>
-        <GetStartButton />
+    <div
+      className="relative w-full h-screen bg-cover bg-center flex flex-col items-center justify-center"
+      style={{
+        backgroundImage: "url('/images/startbackground.jpg')",
+      }}
+    >
+      <div className="flex flex-col items-center">
+        <img
+          src="/images/youshow.png"
+          alt="YOU SHOW"
+          className="transition-transform duration-300 hover:scale-110 mx-auto"
+        />
+        <Link to="/homepage">
+          <button className="mt-32 bg-orange-500 hover:bg-orange-600 rounded-[39px] px-8 py-4 text-black font-bold text-lg flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-105">
+            GET START
+          </button>
+        </Link>
       </div>
     </div>
   );
