@@ -36,34 +36,6 @@ const cards = [
 
 function EventCards() {
   const navigate = useNavigate();
-  const [favorites, setFavorites] = useState([]);
-
-  // Fetch favorites from the server on component mount
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/favorites');
-        setFavorites(response.data);
-      } catch (error) {
-        console.error('Error fetching favorites:', error);
-      }
-    };
-    fetchFavorites();
-  }, []);
-
-  // Handle favorite toggle
-  const toggleFavorite = async (id) => {
-    const isFavorited = favorites.includes(id);
-    try {
-      const response = await axios.post('http://localhost:3000/favorites', {
-        id,
-        isFavorited: !isFavorited,
-      });
-      setFavorites(response.data.favorites);
-    } catch (error) {
-      console.error('Error updating favorite:', error);
-    }
-  };
 
   const handleNavigation = (link) => {
     if (link.startsWith('http') || link.startsWith('www')) {
@@ -88,26 +60,6 @@ function EventCards() {
               alt={card.title}
               className="w-full h-72 object-cover"
             />
-            {/* Heart Icon */}
-            <div
-              className="absolute top-4 right-4 bg-white bg-opacity-70 p-2 rounded-full cursor-pointer"
-              onClick={() => toggleFavorite(card.id)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill={favorites.includes(card.id) ? 'red' : 'none'}
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke={favorites.includes(card.id) ? 'red' : 'gray'}
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M20.84 4.61c-1.54-1.4-4.09-1.4-5.64 0l-.36.33-.36-.33c-1.54-1.4-4.09-1.4-5.64 0a4.48 4.48 0 0 0-.37 6.34l6.01 6.01 6.01-6.01a4.48 4.48 0 0 0-.37-6.34z"
-                />
-              </svg>
-            </div>
           </div>
 
           {/* Text Section */}
