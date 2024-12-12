@@ -16,12 +16,7 @@ const monthNames = [
 ];
 
 const events = {
-  12: '19:30',
-  13: '19:30',
-  14: '19:30',
-  19: '19:30',
-  20: '19:30',
-  26: '19:30',
+  '2025-2': [12, 13, 14, 19, 20, 26], // 格式为 "YYYY-MonthNumber": [EventDays]
 };
 
 function Calendar() {
@@ -67,32 +62,47 @@ function Calendar() {
     );
   };
 
+  // 获取当前月的事件
+  const getCurrentMonthEvents = () => {
+    const key = `${currentYear}-${currentMonth + 1}`; // 当前年月的键
+    return events[key] || []; // 如果没有事件，则返回空数组
+  };
+
+  const currentMonthEvents = getCurrentMonthEvents();
+
   return (
-    <div className="max-w-2xl mx-auto p-8 ">
+    <div className="max-w-2xl mx-auto p-8">
       {/* Header */}
-      <div className="text-center mb-1">
+      <div className="text-center -mb-4">
         <img
           src="/images/showcase calendar.png"
           style={{ height: '100px', width: '200px' }}
-        ></img>
-        <h2 className="text-5xl font-semibold text-orange-700 -mt-7">
-          {monthNames[currentMonth]} {currentYear}
-        </h2>
+          alt="Calendar Header"
+        />
       </div>
-      <div className="flex items-center justify-between mb-0">
-        <button
-          onClick={handlePrevMonth}
-          className="p-3 bg-orange-500 rounded-full hover:bg-white"
-        >
-          &#8249;
-        </button>
-        <button
-          onClick={handleNextMonth}
-          className="p-3 bg-orange-500 rounded-full hover:bg-white"
-        >
-          &#8250;
-        </button>
-      </div>
+
+    <div className="flex items-center justify-between mb-4">
+      {/* Left Button */}
+      <button
+        onClick={handlePrevMonth}
+        className="p-3 bg-orange-500 rounded-full hover:bg-white"
+      >
+        &#8249;
+      </button>
+
+      {/* Center Title */}
+      <h2 className="text-5xl font-semibold text-orange-700 text-center mx-4 flex-1">
+        {monthNames[currentMonth]} {currentYear}
+      </h2>
+
+      {/* Right Button */}
+      <button
+        onClick={handleNextMonth}
+        className="p-3 bg-orange-500 rounded-full hover:bg-white"
+      >
+        &#8250;
+      </button>
+    </div>
 
       {/* Weekdays */}
       <div className="grid grid-cols-7 text-center font-bold text-lg text-black mb-4">
@@ -112,15 +122,19 @@ function Calendar() {
             key={index}
             className={`h-20 w-20 flex flex-col items-center justify-center rounded-lg text-lg font-medium ${
               isToday(day) ? 'bg-orange-500 text-white font-bold' : 'text-black'
-            } ${events[day] ? ' border-orange-400' : ''}`}
+            } ${
+              currentMonthEvents.includes(day) ? 'border-4 border-orange-400' : ''
+            }`}
           >
             <span>{day || ''}</span>
             <span
               className={`text-base mt-1 ${
-                events[day] ? 'bg-orange-400 px-1 ' : 'text-gray-900'
+                currentMonthEvents.includes(day)
+                  ? 'bg-orange-400 px-1 rounded-md text-white'
+                  : 'text-gray-900'
               }`}
             >
-              {events[day] || 'Break'}
+              {currentMonthEvents.includes(day) ? 'Event' : 'Break'}
             </span>
           </div>
         ))}
