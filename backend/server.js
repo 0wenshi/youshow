@@ -4,11 +4,13 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
+const eventRoutes = require('./routes/events');
 
 const app = express();
 const port = process.env.PORT;
 const sequelize = require('./config/db');
 const User = require('./models/User');
+const Event = require('./models/Events');
 
 (async () => {
   try {
@@ -27,6 +29,7 @@ app.use(bodyParser.json());
 
 // 路由挂载
 app.use('/auth', authRoutes);
+app.use('/events', eventRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

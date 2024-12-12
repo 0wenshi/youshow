@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const monthNames = [
   'January',
@@ -15,14 +16,38 @@ const monthNames = [
   'December',
 ];
 
-const events = {
-  '2025-2': [12, 13, 14, 19, 20, 26], // 格式为 "YYYY-MonthNumber": [EventDays]
-};
+// const events = {
+//   '2025-2': [12, 13, 14, 19, 20, 26],
+// };
 
 function Calendar() {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
+  //const [events, setEvents] = useState([]);
+  const [eventDates, setEventDates] = useState([]); // 存储事件日期列表
+
+  // 获取事件数据
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/events/${currentYear}/${currentMonth + 1}` // 根据当前年份和月份请求事件数据
+        );
+        // 提取事件日期
+        const dates = response.data.map((event) => {
+          const eventDate = new Date(event.date); // 转换为 Date 对象
+          return eventDate.getDate(); // 仅保留日期部分
+        });
+        //setEvents(response.data);
+        setEventDates(dates);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+
+    fetchEvents();
+  }, [currentMonth, currentYear]); // 每当月份或年份变化时重新加载事件数据
 
   const handlePrevMonth = () => {
     if (currentMonth === 0) {
@@ -62,13 +87,13 @@ function Calendar() {
     );
   };
 
-  // 获取当前月的事件
-  const getCurrentMonthEvents = () => {
-    const key = `${currentYear}-${currentMonth + 1}`; // 当前年月的键
-    return events[key] || []; // 如果没有事件，则返回空数组
-  };
+  // // 获取当前月的事件
+  // const getCurrentMonthEvents = () => {
+  //   const key = `${currentYear}-${currentMonth + 1}`; // 当前年月的键
+  //   return events[key] || []; // 如果没有事件，则返回空数组
+  // };
 
-  const currentMonthEvents = getCurrentMonthEvents();
+  // const currentMonthEvents = getCurrentMonthEvents();
 
   return (
     <div className="max-w-2xl mx-auto p-8">
@@ -81,31 +106,31 @@ function Calendar() {
         />
       </div>
 
-    <div className="flex items-center justify-between mb-4">
-      {/* Left Button */}
-      <button
-        onClick={handlePrevMonth}
-        className="p-3 bg-orange-500 rounded-full hover:bg-white"
-      >
-        &#8249;
-      </button>
+      <div className="flex items-center justify-between mb-4">
+        {/* Left Button */}
+        <button
+          onClick={handlePrevMonth}
+          className="p-3 bg-orange-500 rounded-full hover:bg-white"
+        >
+          &#8249;
+        </button>
 
-      {/* Center Title */}
-      <h2 className="text-5xl font-semibold text-orange-700 text-center mx-4 flex-1">
-        {monthNames[currentMonth]} {currentYear}
-      </h2>
+        {/* Center Title */}
+        <h2 className="text-5xl font-semibold text-orange-700 text-center mx-4 flex-1">
+          {monthNames[currentMonth]} {currentYear}
+        </h2>
 
-      {/* Right Button */}
-      <button
-        onClick={handleNextMonth}
-        className="p-3 bg-orange-500 rounded-full hover:bg-white"
-      >
-        &#8250;
-      </button>
-    </div>
+        {/* Right Button */}
+        <button
+          onClick={handleNextMonth}
+          className="p-3 bg-orange-500 rounded-full hover:bg-white"
+        >
+          &#8250;
+        </button>
+      </div>
 
       {/* Weekdays */}
-      <div className="grid grid-cols-7 text-center font-bold text-lg text-black mb-4">
+      <div className="grid grid-cols-7 text-center font-bold text-xl text-black mb-4">
         <div>Sun</div>
         <div>Mon</div>
         <div>Tue</div>
@@ -116,25 +141,23 @@ function Calendar() {
       </div>
 
       {/* Dates */}
-      <div className="grid grid-cols-7 gap-2">
+      <div className="grid grid-cols-7 gap-4">
         {dates.map((day, index) => (
           <div
             key={index}
-            className={`h-20 w-20 flex flex-col items-center justify-center rounded-lg text-lg font-medium ${
+            className={`flex flex-col items-center justify-center rounded-lg text-lg font-medium ${
               isToday(day) ? 'bg-orange-500 text-white font-bold' : 'text-black'
-            } ${
-              currentMonthEvents.includes(day) ? 'border-4 border-orange-400' : ''
-            }`}
+            } ${eventDates.includes(day) ? 'border-4 border-orange-400' : ''}`}
           >
             <span>{day || ''}</span>
             <span
               className={`text-base mt-1 ${
-                currentMonthEvents.includes(day)
-                  ? 'bg-orange-400 px-1 rounded-md text-white'
+                eventDates.includes(day)
+                  ? 'bg-orange-400 px-1 py-0.5 rounded-md text-white'
                   : 'text-gray-900'
               }`}
             >
-              {currentMonthEvents.includes(day) ? 'Event' : 'Break'}
+              {eventDates.includes(day) ? 'Event' : 'Break'}
             </span>
           </div>
         ))}

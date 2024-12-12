@@ -7,7 +7,7 @@ const cards = [
     id: '1',
     image: '/images/xiaolu.jpg',
     title: '我的中女时代 小鹿 全球巡演',
-    description: '13/14 Feb 2025 / 19:30 @ Skycity Theatre, Auckland',
+    description: '13 / 14 Feb 2025 / 19:30 @ Skycity Theatre, Auckland',
     price: '$136.99',
     button: '选座购票',
     link: 'www.eventbrite.com/',
@@ -27,7 +27,7 @@ const cards = [
     image: '/images/open_mic_English.png',
     title: '英文开放麦',
     description:
-      '26 Feb 2025 / 19:30 @ 5/7 Corinthinn Drive Albany, Auckland 0632',
+      '12 / 19 / 26 Feb 2025 / 19:30 @ 5/7 Corinthinn Drive Albany, Auckland 0632',
     price: '$19',
     button: '选座购票',
     link: 'www.eventbrite.com/',
