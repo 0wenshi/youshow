@@ -34,7 +34,7 @@ const Events = sequelize.define(
       allowNull: true,
     },
     price: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.STRING(255),
       allowNull: true,
     },
     image: {

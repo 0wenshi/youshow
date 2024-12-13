@@ -87,14 +87,6 @@ function Calendar() {
     );
   };
 
-  // // 获取当前月的事件
-  // const getCurrentMonthEvents = () => {
-  //   const key = `${currentYear}-${currentMonth + 1}`; // 当前年月的键
-  //   return events[key] || []; // 如果没有事件，则返回空数组
-  // };
-
-  // const currentMonthEvents = getCurrentMonthEvents();
-
   return (
     <div className="max-w-2xl mx-auto p-8">
       {/* Header */}
@@ -153,7 +145,7 @@ function Calendar() {
             <span
               className={`text-base mt-1 ${
                 eventDates.includes(day)
-                  ? 'bg-orange-400 px-1 py-0.5 rounded-md text-white'
+                  ? 'bg-orange-400 px-1 py-0.5 rounded-sm text-white'
                   : 'text-gray-900'
               }`}
             >

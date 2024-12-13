@@ -12,11 +12,10 @@ function PerformancePlans() {
         <NavBar />
       </div>
       <div className="min-h-screen flex">
-        <div className="w-1/3 flex items-center justify-center">
+        <div className="flex items-center justify-center">
           <Calendar />
         </div>
-
-        <div className="w-2/3 flex items-center justify-center">
+        <div className="flex items-center justify-center">
           <EventCards />
         </div>
       </div>
