@@ -4,7 +4,8 @@ import axios from 'axios';
 
 function EventCards() {
   const navigate = useNavigate();
-  const [cards, setCards] = useState([]);// save dynamic data from the server
+  const [cards, setCards] = useState([]); // Save dynamic data from the server
+  const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -27,40 +28,70 @@ function EventCards() {
     }
   };
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % cards.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + cards.length) % cards.length);
+  };
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-2 p-6">
-      {cards.map((card) => (
-        <div
-          key={card.id}
-          className="bg-white rounded-xl shadow-lg overflow-hidden relative hover:shadow-2xl transition-shadow duration-300 flex flex-col justify-between"
-        >
+    <div className="w-full">
+      {/* Previous Button */}
+      <button
+        onClick={prevSlide}
+        className="absolute bg-orange-500 p-3 rounded-full hover:bg-orange-600 text-white z-10"
+        style={{ top: '50%', transform: 'translateY(-50%)' }}
+      >
+        &#8249;
+      </button>
+
+      {/* Event Card */}
+      {cards.length > 0 && (
+        <div className="w-full max-w-lg h-auto bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
           {/* Image Section */}
-          <div className="relative">
+          <div className="relative w-full h-80">
             <img
-              src={card.image || '/images/Avatar.jpg'} //default image
-              alt={card.title}
-              className="w-full h-72 object-cover"
+              src={cards[currentSlide]?.image || '/images/Avatar.jpg'} // Default image
+              alt={cards[currentSlide]?.title}
+              className="w-full h-full object-cover rounded-t-xl"
             />
           </div>
 
           {/* Text Section */}
-          <div className="p-4 space-y-3">
-            <h2 className="text-xl font-bold text-black">{card.title}</h2>
-            <p className="text-sm text-gray-500">{card.description}</p>
-            <p className="text-orange-500 font-semibold">{card.price}</p>
+          <div className="p-6 text-center">
+            <h2 className="text-3xl font-bold text-black">
+              {cards[currentSlide]?.title}
+            </h2>
+            <p className="text-lg text-gray-600 my-4">
+              {cards[currentSlide]?.description}
+            </p>
+            <p className="text-orange-500 text-2xl font-semibold">
+              {cards[currentSlide]?.price}
+            </p>
           </div>
 
           {/* Button Section */}
-          <div className="p-4">
+          <div className="p-6">
             <button
-              onClick={() => handleNavigation(card.link)}
-              className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-orange-600 transition-colors"
+              onClick={() => handleNavigation(cards[currentSlide]?.link)}
+              className="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors"
             >
-              {card.button || 'Buy tickets'}
+              Buy tickets
             </button>
           </div>
         </div>
-      ))}
+      )}
+
+      {/* Next Button */}
+      <button
+        onClick={nextSlide}
+        className="absolute right-48 bg-orange-500 p-3 rounded-full hover:bg-orange-600 text-white z-10"
+        style={{ top: '50%', transform: 'translateY(-50%)' }}
+      >
+        &#8250;
+      </button>
     </div>
   );
 }

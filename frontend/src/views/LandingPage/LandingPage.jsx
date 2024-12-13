@@ -3,12 +3,7 @@ import { Link } from 'react-router-dom';
 
 function LandingPage() {
   return (
-    <div
-      className="relative w-full h-screen bg-cover bg-center flex flex-col items-center justify-center"
-      style={{
-        backgroundImage: "url('/images/startbackground.jpg')",
-      }}
-    >
+    <div className="relative w-full h-screen bg-cover bg-center flex flex-col items-center justify-center bg-[url('/images/startbackground.jpg')]">
       <div className="flex flex-col items-center">
         <img
           src="/images/youshow.png"
