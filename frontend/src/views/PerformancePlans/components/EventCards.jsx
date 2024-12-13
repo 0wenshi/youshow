@@ -51,7 +51,7 @@ function EventCards() {
       {cards.length > 0 && (
         <div className="w-full max-w-lg h-auto bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
           {/* Image Section */}
-          <div className="relative w-full h-80">
+          <div className="relative w-full h-96">
             <img
               src={cards[currentSlide]?.image || '/images/Avatar.jpg'} // Default image
               alt={cards[currentSlide]?.title}
