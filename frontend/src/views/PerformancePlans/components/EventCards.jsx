@@ -2,40 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const cards = [
-  {
-    id: '1',
-    image: '/images/xiaolu.jpg',
-    title: '我的中女时代 小鹿 全球巡演',
-    description: '13 / 14 Feb 2025 / 19:30 @ Skycity Theatre, Auckland',
-    price: '$136.99',
-    button: '选座购票',
-    link: 'www.eventbrite.com/',
-  },
-  {
-    id: '2',
-    image: '/images/open_mic_Chinese.png',
-    title: '中文开放麦',
-    description:
-      '20 Feb 2025 / 19:30 @ 5/7 Corinthinn Drive Albany, Auckland 0632',
-    price: '$19',
-    button: '选座购票',
-    link: 'www.eventbrite.com/',
-  },
-  {
-    id: '3',
-    image: '/images/open_mic_English.png',
-    title: '英文开放麦',
-    description:
-      '12 / 19 / 26 Feb 2025 / 19:30 @ 5/7 Corinthinn Drive Albany, Auckland 0632',
-    price: '$19',
-    button: '选座购票',
-    link: 'www.eventbrite.com/',
-  },
-];
-
 function EventCards() {
   const navigate = useNavigate();
+  const [cards, setCards] = useState([]);// save dynamic data from the server
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/events');
+        setCards(response.data);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+    fetchEvents();
+  }, []);
 
   const handleNavigation = (link) => {
     if (link.startsWith('http') || link.startsWith('www')) {
@@ -56,7 +37,7 @@ function EventCards() {
           {/* Image Section */}
           <div className="relative">
             <img
-              src={card.image}
+              src={card.image || '/images/Avatar.jpg'} //default image
               alt={card.title}
               className="w-full h-72 object-cover"
             />
@@ -75,7 +56,7 @@ function EventCards() {
               onClick={() => handleNavigation(card.link)}
               className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-orange-600 transition-colors"
             >
-              {card.button}
+              {card.button || 'Buy tickets'}
             </button>
           </div>
         </div>
