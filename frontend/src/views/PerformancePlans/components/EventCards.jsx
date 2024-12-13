@@ -87,7 +87,7 @@ function EventCards() {
       {/* Next Button */}
       <button
         onClick={nextSlide}
-        className="absolute right-48 bg-orange-500 p-3 rounded-full hover:bg-orange-600 text-white z-10"
+        className="absolute right-80 bg-orange-500 p-3 rounded-full hover:bg-orange-600 text-white z-10"
         style={{ top: '50%', transform: 'translateY(-50%)' }}
       >
         &#8250;
