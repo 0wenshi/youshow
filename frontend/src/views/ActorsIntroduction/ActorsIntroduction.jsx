@@ -11,11 +11,16 @@ function ActorsIntroduction() {
         <div className="w-full -mt-5">
           <NavBar />
         </div>
-        <div className="w-full pt-28">
+        <div className="p-8"
+          style={{
+            paddingLeft: '100px',
+            paddingRight: '100px',
+            paddingBottom: '90px',
+          }}
+        >
           <Actors />
         </div>
       </div>
-
       <div className="fixed bottom-10 right-10">
         <SearchBox />
       </div>

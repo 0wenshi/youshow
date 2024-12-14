@@ -1,75 +1,103 @@
 import React from 'react';
 
-import actor1 from '/images/lianghaiyuan.jpeg';
-import actor2 from '/images/wangdefa.jpeg';
-import actor3 from '/images/chenxiaojin.jpeg';
-import actor4 from '/images/apan.jpeg';
-import actor5 from '/images/zhaijianing.jpeg';
+import actor1 from '/images/actors/Annie.jpg';
+import actor2 from '/images/actors/Bazi.jpg';
+import actor3 from '/images/actors/Charlotte.jpg';
+import actor4 from '/images/actors/Laohu.jpg';
+import actor5 from '/images/actors/Qixue.jpg';
+import actor6 from '/images/actors/Summer.jpg';
+import actor7 from '/images/actors/Vincent.jpg';
+import actor8 from '/images/actors/Wanning.jpg';
 
 const files = [
   {
-    title: '梁海源',
-    subtitle: '经验丰富的喜剧作家',
+    title: 'Annie',
+    subtitle: '脱口秀演员',
     description:
-      '身兼《吐槽大会》和《脱口秀大会》卡司和资深喜剧编剧。个人专场脱口秀《坐在角落里的人2》已成为华语脱口秀界的标杆之作。该系列自2024年启动以来,凭借出色的创作与幽默智慧,迅速席卷国内脱口秀市场,巡演覆盖近30座城市,售票量屡创历史新高,在豆瓣等平台上获得了9.4的高分评价。并成功开启了2024年度全球巡演计划。',
+      '2023 年新西兰 Raw 单口喜剧大赛十强选手，2023 新西兰喜剧协会年度最佳新人提名，2024 年度最佳笑话提名，2024 喜剧联盟年度新星奖。视角独特，梗新颖有力，尤为擅长职场和移民话题。演出场次超过百场，中英文双语，切换自如。',
     source: actor1,
   },
   {
-    title: '汪德发',
-    subtitle: '‘神经系’脱口秀演员',
+    title: '巴子老师',
+    subtitle: '脱口秀新星/生活小观察家',
     description:
-      '汪德发以其独特的‘神经系脱口秀’风格骤然升起,成为观众追捧的新星。擅长刻画生活中的点点滴滴,他强大的表现力为日常小事赋予了灵魂,使普通的事物焕发了独特的生命力,让观众真正感受到“讲心坎里”了”。他的表演风格自由奔放,同时也充满了对生活的深入思考,每次演出都炸翻全场！',
+      '毒舌的背后却有一副更冷漠的灵魂。善于刁钻直给，立志做牛马的嘴替。从无到有的脱口秀经验，拥有各种不同场地的演出经验，坚信努力能换来汗水，勤奋换来大饼，熊的外表下是钢铁一般的意志。',
     source: actor2,
   },
   {
-    title: '陈晓靖',
-    subtitle: '中国脱口秀演员、编剧被誉为最具有亲和力的脱口秀演员',
+    title: 'Charlotte',
+    subtitle: '热爱玩弄语言的代码民工',
     description:
-      '陈晓靖个人专场秀《菜市场的女儿》以轻松舒展的状态，从女性视角讲述自己的故事与思考。《菜市场的女儿》不仅展现了她对生活细致入微的观察,更让观众感受到一种自然、真挚的表达方式。观众评价称，听陈晓靖讲段子,仿佛在与一位毫无包袱的姐妹聊天,轻松愉悦而又充满共鸣。特别是对于女性观众而言,她的内容常常能触动内心深处的情感,引发强烈共鸣与认同。',
+      '人丑话又多，自称卡西莫说。之前看了巴子老师的演出，受了启发从此走向了脱口秀这条路。爱每一个可爱的人，创飞每个离谱的事。',
     source: actor3,
   },
   {
-    title: '阿潘',
-    subtitle: '单口喜剧演员',
+    title: '老虎',
+    subtitle: '脱口秀新星',
     description:
-      '极具特色的表演风格用最直给的方式,然后你笑着笑着安静下来,发现眼角开始有泪。个人专场演出《望子成凤》豆瓣评分9.4在国内外许多城市返场三场以上,是非常成熟和优秀的专场作品。被称为身材最好的脱口秀演员。',
+      '用幽默与夸张的语言来表达日常琐事。出生在奥克兰，在中国长大，最 abc 的中国人，最中国人的 abc。受 Kevin Hart 无厘头又好笑的表演风格影响，开始写脱口秀段子。舞台上放飞自我，给观众们带来最劲爆的段子。观众的笑声是最大的认可，也是动力之泉。期待“虎式幽默”带到全球各地。',
     source: actor4,
   },
   {
-    title: '翟佳宁',
-    subtitle: '中国男脱口秀演员、泛体育脱口秀节目《开麦总冠军》冠军',
+    title: '齐雪',
+    subtitle: '脱口秀新星',
     description:
-      '拥有丰富的线下演出经验,以直爽敢怼的硬汉风格而闻名,被称为“东北直男的守护神”。他擅长用幽默和犀利的语言剖析“钢铁直男”的内心世界,展示出独特的东北幽默。个人专场《不服不怠》一经推出便在豆瓣获得9.6的高评分,这不仅体现了观众对他作品的高度认可,也证明了他在脱口秀领域的影响力与号召力。',
+      '天生的段子手，以诙谐幽默的方式演绎家庭，生活，职场发生的啼笑皆非的故事。在她的故事里，每一个角色都是真实且独一无二的灵魂，正如她自己所期待的那样，鲜活的表达自己生命的灵魂。她独特鲜明的个性尝试打破社会对性别，职业，自我的束缚。',
     source: actor5,
+  },
+  {
+    title: 'Summer',
+    subtitle: '脱口秀演员',
+    description:
+      '评委推荐奖”（第三名）& 决赛选手 - 2022 Raw Comedy Quest, 提名 - 最佳新人 - 2022 新西兰喜剧协会奖, 提名 - 最佳笑话 - 2023 新西兰喜剧协会奖。 第一次参加开放麦就赢得了一份披萨，产生了脱口秀可以当饭吃的幻觉。之后，就走上了在脱口秀上事无巨细分享鸡毛蒜皮的不归路。',
+    source: actor6,
+  },
+  {
+    title: 'Vincent',
+    subtitle: '讲笑话的法务会计专家',
+    description:
+      '从爱给老师捧哏开始，到工作中善于将财务报告转化为笑点。文化差异和职场趣事，是创作的灵感源泉。受 George Carlin 启发，对脱口秀充满热情。加入 You Show 俱乐部，开启舞台生涯，将会计职场女性与直男的互动冲突，以诙谐段子呈现，深受观众喜爱。',
+    source: actor7,
+  },
+  {
+    title: '婉宁',
+    subtitle: '会逗大家笑的心理咨询师/舞动治疗师',
+    description:
+      '用肢体与心灵共舞，用舞台与观众对话。通过细腻动作和生动表演赋予观点生命力，用身体语言和幽默打破情感隔阂，让观点更具温度与张力。以活力展现生活荒诞，用表演传递情感深意，在笑声中拉近与观众的距离，让脱口秀成为“看见”观点的艺术。',
+    source: actor8,
   },
 ];
 
 function Actors() {
   return (
-    <ul role="list" className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10">
       {files.map((file, index) => (
-        <li
+        <div
           key={index}
-          className={`p-4 rounded-lg flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'mt-0' : '-mt-48'}`}
+          className="p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col sm:flex-row items-center"
         >
-          <div className="flex items-center">
-            <img
-              src={file.source}
-              alt={file.title}
-              style={{ width: '194px', height: '259px', objectFit: 'cover' }}
-              className="rounded-2xl mb-4 md:mb-0 md:mr-8"
-            />
-            <div className="text-left w-[300px]">
-              <h3 className="text-orange-600 font-black text-3xl mb-6">
-                {file.title}
-              </h3>
-              <h4 className="font-extrabold text-sm mb-3">{file.subtitle}</h4>
-              <p className="font-semibold text-sm -mb-12">{file.description}</p>
-            </div>
+          {/* Image Section */}
+          <img
+            src={file.source}
+            alt={file.title}
+            className="w-52 h-80 object-cover rounded-lg"
+          />
+
+          {/* Text Section */}
+          <div className="sm:ml-8 mt-4 sm:mt-0 text-center sm:text-left">
+            <h2 className="text-orange-500 text-3xl font-black mb-4">
+              {file.title}
+            </h2>
+            <h3 className="text-black text-lg font-semibold mb-4">
+              {file.subtitle}
+            </h3>
+            <p className="text-black text-base font-sansregular">
+              {file.description}
+            </p>
           </div>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
 
