@@ -11,7 +11,8 @@ function ActorsIntroduction() {
         <div className="w-full -mt-5">
           <NavBar />
         </div>
-        <div className="p-8"
+        <div
+          className="p-8"
           style={{
             paddingLeft: '100px',
             paddingRight: '100px',

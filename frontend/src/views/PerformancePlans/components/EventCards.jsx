@@ -38,60 +38,60 @@ function EventCards() {
 
   return (
     <div className="w-full">
-      {/* Previous Button */}
-      <button
-        onClick={prevSlide}
-        className="absolute bg-orange-500 p-3 rounded-full hover:bg-orange-600 text-white z-10"
-        style={{ top: '50%', transform: 'translateY(-50%)' }}
-      >
-        &#8249;
-      </button>
+      <div className="flex items-center mb-4">
+        {/* Previous Button */}
+        <button
+          onClick={prevSlide}
+          className="p-3 bg-orange-500 rounded-full hover:bg-white"
+        >
+          &#8249;
+        </button>
 
-      {/* Event Card */}
-      {cards.length > 0 && (
-        <div className="w-full max-w-lg h-auto bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
-          {/* Image Section */}
-          <div className="relative w-full h-96">
-            <img
-              src={cards[currentSlide]?.image || '/images/Avatar.jpg'} // Default image
-              alt={cards[currentSlide]?.title}
-              className="w-full h-full object-cover rounded-t-xl"
-            />
+        {/* Event Card */}
+        {cards.length > 0 && (
+          <div className="w-full max-w-lg h-auto bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+            {/* Image Section */}
+            <div className="relative w-full h-96">
+              <img
+                src={cards[currentSlide]?.image || '/images/Avatar.jpg'} // Default image
+                alt={cards[currentSlide]?.title}
+                className="w-full h-full object-cover rounded-t-xl"
+              />
+            </div>
+
+            {/* Text Section */}
+            <div className="p-6 text-center">
+              <h2 className="text-3xl font-bold text-black">
+                {cards[currentSlide]?.title}
+              </h2>
+              <p className="text-lg text-gray-600 my-4">
+                {cards[currentSlide]?.description}
+              </p>
+              <p className="text-orange-500 text-2xl font-semibold">
+                {cards[currentSlide]?.price}
+              </p>
+            </div>
+
+            {/* Button Section */}
+            <div className="p-6">
+              <button
+                onClick={() => handleNavigation(cards[currentSlide]?.link)}
+                className="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors"
+              >
+                Buy tickets
+              </button>
+            </div>
           </div>
+        )}
 
-          {/* Text Section */}
-          <div className="p-6 text-center">
-            <h2 className="text-3xl font-bold text-black">
-              {cards[currentSlide]?.title}
-            </h2>
-            <p className="text-lg text-gray-600 my-4">
-              {cards[currentSlide]?.description}
-            </p>
-            <p className="text-orange-500 text-2xl font-semibold">
-              {cards[currentSlide]?.price}
-            </p>
-          </div>
-
-          {/* Button Section */}
-          <div className="p-6">
-            <button
-              onClick={() => handleNavigation(cards[currentSlide]?.link)}
-              className="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors"
-            >
-              Buy tickets
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Next Button */}
-      <button
-        onClick={nextSlide}
-        className="absolute right-80 bg-orange-500 p-3 rounded-full hover:bg-orange-600 text-white z-10"
-        style={{ top: '50%', transform: 'translateY(-50%)' }}
-      >
-        &#8250;
-      </button>
+        {/* Next Button */}
+        <button
+          onClick={nextSlide}
+          className="p-3 bg-orange-500 rounded-full hover:bg-white"
+        >
+          &#8250;
+        </button>
+      </div>
     </div>
   );
 }
