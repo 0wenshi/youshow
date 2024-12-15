@@ -82,7 +82,6 @@ function Actors() {
             alt={file.title}
             className="w-52 h-80 object-cover rounded-lg"
           />
-
           {/* Text Section */}
           <div className="sm:ml-8 mt-4 sm:mt-0 text-center sm:text-left">
             <h2 className="text-orange-500 text-3xl font-black mb-4">
@@ -97,6 +96,11 @@ function Actors() {
           </div>
         </div>
       ))}
+      <div className="mt-5 pt-5">
+        <p className="text-left text-xs font-bold text-gray-800">
+          *按照名字首字母顺序排列
+        </p>
+      </div>
     </div>
   );
 }

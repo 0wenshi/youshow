@@ -10,7 +10,6 @@ function Memberships() {
           className="w-full h-auto shadow-lg"
         />
       </div>
-
       <div>
         <img
           src="/images/goldlevel.jpg"
@@ -18,13 +17,16 @@ function Memberships() {
           className="w-full h-auto shadow-lg"
         />
       </div>
-
       <div>
         <img
           src="/images/viplevel.jpg"
           alt="VIP会员"
           className="w-full h-auto shadow-lg"
         />
+      </div>
+      <div className="text-sm text-gray-800 text-left mt-8 space-y-2 w-full max-w-md">
+        <p>*详情请咨询店内工作人员</p>
+        <p>**会员计划最终解释权由 You Show Studio Limited 所有</p>
       </div>
     </div>
   );
