@@ -2,31 +2,33 @@ import React from 'react';
 
 function Memberships() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div>
-        <img
-          src="/images/sliverlevel.jpg"
-          alt="银卡会员"
-          className="w-full h-auto shadow-lg"
-        />
-      </div>
-      <div>
-        <img
-          src="/images/goldlevel.jpg"
-          alt="金卡会员"
-          className="w-full h-auto shadow-lg"
-        />
-      </div>
-      <div>
-        <img
-          src="/images/viplevel.jpg"
-          alt="VIP会员"
-          className="w-full h-auto shadow-lg"
-        />
-      </div>
-      <div className="text-sm text-gray-800 text-left mt-8 space-y-2 w-full max-w-md">
+    <div className="flex flex-col items-center p-16 space-y-12 ">
+      <div className='space-y-8'>
+        <div className="p-6 rounded-lg bg-cover bg-center"
+        style={
+          {backgroundImage: "url('/images/199.jpg')",
+            width: "650px", height: "300px",
+          }
+        }>
+          </div>
+          <div className="p-6 rounded-lg bg-cover bg-center"
+        style={
+          {backgroundImage: "url('/images/666.jpg')",
+            width: "650px", height: "300px",
+          }
+        }>
+          </div>
+          <div className="p-6 rounded-lg bg-cover bg-center"
+        style={
+          {backgroundImage: "url('/images/999.jpg')",
+            width: "650px", height: "300px",
+          }
+        }>
+          </div>
+        <div className="text-base text-gray-800 text-left space-y-2 w-full max-w-md font-bold">
         <p>*详情请咨询店内工作人员</p>
         <p>**会员计划最终解释权由 You Show Studio Limited 所有</p>
+      </div>
       </div>
     </div>
   );

@@ -96,11 +96,9 @@ function Actors() {
           </div>
         </div>
       ))}
-      <div className="mt-5 pt-5">
-        <p className="text-left text-xs font-bold text-gray-800">
+        <p className="mt-5 pt-5 text-left text-xs font-bold text-gray-800">
           *按照名字首字母顺序排列
         </p>
-      </div>
     </div>
   );
 }

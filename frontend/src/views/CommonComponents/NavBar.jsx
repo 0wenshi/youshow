@@ -47,7 +47,7 @@ function NavBar() {
         </div>
 
         {/* Navigation Links */}
-        <div className="flex gap-x-16">
+        <div className="flex gap-x-12">
           {navigation.map((item) => (
             <a
               key={item.name}

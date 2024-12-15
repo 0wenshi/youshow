@@ -98,10 +98,10 @@ function RotatingSlides() {
         {/* Description Section */}
         <div className="w-1/3 pl-18 relative">
           <div className="relative z-10">
-            <h2 className="text-4xl font-bold text-orange-500 mb-6 drop-shadow-lg">
+            <h2 className="text-6xl font-bold text-orange-500 mb-4 drop-shadow-lg mt-40">
               {slides[currentIndex].title}
             </h2>
-            <p className="text-lg text-gray-800 leading-relaxed drop-shadow-lg">
+            <p className="text-xl text-gray-800 leading-relaxed drop-shadow-lg">
               {slides[currentIndex].description}
             </p>
           </div>
