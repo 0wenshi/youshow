@@ -10,17 +10,13 @@ function AboutUs() {
         <div className="fixed top-0 left-0 right-0 z-50">
           <NavBar />
         </div>
-        <div className="my-8">
-          <div
-            className="w-full h-1"
-            style={{
-              background:
-                'liner-gradient(to right,transparent,rgb(250,127,42),transparent)',
-            }}
-          ></div>
-        </div>
         <div className="mt-12">
           <WonderfulReview />
+        </div>
+        <div className="my-8">
+          <div
+            className="w-full h-1 bg-gradient-to-r from-transparent via-[rgb(250,127,42)] to-transparent"
+          ></div>
         </div>
         <div className="mt-12">
           <ContactUs />

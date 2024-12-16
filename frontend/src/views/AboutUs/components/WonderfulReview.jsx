@@ -73,7 +73,7 @@ function WonderfulReview() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1 className="text-4xl font-black text-black mb-8">精彩回顾</h1>
+      <h1 className="text-4xl font-black text-black mb-8 mt-2">精彩回顾</h1>
 
       {/* Slides Container */}
       <div className="relative w-full max-w-6xl flex items-center justify-between">
@@ -91,7 +91,7 @@ function WonderfulReview() {
         </button>
 
         {/* Slides */}
-        <div className="flex gap-2 justify-center">
+        <div className="flex gap-4 justify-center -mt-6">
           {visibleSlides.map((slide) => (
             <div
               key={slide.id}
@@ -101,7 +101,7 @@ function WonderfulReview() {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="w-full h-[500px] object-cover rounded-t-2xl"
+                className="w-full h-[500px] object-cover rounded-t-2xl "
               />
               {/* Content */}
               <div className="p-4 text-center">
