@@ -5,7 +5,7 @@ import WonderfulReview from './components/WonderfulReview';
 
 function AboutUs() {
   return (
-    <div className="bg-[url('/images/background_2.jpg')] bg-cover bg-center min-h-screen min-w-[1024px] flex items-center p-5">
+    <div className="bg-[url('/images/background_2.jpg')] bg-cover items-center p-5">
       <div className="pt-0 px-8 pb-8">
         <div className="fixed top-0 left-0 right-0 z-50">
           <NavBar />
@@ -19,7 +19,7 @@ function AboutUs() {
             }}
           ></div>
         </div>
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="mt-12">
           <WonderfulReview />
         </div>
         <div className="mt-12">

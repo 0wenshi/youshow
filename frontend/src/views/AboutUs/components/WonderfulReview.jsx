@@ -1,98 +1,130 @@
 import React, { useState } from 'react';
 
-// 数据：Slides 内容
 const slides = [
   {
     id: 1,
-    image: '/images/slide1.jpg', // 图片路径（替换为实际图片路径）
-    title: '望子成凤',
-    subtitle: '新西兰站 New Zealand',
+    image: '/images/contactus/apan.jpg',
+    title: '年度大咖秀',
+    subtitle: 'YOU SHOW Standup Comedy',
     description:
-      '12/07/2024 19:00 The Great Hall Christchurch\n19/07/2024 19:00 Skycity Theatre Auckland',
-    link: 'https://www.tickettailor.com/events/youshowstudio',
+      'A-pan 单口喜剧个人专场 - <望子成凤> ',
   },
   {
     id: 2,
-    image: '/images/slide2.jpg',
-    title: '菜市场的女儿',
-    subtitle: '陈晓靖 脱口秀专场',
+    image: '/images/contactus/chenxiaojing.jpg',
+    title: '不服不怠',
+    subtitle: '崔佳守 单口喜剧王打秀',
     description:
-      '21/09/2024 12:00 @Skycity Theatre\n22/09/2024 18:30 @Event Centre, Albany Auckland',
+      '18/10 | 19:00 Pinehurst School Theatre, Albany\nVIP $79.99 | $59.99 | $39.99',
   },
   {
     id: 3,
-    image: '/images/slide3.jpg',
-    title: '坐在角落的人2',
-    subtitle: '梁海源 脱口秀专场',
-    description: '08/30 Friday 19:30\nAuckland Bruce Mason Centre',
+    image: '/images/contactus/lianghaiyuan.jpg',
+    title: '流浪计划',
+    subtitle: '张瀚茗 单口喜剧专场',
+    description:
+      '22 Nov | 19:00 Pinehurst School Theatre, Albany\nVIP $79.99 | $59.99 | $39.99',
+  },
+  {
+    id: 4,
+    image: '/images/contactus/niandudakaxiu.jpg',
+    title: '年度大咖秀',
+    subtitle: 'YOU SHOW Standup Comedy',
+    description:
+      '7 Nov | 19:30 Skycity Theatre\nVIP $136.99 | $118.99 | $99.99',
+  },
+  {
+    id: 5,
+    image: '/images/contactus/zhaijianing.jpg',
+    title: '年度大咖秀',
+    subtitle: 'YOU SHOW Standup Comedy',
+    description:
+      '7 Nov | 19:30 Skycity Theatre\nVIP $136.99 | $118.99 | $99.99',
+  },
+  {
+    id: 6,
+    image: '/images/contactus/zhanghaozhe.jpg',
+    title: '年度大咖秀',
+    subtitle: 'YOU SHOW Standup Comedy',
+    description:
+      '7 Nov | 19:30 Skycity Theatre\nVIP $136.99 | $118.99 | $99.99',
+  },
+  {
+    id: 7,
+    image: '/images/contactus/heideng.jpg',
+    title: '年度大咖秀',
+    subtitle: 'YOU SHOW Standup Comedy',
+    description:
+      '7 Nov | 19:30 Skycity Theatre\nVIP $136.99 | $118.99 | $99.99',
   },
 ];
 
 function WonderfulReview() {
-  const [current, setCurrent] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % slides.length);
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
   };
 
   const prevSlide = () => {
-    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
+  const visibleSlides = [
+    slides[currentIndex],
+    slides[(currentIndex + 1) % slides.length],
+    slides[(currentIndex + 2) % slides.length],
+  ];
+
   return (
-    <div className="relative w-full flex items-center justify-center overflow-hidden">
-      {/* Previous Button */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 bg-gray-800 text-white p-3 rounded-full hover:bg-orange-600 transition-transform transform hover:scale-110 z-10"
-      >
-        &#8249;
-      </button>
+    <div className="flex flex-col justify-center items-center">
+      <h1 className="text-4xl font-black text-black mb-8">精彩回顾</h1>
 
       {/* Slides Container */}
-      <div className="w-full max-w-5xl flex items-center justify-center overflow-hidden">
-        <div className="w-[90%] md:w-[70%] bg-white rounded-xl shadow-lg p-4 transform transition-all duration-500">
-          {/* Image */}
-          <img
-            src={slides[current].image}
-            alt={slides[current].title}
-            className="w-full h-96 object-cover rounded-lg mb-4"
-          />
+      <div className="relative w-full max-w-6xl flex items-center justify-between">
+        {/* Previous Button */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-0 bg-gray-800 text-white p-3 rounded-full hover:bg-orange-600 transition-transform transform hover:scale-110 z-10"
+        >
+          &#8249;
+        </button>
 
-          {/* Text Content */}
-          <h2 className="text-3xl font-bold text-center mb-2 text-black">
-            {slides[current].title}
-          </h2>
-          <h3 className="text-lg font-semibold text-orange-500 text-center mb-2">
-            {slides[current].subtitle}
-          </h3>
-          <p className="text-center text-gray-600 whitespace-pre-line">
-            {slides[current].description}
-          </p>
-
-          {/* Link */}
-          {slides[current].link && (
-            <div className="mt-4 text-center">
-              <a
-                href={slides[current].link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-orange-500 hover:underline font-semibold"
-              >
-                查看详情
-              </a>
+        {/* Slides */}
+        <div className="flex gap-4 justify-center w-full overflow-hidden">
+          {visibleSlides.map((slide) => (
+            <div
+              key={slide.id}
+              className="flex-shrink-0 w-1/3 bg-white rounded-t-2xl shadow-lg overflow-hidden transform transition-all duration-500"
+            >
+              {/* Image */}
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-96 rounded-t-2xl"
+              />
+              {/* Content */}
+              <div className="p-4 text-center">
+                <h3 className="text-xl font-bold text-black">{slide.title}</h3>
+                <p className="text-orange-500 text-md font-semibold mt-2">
+                  {slide.subtitle}
+                </p>
+                <p className="text-gray-600 text-sm mt-2 whitespace-pre-line">
+                  {slide.description}
+                </p>
+              </div>
             </div>
-          )}
+          ))}
         </div>
-      </div>
 
-      {/* Next Button */}
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 bg-gray-800 text-white p-3 rounded-full hover:bg-orange-600 transition-transform transform hover:scale-110 z-10"
-      >
-        &#8250;
-      </button>
+        {/* Next Button */}
+        <button
+          onClick={nextSlide}
+          className="absolute right-0 bg-gray-800 text-white p-3 rounded-full hover:bg-orange-600 transition-transform transform hover:scale-110 z-10"
+        >
+          &#8250;
+        </button>
+      </div>
     </div>
   );
 }
