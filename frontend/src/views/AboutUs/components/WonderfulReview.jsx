@@ -73,7 +73,7 @@ function WonderfulReview() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1 className="text-4xl font-black text-black mb-8 mt-2">精彩回顾</h1>
+      <h1 className="text-4xl font-black text-black mb-10 mt-4">精彩回顾</h1>
 
       {/* Slides Container */}
       <div className="relative w-full max-w-6xl flex items-center justify-between">
