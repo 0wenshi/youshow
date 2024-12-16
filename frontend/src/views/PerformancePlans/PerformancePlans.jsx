@@ -6,7 +6,7 @@ import EventCards from './components/EventCards';
 
 function PerformancePlans() {
   return (
-    <div className="bg-[url('/images/background.jpg')]">
+    <div className="bg-[url('/images/startbackground.jpg')]">
       <div className="fixed top-0 left-0 right-0 z-50">
         <NavBar />
       </div>
