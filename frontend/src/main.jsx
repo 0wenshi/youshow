@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 
-import ContactUs from './views/ContactUs/ContactUs';
+import AboutUs from './views/AboutUs/AboutUs';
 import ActorsIntroduction from './views/ActorsIntroduction/ActorsIntroduction';
 import MembershipsProgram from './views/MembershipsProgram/MembershipsProgram';
 import LandingPage from './views/LandingPage/LandingPage';
@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/plans" element={<PerformancePlans />} />
         <Route path="/actors" element={<ActorsIntroduction />} />
         <Route path="/memberships" element={<MembershipsProgram />} />
-        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/contact" element={<AboutUs />} />
       </Routes>
     </Router>
   </React.StrictMode>
