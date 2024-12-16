@@ -71,15 +71,16 @@ function NavBar() {
           ))}
 
           {/* Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setShowDropdown(!showDropdown)}
-              className="text-lg font-bold text-black hover:text-orange-200"
-            >
+          <div
+            className="relative"
+            onMouseEnter={() => setShowDropdown(true)}
+            onMouseLeave={() => setShowDropdown(false)}
+          >
+            <button className="text-lg font-bold text-black hover:text-orange-200">
               更多
             </button>
             {showDropdown && (
-              <div className="absolute left-0 mt-2 w-24 bg-orange-500 rounded-lg shadow-lg z-20 ">
+              <div className="absolute left-0 mt-2 w-24 bg-orange-500 rounded-lg shadow-lg z-20">
                 {dropdownItems.map((item) => (
                   <a
                     key={item.name}
