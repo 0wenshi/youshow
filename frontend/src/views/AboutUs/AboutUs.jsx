@@ -21,7 +21,6 @@ function AboutUs() {
           <div className="relative w-[400px] h-[300px]">
             {/* 背景层（橘黄色带边框） */}
             <div className="absolute w-full h-full bg-orange-400 border-4 border-black rounded-2xl left-4 top-2"></div>
-
             {/* 图片层 */}
             <div
               className="absolute w-full h-full bg-cover bg-center rounded-2xl"
