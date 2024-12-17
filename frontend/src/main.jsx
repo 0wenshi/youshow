@@ -11,6 +11,7 @@ import HomePage from './views/HomePage/HomePage';
 import PerformancePlans from './views/PerformancePlans/PerformancePlans';
 import Login from './views/LoginIn/Login';
 import Register from './views/SignUp/Register';
+import TalkShow from './views/TalkShow/TalkShow';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/actors" element={<ActorsIntroduction />} />
         <Route path="/memberships" element={<MembershipsProgram />} />
         <Route path="/contact" element={<AboutUs />} />
+        <Route path="/talkshow" element={<TalkShow />} />
       </Routes>
     </Router>
   </React.StrictMode>

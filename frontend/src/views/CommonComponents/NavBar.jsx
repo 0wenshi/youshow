@@ -1,15 +1,15 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const navigation = [
   { name: 'Performance Plans', href: '/plans' },
   { name: 'Actors Introduction', href: '/actors' },
   { name: 'Memberships Program', href: '/memberships' },
-  { name: 'Contact Us', href: '/contact' },
+  { name: 'About Us', href: '/contact' },
 ];
 
 const dropdownItems = [
-  { name: '脱口秀', href: '/standup' },
+  { name: '脱口秀', href: '/talkshow' },
   { name: '观演须知', href: '/guidelines' },
   { name: '场地租赁', href: '/rental' },
   { name: '新人招募', href: '/recruitment' },
@@ -20,6 +20,7 @@ function NavBar() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const timeoutRef = useRef(null); // to prevent fast hiding
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -32,8 +33,21 @@ function NavBar() {
     navigate('/login');
   };
 
+  const handleMouseEnter = () => {
+    // Clear hidden timers to prevent miscontact
+    clearTimeout(timeoutRef.current);
+    setShowDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    // Delay hiding to give the user some time to react
+    timeoutRef.current = setTimeout(() => {
+      setShowDropdown(false);
+    }, 300);
+  };
+
   return (
-    <header className="bg-orange-500 rounded-full shadow-md max-w-6xl mx-auto my-2">
+    <header className="bg-orange-500 rounded-full shadow-lg max-w-6xl mx-96 my-2">
       <nav
         aria-label="Global"
         className="flex items-center justify-between px-6 py-2"
@@ -55,7 +69,7 @@ function NavBar() {
         </div>
 
         {/* Navigation Links */}
-        <div className="flex gap-x-12 items-center">
+        <div className="flex gap-x-8 items-center">
           {navigation.map((item) => (
             <a
               key={item.name}
@@ -73,8 +87,8 @@ function NavBar() {
           {/* Dropdown */}
           <div
             className="relative"
-            onMouseEnter={() => setShowDropdown(true)}
-            onMouseLeave={() => setShowDropdown(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <button className="text-lg font-bold text-black hover:text-orange-200">
               更多
