@@ -5,12 +5,12 @@ import Introduction from './components/Introduction';
 
 function TalkShow() {
   return (
-    <div className="bg-[url('/images/background_2.jpg')] bg-cover p-5 ">
-      <div className="flex flex-col items-center w-full max-w-7xl mx-auto">
-        <div className="w-full -mt-5">
+    <div className="bg-[url('/images/background_2.jpg')] bg-cover items-center p-5">
+      <div className="pt-0 px-96">
+        <div className="fixed top-0 left-0 right-0 z-50">
           <NavBar />
         </div>
-        <div>
+        <div className='mt-20'>
           <Introduction />
         </div>
       </div>

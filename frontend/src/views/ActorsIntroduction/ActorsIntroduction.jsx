@@ -5,12 +5,12 @@ import NavBar from '../CommonComponents/NavBar';
 
 function ActorsIntroduction() {
   return (
-    <div className="bg-[url('/images/background_2.jpg')] bg-cover bg-center min-h-screen min-w-[1024px] flex items-center p-5">
-      <div className="flex flex-col items-center w-full max-w-7xl mx-auto">
-        <div className="w-full -mt-5">
+    <div className="bg-[url('/images/background_2.jpg')] bg-cover items-center p-5">
+      <div className="pt-0 px-8 pb-8">
+        <div className="fixed top-0 left-0 right-0 z-50">
           <NavBar />
         </div>
-        <div className="p-8 px-[100px] pb-[90px]">
+        <div className="mt-14 p-8 px-[100px] pb-[90px]">
           <Actors />
         </div>
       </div>

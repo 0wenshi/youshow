@@ -14,7 +14,7 @@ function MembershipsProgram() {
         {/* <div className="w-full py-4 mt-10 mb-4 rounded-lg">
           <CurrentUserLevel />
         </div> */}
-        <div className="w-full mt-2 mb-2 rounded-lg">
+        <div className="mt-8">
           <Memberships />
         </div>
       </div>
