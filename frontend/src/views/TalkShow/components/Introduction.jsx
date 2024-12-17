@@ -85,9 +85,7 @@ function Introduction() {
           </div>
         </div>
       </div>
-      <footer className="h-14">
-        <div></div>
-      </footer>
+      <footer className="h-14"></footer>
     </div>
   );
 }

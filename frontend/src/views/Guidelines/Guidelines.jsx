@@ -1,9 +1,9 @@
 import React from 'react';
 import SearchBox from '../CommonComponents/SearchBox';
 import NavBar from '../CommonComponents/NavBar';
-import Introduction from './components/Introduction';
+import PerformanceNotice from './components/PerformanceNotice';
 
-function TalkShow() {
+function Guidelines() {
   return (
     <div className="bg-[url('/images/background_2.jpg')] bg-cover items-center p-5">
       <div className="pt-0 px-96">
@@ -11,7 +11,7 @@ function TalkShow() {
           <NavBar />
         </div>
         <div className="mt-20">
-          <Introduction />
+          <PerformanceNotice />
         </div>
       </div>
       <div className="fixed bottom-10 right-10">
@@ -21,4 +21,4 @@ function TalkShow() {
   );
 }
 
-export default TalkShow;
+export default Guidelines;
