@@ -17,7 +17,7 @@ function PerformanceNotice() {
               alt="Tomato Icon"
               className="w-32 h-32 md:w-48 md:h-48"
             />
-            <p className="text-black text-sm text-center md:text-left">
+            <p className="font-bold text-black text-sm text-center md:text-left">
               吧台将在演出前
               <span className="text-red-500 font-bold">30分钟</span>
               分钟以及中场休息时提供酒水售卖服务， 演出期间将
@@ -32,7 +32,7 @@ function PerformanceNotice() {
               alt="Tomato Icon"
               className="w-32 h-32 md:w-48 md:h-48"
             />
-            <p className="text-black text-sm text-center md:text-left">
+            <p className="font-bold text-black text-sm text-center md:text-left">
               部分演出建议
               <span className="text-red-500 font-bold">16</span>
               岁以上观众观看，未成年人需家长陪同。
@@ -45,7 +45,7 @@ function PerformanceNotice() {
               alt="Tomato Icon"
               className="w-32 h-32 md:w-48 md:h-48"
             />
-            <p className="text-black text-sm text-center md:text-left">
+            <p className="font-bold text-black text-sm text-center md:text-left">
               演出期间
               <span className="text-red-500 font-bold">禁止</span>
               录音、录像或现场直播， 但欢迎拍照留念，请
@@ -60,7 +60,7 @@ function PerformanceNotice() {
               alt="Tomato Icon"
               className="w-32 h-32 md:w-48 md:h-48"
             />
-            <p className="text-black text-sm text-center md:text-left">
+            <p className="font-bold text-black text-sm text-center md:text-left">
               为了避免干扰表演，请将手机调至
               <span className="text-red-500 font-bold">静音</span>或
               <span className="text-red-500 font-bold">振动</span>
