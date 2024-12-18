@@ -2,10 +2,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 
 const navigation = [
-  { name: 'Performance Plans', href: '/plans' },
-  { name: 'Actors Introduction', href: '/actors' },
-  { name: 'Memberships Program', href: '/memberships' },
-  { name: 'About Us', href: '/contact' },
+  { name: '演出计划', href: '/plans' },
+  { name: '演员介绍', href: '/actors' },
+  { name: '会员计划', href: '/memberships' },
+  { name: '关于我们', href: '/contact' },
 ];
 
 const dropdownItems = [
@@ -47,10 +47,10 @@ function NavBar() {
   };
 
   return (
-    <header className="bg-orange-500 rounded-full shadow-lg max-w-6xl mx-96 my-2">
+    <header className="bg-orange-500 rounded-full shadow-lg max-w-3xl my-2 mx-auto">
       <nav
         aria-label="Global"
-        className="flex items-center justify-between px-6 py-2"
+        className="flex px-6"
       >
         {/* Logo */}
         <div className="flex flex-1">
@@ -114,14 +114,14 @@ function NavBar() {
           {isLoggedIn ? (
             <button
               onClick={handleLogout}
-              className="text-sm font-bold text-black hover:text-orange-200"
+              className="text-xs font-bold text-black hover:text-orange-200"
             >
               Logout <span aria-hidden="true">&rarr;</span>
             </button>
           ) : (
             <a
               href="/login"
-              className="text-sm font-bold text-black hover:text-orange-200"
+              className="text-xs font-bold text-black hover:text-orange-200"
             >
               Login <span aria-hidden="true">&rarr;</span>
             </a>
