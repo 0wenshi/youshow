@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
+import './views/i18n';
 
 import AboutUs from './views/AboutUs/AboutUs';
 import ActorsIntroduction from './views/ActorsIntroduction/ActorsIntroduction';

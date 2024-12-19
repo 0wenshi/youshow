@@ -1,26 +1,28 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const navigation = [
-  { name: '演出计划', href: '/plans' },
-  { name: '演员介绍', href: '/actors' },
-  { name: '会员计划', href: '/memberships' },
-  { name: '关于我们', href: '/contact' },
+  { key: 'plans', href: '/plans' },
+  { key: 'actors', href: '/actors' },
+  { key: 'memberships', href: '/memberships' },
+  { key: 'about', href: '/contact' },
 ];
 
 const dropdownItems = [
-  { name: '脱口秀', href: '/talkshow' },
-  { name: '观演须知', href: '/guidelines' },
-  { name: '场地租赁', href: '/rental' },
-  { name: '新人招募', href: '/recruitment' },
+  { key: 'talkshow', href: '/talkshow' },
+  { key: 'guidelines', href: '/guidelines' },
+  { key: 'rental', href: '/rental' },
+  { key: 'recruitment', href: '/recruitment' },
 ];
 
 function NavBar() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation(); // Translation hook
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const timeoutRef = useRef(null); // to prevent fast hiding
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -34,24 +36,24 @@ function NavBar() {
   };
 
   const handleMouseEnter = () => {
-    // Clear hidden timers to prevent miscontact
     clearTimeout(timeoutRef.current);
     setShowDropdown(true);
   };
 
   const handleMouseLeave = () => {
-    // Delay hiding to give the user some time to react
     timeoutRef.current = setTimeout(() => {
       setShowDropdown(false);
     }, 300);
   };
 
+  const toggleLanguage = () => {
+    const newLanguage = i18n.language === 'en' ? 'zh' : 'en';
+    i18n.changeLanguage(newLanguage);
+  };
+
   return (
-    <header className="bg-orange-500 rounded-full shadow-lg max-w-3xl my-2 mx-auto">
-      <nav
-        aria-label="Global"
-        className="flex px-6"
-      >
+    <header className="bg-orange-500 rounded-full shadow-lg max-w-6xl my-2 mx-auto">
+      <nav aria-label="Global" className="flex px-6">
         {/* Logo */}
         <div className="flex flex-1">
           <a href="/" className="-m-2.5 p-0.5">
@@ -72,7 +74,7 @@ function NavBar() {
         <div className="flex gap-x-8 items-center">
           {navigation.map((item) => (
             <a
-              key={item.name}
+              key={item.key}
               href={item.href}
               className={`text-lg font-bold ${
                 location.pathname === item.href
@@ -80,7 +82,7 @@ function NavBar() {
                   : 'text-black hover:text-orange-200'
               }`}
             >
-              {item.name}
+              {t(`navbar.${item.key}`)}
             </a>
           ))}
 
@@ -91,17 +93,17 @@ function NavBar() {
             onMouseLeave={handleMouseLeave}
           >
             <button className="text-lg font-bold text-black hover:text-orange-200">
-              更多
+              {t('navbar.more')}
             </button>
             {showDropdown && (
               <div className="absolute left-0 mt-2 w-24 bg-orange-500 rounded-lg shadow-lg z-20">
                 {dropdownItems.map((item) => (
                   <a
-                    key={item.name}
+                    key={item.key}
                     href={item.href}
-                    className="block px-4 py-2 text-black font-semibold hover:text-orange-200 rounded"
+                    className="block px-1 py-2 text-black text-sm font-semibold hover:text-orange-200 rounded"
                   >
-                    {item.name}
+                    {t(`dropdown.${item.key}`)}
                   </a>
                 ))}
               </div>
@@ -116,19 +118,21 @@ function NavBar() {
               onClick={handleLogout}
               className="text-xs font-bold text-black hover:text-orange-200"
             >
-              Logout <span aria-hidden="true">&rarr;</span>
+              {t('navbar.logout')} <span aria-hidden="true">&rarr;</span>
             </button>
           ) : (
             <a
               href="/login"
               className="text-xs font-bold text-black hover:text-orange-200"
             >
-              Login <span aria-hidden="true">&rarr;</span>
+              {t('navbar.login')} <span aria-hidden="true">&rarr;</span>
             </a>
           )}
+          {/* Translate Button */}
           <button
             type="button"
-            className="text-black hover:text-gray-700"
+            onClick={toggleLanguage}
+            className="text-black hover:text-gray-700 flex items-center gap-1"
             aria-label="Translate"
           >
             <img
@@ -136,6 +140,9 @@ function NavBar() {
               alt="Translate"
               className="h-6 w-6"
             />
+            <span className="text-sm font-semibold">
+              {i18n.language === 'en' ? '中文' : 'English'}
+            </span>
           </button>
           <button
             type="button"
