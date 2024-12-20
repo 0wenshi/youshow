@@ -167,57 +167,34 @@ const resources = {
       },
       performanceNotice: {
         title: 'Performance Notice',
-        subtitle:
-          'To ensure an enjoyable stand-up comedy experience for all audience and performers, please pay attention to the following:',
+        subtitle: 'To ensure an enjoyable experience for everyone, please pay attention to the following:',
         rules: [
           {
             image: '/images/tomato_wine.png',
-            alt: 'Tomato Icon',
-            textParts: [
-              { content: 'The bar will be open ' },
-              { highlight: true, content: '<span>30 minutes</span>' },
-              { content: ' before the performance and during intermission. The bar will be ' },
-              { highlight: true, content: '<span>closed</span>' },
-              { content: ' during the performance to avoid disrupting the experience.' },
-            ],
+            alt: 'Bar Icon',
+            text: 'The bar will be open <span>30 minutes</span> before the performance and during intermission. <span>The bar will be closed</span> during the performance to avoid disrupting the experience.',
           },
           {
             image: '/images/tomato_accompany.png',
-            alt: 'Tomato Icon',
-            textParts: [
-              { content: 'Some performances are recommended for audiences aged ' },
-              { highlight: true, content: '<span>16 and above</span>' },
-              { content: '. Minors must be accompanied by parents or guardians.' },
-            ],
+            alt: 'Accompany Icon',
+            text: 'Some performances are recommended for audiences <span>aged 16 and above.</span> Minors must be accompanied by parents or guardians.',
           },
           {
             image: '/images/tomato_no_recording.png',
-            alt: 'Tomato Icon',
-            textParts: [
-              { content: 'Recording, filming, or live broadcasting is ' },
-              { highlight: true, content: '<span>prohibited</span>' },
-              { content: ' during the performance. Photos are welcome, but please ' },
-              { highlight: true, content: '<span>turn off the flash</span>' },
-              { content: ' to avoid disturbing others.' },
-            ],
+            alt: 'No Recording Icon',
+            text: '<span>No recording, video or live broadcast is allowed</span> during the performance, but you are welcome to take photos. Please <span>turn off the flash</span> to avoid disturbing others.',
           },
           {
             image: '/images/tomato_mute.png',
-            alt: 'Tomato Icon',
-            textParts: [
-              { content: 'To avoid interrupting the performance, please set your phone to ' },
-              { highlight: true, content: '<span>silent</span>' },
-              { content: ' or ' },
-              { highlight: true, content: '<span>vibration</span>' },
-              { content: ' mode.' },
-            ],
-          },
+            alt: 'Mute Icon',
+            text: 'To avoid interfering with the performance, please turn your phone to <span>mute</span> or <span>vibrate</span> mode.',
+          }
         ],
         remarks: [
-          'Performance tickets are non-refundable and non-reschedulable after purchase.',
-          'Admission starts 30 minutesbefore the performance. Please arrive on time and take your assigned seats.',
-          'Special shows do not have intermissions. For open mic performances, there will be a 10-minute break.',
-          'Please respect the performers and avoid interruptions. Relax and enjoy the show!',
+          'Performance tickets are <span>non-refundable</span> and non-reschedulable after purchase.',
+          'Admission starts <span>30 minutes</span> before the performance. Please arrive on time and take your assigned seats.',
+          '<span>Special shows</span> do not have intermissions. For <span>open mic</span> performances, there will be a <span>10-minute</span> break.',
+          'Please <span>respect</span> the performers and avoid interruptions. Relax and enjoy the show!',
         ],
       },
     },
@@ -384,57 +361,34 @@ const resources = {
       },
       performanceNotice: {
         title: '观演须知',
-        subtitle:
-          '为了确保每位观众和演员都能享受一场愉快的脱口秀体验，请注意以下事项：',
+        subtitle: '为了确保每位观众和演员都能享受一场愉快的脱口秀体验，请注意以下事项：',
         rules: [
           {
             image: '/images/tomato_wine.png',
-            alt: '番茄图标',
-            textParts: [
-              { content: '吧台将在演出前' },
-              { highlight: true, content: '<span>30分钟</span>' },
-              { content: '以及中场休息时提供酒水售卖服务。演出期间将' },
-              { highlight: true, content: '<span>关闭吧台</span>' },
-              { content: '以免影响观演体验。' },
-            ],
+            alt: '酒水图标',
+            text: '吧台将在演出前<span>30分钟</span>以及中场休息时提供酒水售卖服务，演出期间将<span>关闭吧台</span>以免影响观演体验。',
           },
           {
             image: '/images/tomato_accompany.png',
-            alt: '番茄图标',
-            textParts: [
-              { content: '部分演出建议' },
-              { highlight: true, content: '<span>16岁及以上</span>' },
-              { content: '观众观看，未成年人需家长陪同。' },
-            ],
+            alt: '陪同图标',
+            text: '部分演出建议<span>16岁</span>以上观众观看，未成年人需家长陪同。',
           },
           {
             image: '/images/tomato_no_recording.png',
-            alt: '番茄图标',
-            textParts: [
-              { content: '演出期间' },
-              { highlight: true, content: '<span>禁止</span>' },
-              { content: '录音、录像或现场直播，但欢迎拍照留念，请' },
-              { highlight: true, content: '<span>关闭闪光灯</span>' },
-              { content: '以免影响他人。' },
-            ],
+            alt: '禁止录像图标',
+            text: '演出期间<span>禁止</span>录音、录像或现场直播， 但欢迎拍照留念，请<span>关闭闪光灯</span>以免影响他人。',
           },
           {
             image: '/images/tomato_mute.png',
-            alt: '番茄图标',
-            textParts: [
-              { content: '为了避免干扰表演，请将手机调至' },
-              { highlight: true, content: '<span>静音</span>' },
-              { content: '或' },
-              { highlight: true, content: '<span>振动</span>' },
-              { content: '模式。' },
-            ],
-          },
+            alt: '静音图标',
+            text: '为了避免干扰表演，请将手机调至<span>静音</span>或<span>振动</span>模式。',
+          }
         ],
         remarks: [
-          '演出票非普通商品，购票后不支持退款，改期，敬请谅解。',
-          '演出开场前半小时开始检票，请提前到场，按座位号入座。',
-          '专场演出不设中场休息，开放麦演出期间有十分钟的中场休息。',
-          '请尊重演员的表演，不随意打断，放松心情，尽情享受快乐。',
+          '演出票非普通商品，购票后<span>不支持</span>退款，改期，敬请谅解。',
+          '演出开场前<span>半小时</span>开始检票，请提前到场，按座位号入座。',
+          '<span>专场</span>演出<span>不设</span>中场休息，<span>开放麦</span>演出期间有<span>十分钟</span>的中场休息。',
+          '请<span>尊重</span>演员的表演，不随意打断，放松心情，尽情享受快乐。',
         ],
       },
     },
