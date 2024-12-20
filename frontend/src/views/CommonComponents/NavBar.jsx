@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-<script src="https://static.elfsight.com/platform/platform.js" async></script>
 
 const navigation = [
   { key: 'plans', href: '/plans' },
@@ -171,7 +170,14 @@ function NavBar() {
           </button>
         </div>
       </nav>
-      <div class="elfsight-app-e4c2828d-37b3-45fa-b37a-114698f8cc79" data-elfsight-app-lazy></div>
+      <script
+        src="https://static.elfsight.com/platform/platform.js"
+        async
+      ></script>
+      <div
+        class="elfsight-app-e4c2828d-37b3-45fa-b37a-114698f8cc79"
+        data-elfsight-app-lazy
+      ></div>
     </header>
   );
 }

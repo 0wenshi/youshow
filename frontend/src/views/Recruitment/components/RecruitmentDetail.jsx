@@ -4,7 +4,7 @@ function RecruitmentDetail() {
   return (
     <div className="font-sans text-black p-6 flex flex-col items-center">
       <div className="text-center font-bold text-2xl mb-8">新人招募</div>
-      <div className="space-y-8 text-center w-4/5 text-sm">
+      <div className="space-y-8 text-center w-4/5 text-xl">
         <section>
           <p>
             你是否对脱口秀充满热情
@@ -63,7 +63,7 @@ function RecruitmentDetail() {
           <p>定期举办新人说明会和开放麦，欢迎每一位热爱喜剧的朋友报名！</p>
         </section>
       </div>
-      <div className="text-center mt-8 font-bold text-sm">
+      <div className="text-center mt-8 font-bold text-xl">
         Youshow 脱口秀俱乐部期待与你一起，把生活中的点滴变成舞台上的笑声！
       </div>
     </div>

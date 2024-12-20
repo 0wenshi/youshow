@@ -6,16 +6,18 @@ function RentalDetail() {
       <div className="text-center font-bold text-2xl mb-8">场地租赁</div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-4">
-          <div className="text-lg font-semibold">地址</div>
-          <div className="font-bold">Am2Pm</div>
-          <div>7 Corinthian Drive, Albany, Auckland 0632</div>
+          <div className="text-xl font-semibold">地址</div>
+          <div className="font-bold text-lg">Am2Pm</div>
+          <div className="text-lg">
+            7 Corinthian Drive, Albany, Auckland 0632
+          </div>
           <img
             src="/images/address.jpg"
             alt="Address"
-            className="w-full md:w-80 h-50 rounded-[35px] shadow-md"
+            className="w-full md:w-100 h-80 rounded-[40px] shadow-lg"
           ></img>
         </div>
-        <div className="space-y-4 text-sm">
+        <div className="space-y-4 text-lg">
           <p>
             我们俱乐部同样也适合举办各种类型的室内活动，例如生日派对，
             公司活动，节日派对，私人聚会等。 我们提供
