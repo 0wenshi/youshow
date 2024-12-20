@@ -38,7 +38,7 @@ function Login() {
       }
 
       localStorage.setItem('token', response.data.token);
-      alert('Login successful!');
+      // alert('Login successful!');
       navigate('/homepage');
     } catch (error) {
       setError(error.response?.data?.message || 'Login failed');
