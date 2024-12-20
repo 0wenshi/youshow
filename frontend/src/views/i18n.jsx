@@ -197,6 +197,45 @@ const resources = {
           'Please <span>respect</span> the performers and avoid interruptions. Relax and enjoy the show!',
         ],
       },
+      rentalDetail: {
+        title: 'Venue Rental',
+        address: {
+          title: 'Address',
+          name: 'Am2Pm',
+          location: '7 Corinthian Drive, Albany, Auckland 0632',
+        },
+        details:
+          'Our venue is also perfect for various indoor activities such as birthday parties, corporate events, holiday parties, and private gatherings. We provide <span>flexible and diverse</span> spatial arrangements and professional on-site support, making us your ideal event venue choice.',
+        whyUsTitle: 'Why Choose Us?',
+        whyUs:
+          'We can flexibly adjust seating, lighting, and stage settings according to event needs. With high-quality sound and lighting systems and a well-stocked bar, we provide <span>comprehensive support</span> for your event. Located in the "North Shore Chinese Universe Center," our venue offers <span>convenient transportation</span>, ample parking, and complete surrounding facilities. Our team assists you in arranging event details, allowing you to be worry-free.',
+        contact: {
+          title: 'Contact Us',
+          info: 'To learn more about the venue or to make a reservation, please contact:',
+        },
+      },
+      recruitment: {
+        title: 'Recruitment',
+        introduction: 'Are you passionate about stand-up comedy?<br />Do you dream of standing on stage, using your humor to connect with audiences and spread joy?<br />Now, <span>Youshow</span> Comedy Club opens its doors to dreamers like you. The next "King of Stand-Up Comedy" could be you!',
+        whatWeNeed: {
+          title: 'What Are We Looking For?',
+          description: 'Observant and thoughtful about life, loves sharing stories and perspectives;<br />Not afraid of trying new things, willing to face stage challenges;<br />No experience needed, just a love for comedy and the courage to take the first step.',
+        },
+        growth: {
+          title: 'How Do Newcomers Grow?',
+          description: 'Open mic – the starting point for every stand-up comedian.<br />Whether you are trying for the first time or refining new material, open mics provide valuable practical opportunities.<br />We have a group of like-minded peers to share experiences and encourage growth together.<br />Regular script reading sessions and workshops with industry experts to hone your skills.',
+        },
+        benefits: {
+          title: 'What Will You Gain by Joining Us?',
+          description: 'A stage to showcase yourself;<br />A group of humorous and interesting friends;<br />The sense of achievement in turning ideas into laughter;<br />Even opportunities to perform commercially and become a professional comedian!',
+        },
+        howToJoin: {
+          title: 'How to Join Us?',
+          contact: 'Contact us: <a>youshow.nz@gmail.com</a>',
+          info: 'We regularly host newcomer orientation sessions and open mics. Everyone passionate about comedy is welcome to join!',
+        },
+        footer: 'Youshow Comedy Club looks forward to turning life’s moments into stage laughter with you!',
+      },
     },
   },
   zh: {
@@ -390,6 +429,45 @@ const resources = {
           '<span>专场</span>演出<span>不设</span>中场休息，<span>开放麦</span>演出期间有<span>十分钟</span>的中场休息。',
           '请<span>尊重</span>演员的表演，不随意打断，放松心情，尽情享受快乐。',
         ],
+      },
+      rentalDetail: {
+        title: '场地租赁',
+        address: {
+          title: '地址',
+          name: 'Am2Pm',
+          location: '7 Corinthian Drive, Albany, Auckland 0632',
+        },
+        details:
+          '我们俱乐部同样也适合举办各种类型的室内活动，例如生日派对，公司活动，节日派对，私人聚会等。 我们提供<span>灵活多样</span>的空间布置和专业的现场支持，是您理想的活动场地选择。',
+        whyUsTitle: '为什么选择我们？',
+        whyUs:
+          '我们可以根据活动需求灵活调整座位、灯光和舞台设置。高品质音响、灯光系统等专业设备、酒水吧<span>一应俱全</span>，为您的活动提供保障。 场地位于“北岸华人宇宙中心”，<span>交通便捷</span>，停车位充足，周边配套设施完善。我们团队会协助您安排活动细节，让您全程无忧。',
+        contact: {
+          title: '联系我们',
+          info: '想了解更多场地信息或预订，请联系：',
+        },
+      },
+      recruitment: {
+        title: '新人招募',
+        introduction: '你是否对脱口秀充满热情<br />你是否也曾想站在舞台上，用自己的语言和幽默感染观众、传递快乐？<br />现在，<span>Youshow</span> 脱口秀俱乐部为每一位有梦想的你敞开大门，下一个“脱口秀大王”就是你！',
+        whatWeNeed: {
+          title: '我们需要怎样的你?',
+          description: '对生活充满观察和思考，喜欢分享自己的故事和观点；<br />不怕尝试新事物，愿意面对舞台挑战；<br />无需经验，只需热爱脱口秀，敢于迈出第一步。',
+        },
+        growth: {
+          title: '新人如何成长?',
+          description: '开放麦——这是每位脱口秀新演员的起点。<br />无论你是初次尝试还是锻炼新段子，开放麦为你提供了宝贵的实战机会。<br />我们有一群志同道合的伙伴，与你分享经验、互相鼓励，一起成长。<br />定期组织读稿会，联合国内大咖进行表演技巧的培训，帮助你不断提升。',
+        },
+        benefits: {
+          title: '加入我们，你能收获什么？',
+          description: '一个展示自我的舞台；<br />一群幽默且有趣的朋友；<br />将你的想法化为笑声的成就感；<br />甚至还有机会参与商演，成为一名真正的脱口秀演员！',
+        },
+        howToJoin: {
+          title: '如何加入我们？',
+          contact: '联系我们: <a>youshow.nz@gmail.com</a>',
+          info: '定期举办新人说明会和开放麦，欢迎每一位热爱喜剧的朋友报名！',
+        },
+        footer: 'Youshow 脱口秀俱乐部期待与你一起，把生活中的点滴变成舞台上的笑声！',
       },
     },
   },
