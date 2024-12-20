@@ -71,6 +71,55 @@ const resources = {
             "Dance with the body and the mind, and talk with the audience with the stage. Delicate movements and vivid performances give life to ideas, use body language and humor to break the emotional barrier, and make ideas more warm and tense. Show the absurdity of life with vitality, convey emotional depth with performance, narrow the distance with the audience in laughter, and make talk show an art of 'seeing' views.",
         },
       },
+      memberships: {
+        note1: '*For details, please consult in-store staff.',
+        note2: '**The final interpretation of the membership program is reserved by You Show Studio Limited.',
+      },
+      wonderful_review: {
+        title: 'Wonderful Review',
+        slides: {
+          1: {
+            title: 'A-Pan',
+            subtitle: 'Stand-up Comedy Special',
+            description: '"Be Proud of Yourself"',
+          },
+          2: {
+            title: 'Chen Xiaojing',
+            subtitle: 'Comedy Special',
+            description: '"Daughter of the Market"',
+          },
+          3: {
+            title: 'Liang Haiyuan',
+            subtitle: 'Comedy Special',
+            description: '"The Man in the Corner 2"',
+          },
+          4: {
+            title: 'You Show All-Star Lineup',
+            subtitle: 'Annual Comedy Show',
+            description: 'Liu Renchen, Yu Xiangyu, Lao Wang, Caicai, Echo',
+          },
+          5: {
+            title: 'Zhai Jianing',
+            subtitle: 'Stand-up Comedy Featured Show',
+            description: '"Not Obedient and Resentful"',
+          },
+          6: {
+            title: 'Zhang Haozhe',
+            subtitle: 'Stand-up Comedy Special',
+            description: '"The Wandering Plan"',
+          },
+          7: {
+            title: 'Hei Deng',
+            subtitle: 'Stand-up Comedy Special',
+            description: '"Unseen"',
+          },
+        },
+      },
+      contact_us: {
+        customer_service: 'Customer Service',
+        wechat: 'WeChat / Public Account:',
+        email: 'Email:',
+      },
     },
   },
   zh: {
@@ -140,6 +189,55 @@ const resources = {
           description:
             "用肢体与心灵共舞，用舞台与观众对话。通过细腻动作和生动表演赋予观点生命力，用身体语言和幽默打破情感隔阂，让观点更具温度与张力。以活力展现生活荒诞，用表演传递情感深意，在笑声中拉近与观众的距离，让脱口秀成为“看见”观点的艺术。",
         },
+      },
+      memberships: {
+        note1: '*详情请咨询店内工作人员',
+        note2: '**会员计划最终解释权由 You Show Studio Limited 所有',
+      },
+      wonderful_review: {
+        title: '精彩回顾',
+        slides: {
+          1: {
+            title: 'A-Pan',
+            subtitle: '单口喜剧个人专场',
+            description: '《望子成风》',
+          },
+          2: {
+            title: '陈晓靖',
+            subtitle: '脱口秀专场',
+            description: '《菜市场的女儿》',
+          },
+          3: {
+            title: '梁海源',
+            subtitle: '脱口秀专场',
+            description: '《坐在角落的人2》',
+          },
+          4: {
+            title: 'You Show 首场全明星阵容',
+            subtitle: '年度大咖秀',
+            description: '刘仁铖,于祥宇,大老王,菜菜,Echo',
+          },
+          5: {
+            title: '翟佳宁',
+            subtitle: '单口喜剧主打秀',
+            description: '《不服不忿》',
+          },
+          6: {
+            title: '张灏喆',
+            subtitle: '单口喜剧专场',
+            description: '《流浪计划》',
+          },
+          7: {
+            title: '黑灯',
+            subtitle: '单口喜剧专场',
+            description: '《君不见》',
+          },
+        },
+      },
+      contact_us: {
+        customer_service: '在线客服',
+        wechat: '微信/公众号:',
+        email: '邮箱:',
       },
     },
   },

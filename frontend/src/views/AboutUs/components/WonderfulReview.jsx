@@ -1,68 +1,47 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const slides = [
   {
     id: 1,
     image: '/images/contactus/apan.jpg',
-    title: 'A-Pan',
-    subtitle: '单口喜剧个人专场',
-    description: '《望子成风》',
   },
   {
     id: 2,
     image: '/images/contactus/chenxiaojing.jpg',
-    title: '陈晓靖',
-    subtitle: '脱口秀专场',
-    description: '《菜市场的女儿》',
   },
   {
     id: 3,
     image: '/images/contactus/lianghaiyuan.jpg',
-    title: '梁海源',
-    subtitle: '脱口秀专场',
-    description: '《坐在角落的人2》',
   },
   {
     id: 4,
     image: '/images/contactus/niandudakaxiu.jpg',
-    title: 'You Show 首场全明星阵容',
-    subtitle: '年度大咖秀',
-    description: '刘仁铖,于祥宇,大老王,菜菜,Echo',
   },
   {
     id: 5,
     image: '/images/contactus/zhaijianing.jpg',
-    title: '翟佳宁',
-    subtitle: '单口喜剧主打秀',
-    description: '《不服不忿》',
   },
   {
     id: 6,
     image: '/images/contactus/zhanghaozhe.jpg',
-    title: '张灏喆',
-    subtitle: '单口喜剧专场',
-    description: '《流浪计划》',
   },
   {
     id: 7,
     image: '/images/contactus/heideng.jpg',
-    title: '黑灯',
-    subtitle: '单口喜剧专场',
-    description: '《君不见》',
   },
 ];
 
 function WonderfulReview() {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // 下一页逻辑：防止超出范围
   const nextSlide = () => {
     if (currentIndex < slides.length - 3) {
       setCurrentIndex((prev) => prev + 1);
     }
   };
 
-  // 上一页逻辑：防止小于0
   const prevSlide = () => {
     if (currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
@@ -73,7 +52,9 @@ function WonderfulReview() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1 className="text-4xl font-black text-black mb-10 mt-8">精彩回顾</h1>
+      <h1 className="text-4xl font-black text-black mb-10 mt-8">
+        {t('wonderful_review.title')}
+      </h1>
 
       {/* Slides Container */}
       <div className="relative w-full max-w-6xl flex items-center justify-between">
@@ -100,17 +81,19 @@ function WonderfulReview() {
               {/* Image */}
               <img
                 src={slide.image}
-                alt={slide.title}
+                alt={t(`wonderful_review.slides.${slide.id}.title`)}
                 className="w-full h-[500px] object-cover rounded-t-2xl "
               />
               {/* Content */}
               <div className="p-4 text-center">
-                <h3 className="text-xl font-bold text-black">{slide.title}</h3>
+                <h3 className="text-xl font-bold text-black">
+                  {t(`wonderful_review.slides.${slide.id}.title`)}
+                </h3>
                 <p className="text-orange-500 text-md font-semibold mt-2">
-                  {slide.subtitle}
+                  {t(`wonderful_review.slides.${slide.id}.subtitle`)}
                 </p>
                 <p className="text-gray-600 text-sm mt-2 whitespace-pre-line">
-                  {slide.description}
+                  {t(`wonderful_review.slides.${slide.id}.description`)}
                 </p>
               </div>
             </div>
