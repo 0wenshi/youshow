@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
 
 const navigation = [
   { key: 'plans', href: '/plans' },
@@ -148,11 +149,29 @@ function NavBar() {
             type="button"
             className="text-black hover:text-gray-700"
             aria-label="Share"
+            onClick={() => {
+              if (navigator.share) {
+                navigator
+                  .share({
+                    title: document.title, // Current page title
+                    text: 'New Zealand`s First Chinese Stand-Up Comedy Club!', // Custom text
+                    url: window.location.href, // Current page URL
+                  })
+                  .then(() => console.log('Page shared successfully'))
+                  .catch((error) => console.error('Error sharing:', error));
+              } else {
+                // Fallback for unsupported browsers
+                alert(
+                  'Sharing is not supported on this browser. Please copy the URL manually.'
+                );
+              }
+            }}
           >
             <img src="/images/share-icon.svg" alt="Share" className="h-6 w-6" />
           </button>
         </div>
       </nav>
+      <div class="elfsight-app-e4c2828d-37b3-45fa-b37a-114698f8cc79" data-elfsight-app-lazy></div>
     </header>
   );
 }
