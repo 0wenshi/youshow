@@ -7,10 +7,10 @@ function AboutUs() {
   return (
     <div className="bg-[url('/images/background_2.jpg')] bg-cover bg-center min-h-screen items-center p-5">
       <div className="pt-0 px-8 pb-8">
-        <div className="fixed top-0 left-0 right-0 z-50">
+        <div className="-mt-5 top-0 left-0 right-0 z-50">
           <NavBar />
         </div>
-        <div className="mt-12">
+        <div className="-mt-2">
           <WonderfulReview />
         </div>
         {/* Gradient horizontal line */}
@@ -30,7 +30,7 @@ function AboutUs() {
         </div>
 
         {/* content */}
-        <div className="text-center max-w-4xl mx-auto mt-12 text-lg leading-relaxed font-extrabold text-black">
+        <div className="text-center max-w-4xl mx-auto -mt-2 text-lg leading-relaxed font-extrabold text-black">
           <p className="text-xl mb-6">
             <span className="font-black text-2xl text-black">
               You Show Studio
@@ -45,10 +45,10 @@ function AboutUs() {
         </div>
 
         {/* Gradient horizontal line */}
-        <div className="my-48">
+        <div className="mt-12 my-48">
           <div className="w-full h-1 bg-gradient-to-r from-transparent via-[rgb(250,127,42)] to-transparent"></div>
         </div>
-        <div className="-mt-44">
+        <div className="-mt-40">
           <ContactUs />
         </div>
       </div>

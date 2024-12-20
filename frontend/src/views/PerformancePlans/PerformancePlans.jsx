@@ -11,11 +11,9 @@ function PerformancePlans() {
         <NavBar />
       </div>
       <div className="min-h-screen flex">
-        {/* Calendar Section */}
         <div className="flex-grow flex items-center">
           <Calendar />
         </div>
-        {/* EventCards Section */}
         <div className="flex-grow flex items-center">
           <EventCards />
         </div>

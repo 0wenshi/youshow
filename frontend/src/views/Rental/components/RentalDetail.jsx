@@ -3,7 +3,7 @@ import React from 'react';
 function RentalDetail() {
   return (
     <div className="font-sans text-black p-6">
-      <div className="text-center font-bold text-2xl mt-12 mb-8">场地租赁</div>
+      <div className="text-center font-bold text-2xl mb-8">场地租赁</div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-4">
           <div className="text-lg font-semibold">地址</div>

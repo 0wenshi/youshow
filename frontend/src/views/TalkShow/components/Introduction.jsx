@@ -3,8 +3,9 @@ import React from 'react';
 function Introduction() {
   return (
     <div id="root">
-      <div className="bg-transparent p-7 font-sans flex flex-col lg:flex-row items-center">
-        <div className="lg:w-1/2 space-y-4 flex flex-col items-center my-5">
+      <div className="bg-transparent p-7 font-sans flex flex-col lg:flex-row items-center lg:justify-between lg:gap-x-60">
+        {/* 左侧内容 */}
+        <div className="lg:w-2/5 space-y-4 flex flex-col items-center my-5">
           <div>
             <img
               src="/images/about_standup_comedy_1.jpg"
@@ -42,7 +43,8 @@ function Introduction() {
             ></img>
           </div>
         </div>
-        <div className="lg:w-1/2 space-y-4 flex flex-col items-center my-5">
+        {/* 右侧内容 */}
+        <div className="lg:w-2/5 space-y-4 flex flex-col items-center my-5">
           <div className="w-[300px]">
             <h2 className="text-2xl font-bold mb-4">关于脱口秀</h2>
             <p className="leading-relaxed">

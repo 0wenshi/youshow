@@ -6,11 +6,11 @@ import NavBar from '../CommonComponents/NavBar';
 function ActorsIntroduction() {
   return (
     <div className="bg-[url('/images/background_2.jpg')] bg-cover min-h-screen items-center p-5">
-      <div className="pt-0 px-8 pb-8">
-        <div className="fixed top-0 left-0 right-0 z-50">
+      <div className="pt-0 px-4 pb-8">
+        <div className="-mt-5 top-0 left-0 right-0 z-50">
           <NavBar />
         </div>
-        <div className="mt-14 p-8 px-[100px] pb-[90px]">
+        <div className="p-8 px-[100px] pb-[90px]">
           <Actors />
         </div>
       </div>
