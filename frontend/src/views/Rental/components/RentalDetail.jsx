@@ -14,8 +14,12 @@ function RentalDetail() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-4">
-          <div className="text-xl font-semibold">{t('rentalDetail.address.title')}</div>
-          <div className="font-bold text-lg">{t('rentalDetail.address.name')}</div>
+          <div className="text-xl font-semibold">
+            {t('rentalDetail.address.title')}
+          </div>
+          <div className="font-bold text-lg">
+            {t('rentalDetail.address.name')}
+          </div>
           <div className="text-lg">{t('rentalDetail.address.location')}</div>
           <img
             src="/images/address.jpg"
@@ -25,17 +29,27 @@ function RentalDetail() {
         </div>
         <div className="space-y-4 text-lg">
           <p>
-            <Trans components={{ span: <span className="font-bold text-red-500" /> }}>
+            <Trans
+              components={{ span: <span className="font-bold text-red-500" /> }}
+            >
               {details}
             </Trans>
           </p>
-          <div className="text-base font-bold">{t('rentalDetail.whyUsTitle')}</div>
+          <div className="text-base font-bold">
+            {t('rentalDetail.whyUsTitle')}
+          </div>
           <p>
-            <Trans components={{ span: <span className="font-semibold text-red-500" /> }}>
+            <Trans
+              components={{
+                span: <span className="font-semibold text-red-500" />,
+              }}
+            >
               {whyUs}
             </Trans>
           </p>
-          <div className="text-base font-bold">{t('rentalDetail.contact.title')}</div>
+          <div className="text-base font-bold">
+            {t('rentalDetail.contact.title')}
+          </div>
           <p className="font-semibold">{t('rentalDetail.contact.info')}</p>
           <p className="font-semibold">📧 am2pmnz@gmail.com</p>
         </div>

@@ -167,7 +167,8 @@ const resources = {
       },
       performanceNotice: {
         title: 'Performance Notice',
-        subtitle: 'To ensure an enjoyable experience for everyone, please pay attention to the following:',
+        subtitle:
+          'To ensure an enjoyable experience for everyone, please pay attention to the following:',
         rules: [
           {
             image: '/images/tomato_wine.png',
@@ -188,7 +189,7 @@ const resources = {
             image: '/images/tomato_mute.png',
             alt: 'Mute Icon',
             text: 'To avoid interfering with the performance, please turn your phone to <span>mute</span> or <span>vibrate</span> mode.',
-          }
+          },
         ],
         remarks: [
           'Performance tickets are <span>non-refundable</span> and non-reschedulable after purchase.',
@@ -216,25 +217,30 @@ const resources = {
       },
       recruitment: {
         title: 'Recruitment',
-        introduction: 'Are you passionate about stand-up comedy?<br />Do you dream of standing on stage, using your humor to connect with audiences and spread joy?<br />Now, <span>Youshow</span> Comedy Club opens its doors to dreamers like you. The next "King of Stand-Up Comedy" could be you!',
+        introduction:
+          'Are you passionate about stand-up comedy?<br />Do you dream of standing on stage, using your humor to connect with audiences and spread joy?<br />Now, <span>Youshow</span> Comedy Club opens its doors to dreamers like you. The next "King of Stand-Up Comedy" could be you!',
         whatWeNeed: {
           title: 'What Are We Looking For?',
-          description: 'Observant and thoughtful about life, loves sharing stories and perspectives;<br />Not afraid of trying new things, willing to face stage challenges;<br />No experience needed, just a love for comedy and the courage to take the first step.',
+          description:
+            'Observant and thoughtful about life, loves sharing stories and perspectives;<br />Not afraid of trying new things, willing to face stage challenges;<br />No experience needed, just a love for comedy and the courage to take the first step.',
         },
         growth: {
           title: 'How Do Newcomers Grow?',
-          description: 'Open mic – the starting point for every stand-up comedian.<br />Whether you are trying for the first time or refining new material, open mics provide valuable practical opportunities.<br />We have a group of like-minded peers to share experiences and encourage growth together.<br />Regular script reading sessions and workshops with industry experts to hone your skills.',
+          description:
+            'Open mic – the starting point for every stand-up comedian.<br />Whether you are trying for the first time or refining new material, open mics provide valuable practical opportunities.<br />We have a group of like-minded peers to share experiences and encourage growth together.<br />Regular script reading sessions and workshops with industry experts to hone your skills.',
         },
         benefits: {
           title: 'What Will You Gain by Joining Us?',
-          description: 'A stage to showcase yourself;<br />A group of humorous and interesting friends;<br />The sense of achievement in turning ideas into laughter;<br />Even opportunities to perform commercially and become a professional comedian!',
+          description:
+            'A stage to showcase yourself;<br />A group of humorous and interesting friends;<br />The sense of achievement in turning ideas into laughter;<br />Even opportunities to perform commercially and become a professional comedian!',
         },
         howToJoin: {
           title: 'How to Join Us?',
           contact: 'Contact us: <a>youshow.nz@gmail.com</a>',
           info: 'We regularly host newcomer orientation sessions and open mics. Everyone passionate about comedy is welcome to join!',
         },
-        footer: 'Youshow Comedy Club looks forward to turning life’s moments into stage laughter with you!',
+        footer:
+          'Youshow Comedy Club looks forward to turning life’s moments into stage laughter with you!',
       },
     },
   },
@@ -400,7 +406,8 @@ const resources = {
       },
       performanceNotice: {
         title: '观演须知',
-        subtitle: '为了确保每位观众和演员都能享受一场愉快的脱口秀体验，请注意以下事项：',
+        subtitle:
+          '为了确保每位观众和演员都能享受一场愉快的脱口秀体验，请注意以下事项：',
         rules: [
           {
             image: '/images/tomato_wine.png',
@@ -421,7 +428,7 @@ const resources = {
             image: '/images/tomato_mute.png',
             alt: '静音图标',
             text: '为了避免干扰表演，请将手机调至<span>静音</span>或<span>振动</span>模式。',
-          }
+          },
         ],
         remarks: [
           '演出票非普通商品，购票后<span>不支持</span>退款，改期，敬请谅解。',
@@ -449,25 +456,30 @@ const resources = {
       },
       recruitment: {
         title: '新人招募',
-        introduction: '你是否对脱口秀充满热情<br />你是否也曾想站在舞台上，用自己的语言和幽默感染观众、传递快乐？<br />现在，<span>Youshow</span> 脱口秀俱乐部为每一位有梦想的你敞开大门，下一个“脱口秀大王”就是你！',
+        introduction:
+          '你是否对脱口秀充满热情<br />你是否也曾想站在舞台上，用自己的语言和幽默感染观众、传递快乐？<br />现在，<span>Youshow</span> 脱口秀俱乐部为每一位有梦想的你敞开大门，下一个“脱口秀大王”就是你！',
         whatWeNeed: {
           title: '我们需要怎样的你?',
-          description: '对生活充满观察和思考，喜欢分享自己的故事和观点；<br />不怕尝试新事物，愿意面对舞台挑战；<br />无需经验，只需热爱脱口秀，敢于迈出第一步。',
+          description:
+            '对生活充满观察和思考，喜欢分享自己的故事和观点；<br />不怕尝试新事物，愿意面对舞台挑战；<br />无需经验，只需热爱脱口秀，敢于迈出第一步。',
         },
         growth: {
           title: '新人如何成长?',
-          description: '开放麦——这是每位脱口秀新演员的起点。<br />无论你是初次尝试还是锻炼新段子，开放麦为你提供了宝贵的实战机会。<br />我们有一群志同道合的伙伴，与你分享经验、互相鼓励，一起成长。<br />定期组织读稿会，联合国内大咖进行表演技巧的培训，帮助你不断提升。',
+          description:
+            '开放麦——这是每位脱口秀新演员的起点。<br />无论你是初次尝试还是锻炼新段子，开放麦为你提供了宝贵的实战机会。<br />我们有一群志同道合的伙伴，与你分享经验、互相鼓励，一起成长。<br />定期组织读稿会，联合国内大咖进行表演技巧的培训，帮助你不断提升。',
         },
         benefits: {
           title: '加入我们，你能收获什么？',
-          description: '一个展示自我的舞台；<br />一群幽默且有趣的朋友；<br />将你的想法化为笑声的成就感；<br />甚至还有机会参与商演，成为一名真正的脱口秀演员！',
+          description:
+            '一个展示自我的舞台；<br />一群幽默且有趣的朋友；<br />将你的想法化为笑声的成就感；<br />甚至还有机会参与商演，成为一名真正的脱口秀演员！',
         },
         howToJoin: {
           title: '如何加入我们？',
           contact: '联系我们: <a>youshow.nz@gmail.com</a>',
           info: '定期举办新人说明会和开放麦，欢迎每一位热爱喜剧的朋友报名！',
         },
-        footer: 'Youshow 脱口秀俱乐部期待与你一起，把生活中的点滴变成舞台上的笑声！',
+        footer:
+          'Youshow 脱口秀俱乐部期待与你一起，把生活中的点滴变成舞台上的笑声！',
       },
     },
   },

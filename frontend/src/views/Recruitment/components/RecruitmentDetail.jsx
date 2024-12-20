@@ -12,7 +12,12 @@ function RecruitmentDetail() {
       <div className="space-y-8 text-center w-4/5 text-xl">
         <section>
           <p>
-            <Trans components={{ br: <br />, span: <span className="text-red-500 font-bold" /> }}>
+            <Trans
+              components={{
+                br: <br />,
+                span: <span className="text-red-500 font-bold" />,
+              }}
+            >
               {t('recruitment.introduction')}
             </Trans>
           </p>

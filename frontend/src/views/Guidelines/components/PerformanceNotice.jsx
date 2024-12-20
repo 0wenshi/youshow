@@ -28,7 +28,11 @@ function PerformanceNotice() {
                 className="w-32 h-32 md:w-48 md:h-48"
               />
               <p className="font-bold text-black text-lg text-center md:text-left">
-                <Trans components={{ span: <span className="text-red-500 font-bold" /> }}>
+                <Trans
+                  components={{
+                    span: <span className="text-red-500 font-bold" />,
+                  }}
+                >
                   {rule.text}
                 </Trans>
               </p>
@@ -38,7 +42,11 @@ function PerformanceNotice() {
         <div className="text-center space-y-4">
           {remarks.map((remark, index) => (
             <p key={index} className="text-black text-lg font-bold">
-              <Trans components={{ span: <span className="text-red-500 font-bold" /> }}>
+              <Trans
+                components={{
+                  span: <span className="text-red-500 font-bold" />,
+                }}
+              >
                 {remark}
               </Trans>
             </p>
