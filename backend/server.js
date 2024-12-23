@@ -16,18 +16,18 @@ const Event = require('./models/Events');
   try {
     await sequelize.authenticate();
     console.log('Database connected.');
-    await sequelize.sync({ alter: true }); // 同步模型到数据库
+    await sequelize.sync({ alter: true }); // Synchronize the model to the database
     console.log('Models synchronized.');
   } catch (err) {
     console.error('Database connection failed:', err);
   }
 })();
 
-// 允许跨域
+// Allow cross-domain
 app.use(cors());
 app.use(bodyParser.json());
 
-// 路由挂载
+// Route mounting
 app.use('/auth', authRoutes);
 app.use('/events', eventRoutes);
 

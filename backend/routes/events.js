@@ -4,12 +4,12 @@ const Event = require('../models/Events');
 
 const router = express.Router();
 
-// 获取所有事件
+// Get all events
 router.get('/', async (req, res) => {
   try {
     const events = await Event.findAll();
 
-    // 格式化返回的数据
+    // Format the returned data
     const formattedEvents = events.map((event) => ({
       id: event.id,
       title: event.title,
@@ -32,13 +32,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-// 获取指定月份的事件
+// Gets the events for the specified month
 router.get('/:year/:month', async (req, res) => {
   const { year, month } = req.params;
 
   try {
-    const monthPadded = month.padStart(2, '0'); // 确保月份是两位数
-    const lastDay = new Date(year, month, 0).getDate(); // 获取该月的最后一天
+    const monthPadded = month.padStart(2, '0'); // Make sure the month is in double digits
+    const lastDay = new Date(year, month, 0).getDate(); // Get the last day of the month
 
     const events = await Event.findAll({
       where: {

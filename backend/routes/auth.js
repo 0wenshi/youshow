@@ -1,5 +1,5 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { Sequelize } = require('sequelize');
 const User = require('../models/User');
@@ -11,7 +11,7 @@ router.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
-    // 检查用户名或邮箱是否已存在
+    // Check whether the user name or email address already exists
     const existingUser = await User.findOne({
       where: {
         [Sequelize.Op.or]: [{ username }, { email }],
@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
         .json({ message: 'Username or email already exists' });
     }
 
-    // 哈希密码并保存用户
+    // Hash the password and save the user
     const hashedPassword = await bcrypt.hash(password, 10);
     await User.create({
       username,
