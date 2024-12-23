@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Alibaba PuHuiTi Regular';
+  font-weight: 400;
+  src:
+    url('//at.alicdn.com/wf/webfont/Rzb7lS5xGL4a/HRQCtZ8AziEM.woff2')
+      format('woff2'),
+    url('//at.alicdn.com/wf/webfont/Rzb7lS5xGL4a/qZ3XR0YAi5AH.woff')
+      format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Alibaba PuHuiTi ExtraBold';
+  font-weight: 800;
+  src:
+    url('//at.alicdn.com/wf/webfont/Rzb7lS5xGL4a/I7gbFMI3CFrp.woff2')
+      format('woff2'),
+    url('//at.alicdn.com/wf/webfont/Rzb7lS5xGL4a/54iMYx0mGZkQ.woff')
+      format('woff');
+  font-display: swap;
+}
