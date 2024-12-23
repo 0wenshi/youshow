@@ -25,19 +25,19 @@ function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   //const [events, setEvents] = useState([]);
-  const [eventDates, setEventDates] = useState([]); // 存储事件日期列表
+  const [eventDates, setEventDates] = useState([]); // Stores a list of event dates
 
-  // 获取事件数据
+  // Get event data
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/events/${currentYear}/${currentMonth + 1}` // 根据当前年份和月份请求事件数据
+          `http://localhost:3000/events/${currentYear}/${currentMonth + 1}` // Request event data based on the current year and month
         );
-        // 提取事件日期
+        // Fetch event date
         const dates = response.data.map((event) => {
-          const eventDate = new Date(event.date); // 转换为 Date 对象
-          return eventDate.getDate(); // 仅保留日期部分
+          const eventDate = new Date(event.date); // Convert to a Date object
+          return eventDate.getDate(); // Keep only the date part
         });
         //setEvents(response.data);
         setEventDates(dates);
@@ -47,7 +47,7 @@ function Calendar() {
     };
 
     fetchEvents();
-  }, [currentMonth, currentYear]); // 每当月份或年份变化时重新加载事件数据
+  }, [currentMonth, currentYear]); // Reload the event data whenever the month or year changes
 
   const handlePrevMonth = () => {
     if (currentMonth === 0) {

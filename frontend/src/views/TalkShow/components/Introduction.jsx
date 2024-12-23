@@ -7,7 +7,7 @@ function Introduction() {
   return (
     <div id="root">
       <div className="bg-transparent p-7 font-sans flex flex-col lg:flex-row items-center lg:justify-between lg:gap-x-60">
-        {/* 左侧内容 */}
+        {/* Left-hand content */}
         <div className="lg:w-2/5 space-y-4 flex flex-col items-center my-5">
           <div>
             <img
