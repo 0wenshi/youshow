@@ -1,16 +1,16 @@
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME, 
-  process.env.DB_USER, 
+  process.env.DB_NAME,
+  process.env.DB_USER,
   process.env.DB_PASSWORD || null,
   {
     host: process.env.DB_HOST, // Public IP
-    port: process.env.DB_PORT || 3306, 
+    port: process.env.DB_PORT || 3306,
     dialect: 'mysql',
     dialectOptions: {
       ssl: {
-        rejectUnauthorized: true, 
+        rejectUnauthorized: true,
       },
     },
     logging: false,
