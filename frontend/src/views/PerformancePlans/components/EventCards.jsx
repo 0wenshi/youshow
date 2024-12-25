@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function EventCards() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function EventCards() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/events');
+        const response = await axios.get(`${API_BASE_URL}/auth/events`);
         setCards(response.data);
       } catch (error) {
         console.error('Error fetching events:', error);
