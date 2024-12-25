@@ -1,7 +1,7 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const path = require('path');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
@@ -10,39 +10,36 @@ const eventRoutes = require('./routes/events');
 const app = express();
 const port = process.env.PORT;
 const sequelize = require('./config/db');
-const User = require('./models/User');
-const Event = require('./models/Events');
 
-// Connect to database and synchronize models
+// Database Connection
 (async () => {
   try {
     await sequelize.authenticate();
-    console.log('Database connected.');
-    await sequelize.sync({ alter: true }); // Synchronize the model to the database
-    console.log('Models synchronized.');
+    console.log('Connected to PostgreSQL database.');
+    await sequelize.sync({ alter: true }); // Synchronize models
+    console.log('Models synchronized with PostgreSQL.');
   } catch (err) {
-    console.error('Database connection failed:', err);
+    console.error('Failed to connect to PostgreSQL database:', err.message);
   }
 })();
 
-// Middleware setup
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// Serve static files from the "dist" directory
-const __dirname = path.resolve();
+// Serve static files from dist folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// Route mounting
+// API Routes
 app.use('/auth', authRoutes);
 app.use('/events', eventRoutes);
 
-// Handle React routing, return index.html
+// Catch-all route to serve React app
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-// Start the server
+// Start server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

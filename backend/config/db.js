@@ -1,29 +1,27 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD || null,
-  {
-    host: process.env.DB_HOST, // Public IP
-    port: process.env.DB_PORT || 3306,
-    dialect: 'mysql',
-    dialectOptions: {
-      ssl: {
-        rejectUnauthorized: true,
-      },
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  // PostgreSQL connection string provided by Render
+  dialect: 'postgres',
+  protocol: 'postgres',
+  port: process.env.DB_PORT,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
     },
-    logging: false,
-  }
-);
+  },
+  logging: false,
+});
 
+// Test the connection
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Connected to Google Cloud SQL successfully!');
+    console.log('Connected to PostgreSQL successfully!');
   })
   .catch((error) => {
-    console.error('Unable to connect to the database:', error);
+    console.error('Unable to connect to the PostgreSQL database:', error);
   });
 
 module.exports = sequelize;
