@@ -11,7 +11,7 @@ function EventCards() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/auth/events`);
+        const response = await axios.get('https://youshow.onrender.com/auth/events');
         setCards(response.data);
       } catch (error) {
         console.error('Error fetching events:', error);
