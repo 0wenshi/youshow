@@ -7,13 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://youshow.onrender.com',
+        target: 'http://localhost:3000',
         changeOrigin: true,
       },
     },
-  },
-  build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
   },
 });

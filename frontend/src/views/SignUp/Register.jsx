@@ -20,7 +20,7 @@ function Register() {
     }
 
     try {
-      await axios.post('https://youshow.onrender.com/auth/register', {
+      await axios.post(`${API_BASE_URL}/auth/register`, {
         username,
         email,
         password,
