@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://youshow.onrender.com',
+        target: 'https://localhost:3000',
         changeOrigin: true,
       },
     },

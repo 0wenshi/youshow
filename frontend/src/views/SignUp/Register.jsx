@@ -19,7 +19,7 @@ function Register() {
     }
 
     try {
-      await axios.post('https://youshow.onrender.com/auth/register', {
+      await axios.post('https://localhost:3000/auth/register', {
         username,
         email,
         password,
