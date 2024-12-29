@@ -24,13 +24,10 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        'https://localhost:3000/auth/login',
-        {
-          identifier: usernameOrEmail,
-          password,
-        }
-      );
+      const response = await axios.post('http://localhost:3000/auth/login', {
+        identifier: usernameOrEmail,
+        password,
+      });
 
       if (rememberMe) {
         localStorage.setItem('rememberUsernameOrEmail', usernameOrEmail);
@@ -41,7 +38,6 @@ function Login() {
       }
 
       localStorage.setItem('token', response.data.token);
-      // alert('Login successful!');
       navigate('/homepage');
     } catch (error) {
       setError(error.response?.data?.message || 'Login failed');

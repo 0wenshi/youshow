@@ -7,7 +7,7 @@ const resources = {
     translation: {
       navbar: {
         plans: 'Performance Plans',
-        actors: 'Actors Introduction',
+        introduction: 'Actors Introduction',
         memberships: 'Memberships Program',
         about: 'About Us',
         more: 'More',
@@ -19,6 +19,7 @@ const resources = {
         guidelines: 'Guidelines',
         rental: 'Venue Rental',
         recruitment: 'Recruitment',
+        actorsmanagement: 'Actors Management',
       },
       actors: {
         note: '*Sorted alphabetically by name',
@@ -248,7 +249,7 @@ const resources = {
     translation: {
       navbar: {
         plans: '演出计划',
-        actors: '演员介绍',
+        introduction: '演员介绍',
         memberships: '会员计划',
         about: '关于我们',
         more: '更多',
@@ -260,6 +261,7 @@ const resources = {
         guidelines: '观演须知',
         rental: '场地租赁',
         recruitment: '新人招募',
+        actorsmanagement: '演员管理',
       },
       actors: {
         note: '*按照名字首字母顺序排列',

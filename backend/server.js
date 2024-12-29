@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/events');
+const actorRoutes = require('./routes/actors');
 
 const app = express();
 const port = process.env.PORT;
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // API Routes
 app.use('/auth', authRoutes);
 app.use('/events', eventRoutes);
+app.use('/actors', actorRoutes);
 
 // Catch-all route to serve React app
 app.get('*', (req, res) => {

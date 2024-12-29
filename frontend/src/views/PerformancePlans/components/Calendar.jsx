@@ -32,7 +32,7 @@ function Calendar() {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:3000/events/${currentYear}/${currentMonth + 1}` // Request event data based on the current year and month
+          `http://localhost:3000/events/${currentYear}/${currentMonth + 1}` // Request event data based on the current year and month
         );
         // Fetch event date
         const dates = response.data.map((event) => {

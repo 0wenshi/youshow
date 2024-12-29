@@ -1,18 +1,20 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  // PostgreSQL connection string provided by Render
-  dialect: 'postgres',
-  protocol: 'postgres',
-  port: process.env.DB_PORT,
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
+const sequelize = new Sequelize(
+  process.env.DATABASE_URL, // PostgreSQL connection string provided by Render
+  {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    port: process.env.DB_PORT,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
     },
-  },
-  logging: false,
-});
+    logging: false,
+  }
+);
 
 // Test the connection
 sequelize

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 const navigation = [
   { key: 'plans', href: '/plans' },
-  { key: 'actors', href: '/actors' },
+  { key: 'introduction', href: '/introduction' },
   { key: 'memberships', href: '/memberships' },
   { key: 'about', href: '/contact' },
 ];
@@ -14,6 +14,7 @@ const dropdownItems = [
   { key: 'guidelines', href: '/guidelines' },
   { key: 'rental', href: '/rental' },
   { key: 'recruitment', href: '/recruitment' },
+  { key: 'actorsmanagement', href: '/actorsmanagement' },
 ];
 
 function NavBar() {

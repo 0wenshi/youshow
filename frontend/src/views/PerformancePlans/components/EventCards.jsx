@@ -10,7 +10,7 @@ function EventCards() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('https://localhost:3000/events');
+        const response = await axios.get('http://localhost:3000/events');
         setCards(response.data);
       } catch (error) {
         console.error('Error fetching events:', error);
