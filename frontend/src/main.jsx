@@ -16,6 +16,7 @@ import TalkShow from './views/TalkShow/TalkShow';
 import Guidelines from './views/Guidelines/Guidelines';
 import Rental from './views/Rental/Rental';
 import Recruitment from './views/Recruitment/Recruitment';
+import ActorsManagement from './views/ActorsManagement/ActorsManagement';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -26,13 +27,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/register" element={<Register />} />
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/plans" element={<PerformancePlans />} />
-        <Route path="/actors" element={<ActorsIntroduction />} />
+        <Route path="/actorsintroduction" element={<ActorsIntroduction />} />
         <Route path="/memberships" element={<MembershipsProgram />} />
         <Route path="/contact" element={<AboutUs />} />
         <Route path="/talkshow" element={<TalkShow />} />
         <Route path="/guidelines" element={<Guidelines />} />
         <Route path="/rental" element={<Rental />} />
         <Route path="/recruitment" element={<Recruitment />} />
+        <Route path="/actorsmanagement" element={<ActorsManagement />} />
       </Routes>
     </Router>
   </React.StrictMode>

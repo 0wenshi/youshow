@@ -7,7 +7,7 @@ const resources = {
     translation: {
       navbar: {
         plans: 'Performance Plans',
-        introduction: 'Actors Introduction',
+        actorsintroduction: 'Actors Introduction',
         memberships: 'Memberships Program',
         about: 'About Us',
         more: 'More',
@@ -249,7 +249,7 @@ const resources = {
     translation: {
       navbar: {
         plans: '演出计划',
-        introduction: '演员介绍',
+        actorsintroduction: '演员介绍',
         memberships: '会员计划',
         about: '关于我们',
         more: '更多',

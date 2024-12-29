@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Input, VStack, HStack, Heading } from '@chakra-ui/react';
 import axios from 'axios';
 
 const ActorsManagement = () => {
@@ -53,92 +52,96 @@ const ActorsManagement = () => {
   };
 
   return (
-    <Box maxW="6xl" mx="auto" p="6" bg="gray.50" borderRadius="lg" shadow="md">
-      <Heading as="h1" size="lg" mb="6" textAlign="center" color="teal.600">
+    <div className="max-w-6xl mx-auto p-6 bg-gray-50 rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold text-center text-teal-600 mb-6">
         Actors Management
-      </Heading>
+      </h1>
 
       {/* Form Section */}
-      <VStack spacing={4} mb={6} align="stretch">
-        <Input
+      <div className="space-y-4 mb-6">
+        <input
+          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-teal-200"
           placeholder="Title"
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
-        <Input
+        <input
+          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-teal-200"
           placeholder="Subtitle"
           value={formData.subtitle}
           onChange={(e) =>
             setFormData({ ...formData, subtitle: e.target.value })
           }
         />
-        <Input
+        <textarea
+          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-teal-200"
           placeholder="Description"
           value={formData.description}
           onChange={(e) =>
             setFormData({ ...formData, description: e.target.value })
           }
-        />
-        <Input
+        ></textarea>
+        <input
+          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-teal-200"
           placeholder="Image URL"
           value={formData.image}
           onChange={(e) => setFormData({ ...formData, image: e.target.value })}
         />
-        <Button
-          colorScheme={editingActor ? 'orange' : 'teal'}
+        <button
+          className={`w-full p-2 rounded-lg text-white ${
+            editingActor ? 'bg-orange-500 hover:bg-orange-600' : 'bg-teal-500 hover:bg-teal-600'
+          }`}
           onClick={handleAddOrUpdate}
         >
           {editingActor ? 'Update Actor' : 'Add Actor'}
-        </Button>
-      </VStack>
+        </button>
+      </div>
 
       {/* Table Section */}
-      <table variant="striped" colorScheme="teal" size="lg">
-        <thead>
+      <table className="w-full table-auto bg-white border border-gray-300 rounded-lg shadow">
+        <thead className="bg-teal-500 text-white">
           <tr>
-            <th>Title</th>
-            <th>Subtitle</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Actions</th>
+            <th className="p-2 text-left">Title</th>
+            <th className="p-2 text-left">Subtitle</th>
+            <th className="p-2 text-left">Description</th>
+            <th className="p-2 text-left">Image</th>
+            <th className="p-2 text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
           {actors.map((actor) => (
-            <tr key={actor.id}>
-              <td>{actor.title}</td>
-              <td>{actor.subtitle}</td>
-              <td>{actor.description}</td>
-              <td>
+            <tr key={actor.id} className="border-t">
+              <td className="p-2">{actor.title}</td>
+              <td className="p-2">{actor.subtitle}</td>
+              <td className="p-2">{actor.description}</td>
+              <td className="p-2">
                 <img
                   src={actor.image}
                   alt={actor.title}
                   className="h-20 w-20 object-cover rounded-lg shadow"
                 />
               </td>
-              <td>
-                <HStack spacing={2}>
-                  <Button
-                    size="sm"
-                    colorScheme="blue"
+              <td className="p-2">
+                <div className="flex space-x-2">
+                  <button
+                    className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                     onClick={() => setEditingActor(actor)}
                   >
                     Edit
-                  </Button>
-                  <Button
-                    size="sm"
-                    colorScheme="red"
+                  </button>
+                  <button
+                    className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
                     onClick={() => handleDelete(actor.id)}
                   >
                     Delete
-                  </Button>
-                </HStack>
+                  </button>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </Box>
+    </div>
   );
 };
 

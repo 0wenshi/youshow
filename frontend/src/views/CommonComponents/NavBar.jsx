@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 const navigation = [
   { key: 'plans', href: '/plans' },
-  { key: 'introduction', href: '/introduction' },
+  { key: 'actorsintroduction', href: '/actorsintroduction' },
   { key: 'memberships', href: '/memberships' },
   { key: 'about', href: '/contact' },
 ];
