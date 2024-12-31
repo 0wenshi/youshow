@@ -23,49 +23,49 @@ const resources = {
       },
       actors: {
         note: '*Sorted alphabetically by name',
-        annie: {
+        1: {
           title: 'Annie',
           subtitle: 'Stand-up Comedian',
           description:
             'Top Ten contestant in the Raw New Zealand Stand-up Competition 2023, New Zealand Comedy Association Newcomer of the Year 2023, Best Joke of the Year 2024, Comedy League Rising Star of the Year 2024. She has a unique perspective and a powerful narrative, especially on workplace and immigration topics. More than 100 performances, bilingual Chinese and English, easy to switch.',
         },
-        bazi: {
+        2: {
           title: 'Ba Zi',
           subtitle: 'Stand-up Rising Star / Life Observer',
           description:
             "Behind the bitter tongue there is a colder soul. Good at tricky straight to, determined to do the mouth of the cow. He has experience in stand-up shows from scratch, has experience in performing in various venues, and believes that hard work pays for sweat and hard work pays for bread. Underneath the bear's appearance is a will like steel.",
         },
-        charlotte: {
+        3: {
           title: 'Charlotte',
           subtitle: 'Code Enthusiast and Comedian',
           description:
             'There are many ugly words, said the self-proclaimed Cassimo. After watching the performance of teacher Ba Zi, I was inspired to go to the road of talk show from now on. Love every lovely person, create every outrageous thing.',
         },
-        laohu: {
+        4: {
           title: 'Tiger',
           subtitle: 'Stand-up Rising Star',
           description:
             "Use humor and exaggeration to express daily trivia. Born in Auckland, grew up in China, the most abc Chinese, the most Chinese abc. Influenced by Kevin Hart's ridiculous and funny acting style, he began to write stand-up jokes. Let yourself go on stage, give the audience the most powerful jokes. The laughter of the audience is the greatest recognition and the fountain of motivation. Look forward to bringing Tiger humor to the world.",
         },
-        qixue: {
+        5: {
           title: 'Qi Xue',
           subtitle: 'Stand-up Rising Star',
           description:
             'A natural comedian, with a humorous way to interpret the family, life, the workplace of ironic stories. In her stories, each character is a real and unique soul, a soul that expresses its life as vividly as she wants it to. Her unique and distinctive personality tries to break the social constraints on gender, occupation and self.',
         },
-        summer: {
+        6: {
           title: 'Summer',
           subtitle: 'Stand-up Comedian',
           description:
             "Judges' Recommendation Award (3rd place) & Finalists - 2022 Raw Comedy Quest, Nominated - Best Newcomer - 2022 New Zealand Comedy Society Award, Nominated - Best Joke - 2023 New Zealand Comedy Society Award. I won a pizza at my first open Mic, and I had the illusion that a talk show could be a meal. After that, it was a slippery slope to sharing every detail on talk shows.",
         },
-        vincent: {
+        7: {
           title: 'Vincent',
           subtitle: 'A forensic accounting expert who tells jokes',
           description:
             'From the love of making funny teachers, to the work of good financial reports into a joke. Cultural differences and workplace anecdotes are a source of inspiration. Inspired by George Carlin, he has a passion for talk shows. Join the You Show club and start your career on stage. The interaction between accounting women and straight men is presented in humorous jokes, which are deeply loved by the audience.',
         },
-        wanning: {
+        8: {
           title: 'Wan Ning',
           subtitle: 'A therapist/dance therapist who makes people laugh',
           description:
