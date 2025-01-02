@@ -1,6 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import React, { useContext } from 'react';
+import { LocaleContext } from '../../context/LocaleContext';
 
 const navigation = [
   { key: 'plans', href: '/plans' },
@@ -24,6 +26,7 @@ function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const timeoutRef = useRef(null);
+  const { locale, setLocale } = useContext(LocaleContext);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -48,8 +51,9 @@ function NavBar() {
   };
 
   const toggleLanguage = () => {
-    const newLanguage = i18n.language === 'en' ? 'zh' : 'en';
-    i18n.changeLanguage(newLanguage);
+    const newLocale = i18n.language === 'en' ? 'zh' : 'en';
+    i18n.changeLanguage(newLocale); // Change static text language
+    setLocale(newLocale); // Update dynamic data language
   };
 
   return (
@@ -129,22 +133,27 @@ function NavBar() {
               {t('navbar.login')} <span aria-hidden="true">&rarr;</span>
             </a>
           )}
-          {/* Translate Button */}
-          <button
-            type="button"
-            onClick={toggleLanguage}
-            className="text-black hover:text-gray-700 flex items-center gap-1"
-            aria-label="Translate"
-          >
-            <img
-              src="/images/translate-icon.svg"
-              alt="Translate"
-              className="h-6 w-6"
-            />
-            <span className="text-sm font-semibold">
-              {i18n.language === 'en' ? '中文' : 'English'}
-            </span>
-          </button>
+
+          {/* Language Switcher */}
+          <div className="flex flex-1 justify-end items-center">
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="text-black hover:text-gray-700 flex items-center gap-1"
+              aria-label="Translate"
+            >
+              <img
+                src="/images/translate-icon.svg"
+                alt="Translate"
+                className="h-6 w-6"
+              />
+              <span className="text-sm font-semibold">
+                {locale === 'en' ? '中文' : 'English'}
+              </span>
+            </button>
+          </div>
+
+          {/* Share Button */}
           <button
             type="button"
             className="text-black hover:text-gray-700"

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LocaleProvider } from './context/LocaleContext';
 import './index.css';
 import './views/i18n';
 
@@ -20,22 +21,24 @@ import ActorsManagement from './views/ActorsManagement/ActorsManagement';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/homepage" element={<HomePage />} />
-        <Route path="/plans" element={<PerformancePlans />} />
-        <Route path="/actorsintroduction" element={<ActorsIntroduction />} />
-        <Route path="/memberships" element={<MembershipsProgram />} />
-        <Route path="/contact" element={<AboutUs />} />
-        <Route path="/talkshow" element={<TalkShow />} />
-        <Route path="/guidelines" element={<Guidelines />} />
-        <Route path="/rental" element={<Rental />} />
-        <Route path="/recruitment" element={<Recruitment />} />
-        <Route path="/actorsmanagement" element={<ActorsManagement />} />
-      </Routes>
-    </Router>
+    <LocaleProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/homepage" element={<HomePage />} />
+          <Route path="/plans" element={<PerformancePlans />} />
+          <Route path="/actorsintroduction" element={<ActorsIntroduction />} />
+          <Route path="/memberships" element={<MembershipsProgram />} />
+          <Route path="/contact" element={<AboutUs />} />
+          <Route path="/talkshow" element={<TalkShow />} />
+          <Route path="/guidelines" element={<Guidelines />} />
+          <Route path="/rental" element={<Rental />} />
+          <Route path="/recruitment" element={<Recruitment />} />
+          <Route path="/actorsmanagement" element={<ActorsManagement />} />
+        </Routes>
+      </Router>
+    </LocaleProvider>
   </React.StrictMode>
 );

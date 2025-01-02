@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { LocaleContext } from '../../../context/LocaleContext';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
 function Actors() {
   const { t } = useTranslation();
+  const { locale } = useContext(LocaleContext);
   const [actors, setActors] = useState([]);
-  const [locale, setLocale] = useState('en');
+  // const [locale, setLocale] = useState('en');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -33,7 +35,7 @@ function Actors() {
   return (
     <div>
       {/* Language Switcher */}
-      <div className="mb-4 flex justify-center">
+      {/* <div className="mb-4 flex justify-center">
         {['en', 'zh'].map((lang) => (
           <button
             key={lang}
@@ -47,7 +49,7 @@ function Actors() {
             {lang === 'en' ? 'English' : '中文'}
           </button>
         ))}
-      </div>
+      </div> */}
 
       {/* Error Message */}
       {error && <div className="text-red-500 text-center mb-4">{error}</div>}
