@@ -37,8 +37,8 @@ function EventCards() {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex items-center mb-4">
+    <div className="w-full max-w-2xl mx-auto">
+      <div className="flex items-center space-x-4">
         {/* Previous Button */}
         <button
           onClick={prevSlide}
@@ -49,19 +49,19 @@ function EventCards() {
 
         {/* Event Card */}
         {cards.length > 0 && (
-          <div className="w-full max-w-lg h-auto bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+          <div className="w-full bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
             {/* Image Section */}
-            <div className="relative w-full h-96">
+            <div className="relative w-full flex-grow">
               <img
-                src={cards[currentSlide]?.image || '/images/Avatar.jpg'} // Default image
+                src={cards[currentSlide]?.image || '/images/Avatar.jpg'}
                 alt={cards[currentSlide]?.title}
                 className="w-full h-full object-cover rounded-t-xl"
               />
             </div>
 
             {/* Text Section */}
-            <div className="p-6 text-center">
-              <h2 className="text-3xl font-bold text-black">
+            <div className="p-4 text-center flex-grow">
+              <h2 className="text-2xl font-bold text-black">
                 {cards[currentSlide]?.title}
               </h2>
               <p className="text-lg text-gray-600 my-4">
@@ -71,7 +71,6 @@ function EventCards() {
                 {cards[currentSlide]?.price}
               </p>
             </div>
-
             {/* Button Section */}
             <div className="p-6">
               <button

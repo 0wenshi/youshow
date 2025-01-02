@@ -135,21 +135,21 @@ function NavBar() {
           )}
 
           {/* Language Switcher */}
-            <button
-              type="button"
-              onClick={toggleLanguage}
-              className="text-black hover:text-gray-700 flex items-center gap-1"
-              aria-label="Translate"
-            >
-              <img
-                src="/images/translate-icon.svg"
-                alt="Translate"
-                className="h-6 w-6"
-              />
-              <span className="text-sm font-semibold">
-                {locale === 'en' ? '中文' : 'English'}
-              </span>
-            </button>
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            className="text-black hover:text-gray-700 flex items-center gap-1"
+            aria-label="Translate"
+          >
+            <img
+              src="/images/translate-icon.svg"
+              alt="Translate"
+              className="h-6 w-6"
+            />
+            <span className="text-sm font-semibold">
+              {locale === 'en' ? '中文' : 'English'}
+            </span>
+          </button>
 
           {/* Share Button */}
           <button
