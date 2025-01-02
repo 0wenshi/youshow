@@ -47,7 +47,7 @@ function EventCards() {
         >
           &#8249;
         </button>
-  
+
         {/* Event Card */}
         {cards.length > 0 && (
           <div className="w-full bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
@@ -59,7 +59,7 @@ function EventCards() {
                 className="w-full h-full object-cover rounded-t-xl md:rounded-l-xl"
               />
             </div>
-  
+
             {/* Text Section */}
             <div className="p-6 flex flex-col justify-between md:w-1/2">
               <div className="text-center md:text-left">
@@ -73,7 +73,7 @@ function EventCards() {
                   {cards[currentSlide]?.price}
                 </p>
               </div>
-  
+
               {/* Button Section */}
               <div className="mt-4">
                 <button
@@ -86,7 +86,7 @@ function EventCards() {
             </div>
           </div>
         )}
-  
+
         {/* Next Button */}
         <button
           onClick={nextSlide}
@@ -97,7 +97,7 @@ function EventCards() {
         </button>
       </div>
     </div>
-  );  
+  );
 }
 
 export default EventCards;

@@ -39,7 +39,9 @@ function RentalDetail() {
           <div className="space-y-6 text-lg text-gray-800">
             <div>
               <Trans
-                components={{ span: <span className="font-bold text-red-500" /> }}
+                components={{
+                  span: <span className="font-bold text-red-500" />,
+                }}
               >
                 {details}
               </Trans>
@@ -62,7 +64,9 @@ function RentalDetail() {
             <div className="font-semibold">
               {t('rentalDetail.contact.info')}
             </div>
-            <div className="font-semibold text-gray-700">📧 am2pmnz@gmail.com</div>
+            <div className="font-semibold text-gray-700">
+              📧 am2pmnz@gmail.com
+            </div>
           </div>
         </div>
       </div>
