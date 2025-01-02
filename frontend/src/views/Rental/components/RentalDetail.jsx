@@ -8,50 +8,62 @@ function RentalDetail() {
   const whyUs = t('rentalDetail.whyUs', { returnObjects: true });
 
   return (
-    <div className="font-sans text-black p-6">
-      <div className="text-center font-bold text-2xl mb-8">
-        {t('rentalDetail.title')}
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-4">
-          <div className="text-xl font-semibold">
-            {t('rentalDetail.address.title')}
-          </div>
-          <div className="font-bold text-lg">
-            {t('rentalDetail.address.name')}
-          </div>
-          <div className="text-lg">{t('rentalDetail.address.location')}</div>
-          <img
-            src="/images/address.jpg"
-            alt="Address"
-            className="w-full md:w-100 h-80 rounded-[40px] shadow-lg"
-          />
+    <div className="py-10 px-6">
+      <div className="max-w-6xl mx-auto rounded-lg p-8 shadow-2xl">
+        {/* Title */}
+        <div className="text-center text-3xl font-extrabold mb-10 text-gray-900">
+          {t('rentalDetail.title')}
         </div>
-        <div className="space-y-4 text-lg">
-          <p>
-            <Trans
-              components={{ span: <span className="font-bold text-red-500" /> }}
-            >
-              {details}
-            </Trans>
-          </p>
-          <div className="text-base font-bold">
-            {t('rentalDetail.whyUsTitle')}
+
+        {/* Content Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Address Section */}
+          <div className="space-y-6">
+            <div className="text-2xl font-semibold text-gray-800">
+              {t('rentalDetail.address.title')}
+            </div>
+            <div className="text-lg font-bold text-orange-600">
+              {t('rentalDetail.address.name')}
+            </div>
+            <div className="text-lg text-gray-700">
+              {t('rentalDetail.address.location')}
+            </div>
+            <img
+              src="/images/address.jpg"
+              alt="Address"
+              className="w-full h-80 object-cover rounded-2xl shadow-md"
+            />
           </div>
-          <p>
-            <Trans
-              components={{
-                span: <span className="font-semibold text-red-500" />,
-              }}
-            >
-              {whyUs}
-            </Trans>
-          </p>
-          <div className="text-base font-bold">
-            {t('rentalDetail.contact.title')}
+
+          {/* Details Section */}
+          <div className="space-y-6 text-lg text-gray-800">
+            <div>
+              <Trans
+                components={{ span: <span className="font-bold text-red-500" /> }}
+              >
+                {details}
+              </Trans>
+            </div>
+            <div className="text-xl font-bold text-gray-900">
+              {t('rentalDetail.whyUsTitle')}
+            </div>
+            <div>
+              <Trans
+                components={{
+                  span: <span className="font-semibold text-red-500" />,
+                }}
+              >
+                {whyUs}
+              </Trans>
+            </div>
+            <div className="text-xl font-bold text-gray-900">
+              {t('rentalDetail.contact.title')}
+            </div>
+            <div className="font-semibold">
+              {t('rentalDetail.contact.info')}
+            </div>
+            <div className="font-semibold text-gray-700">📧 am2pmnz@gmail.com</div>
           </div>
-          <p className="font-semibold">{t('rentalDetail.contact.info')}</p>
-          <p className="font-semibold">📧 am2pmnz@gmail.com</p>
         </div>
       </div>
     </div>

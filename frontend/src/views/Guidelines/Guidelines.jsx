@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchBox from '../CommonComponents/SearchBox';
 import NavBar from '../CommonComponents/NavBar';
 import PerformanceNotice from './components/PerformanceNotice';
 
@@ -14,9 +13,6 @@ function Guidelines() {
           <PerformanceNotice />
         </div>
       </div>
-      {/* <div className="fixed bottom-10 right-10">
-        <SearchBox />
-      </div> */}
     </div>
   );
 }
