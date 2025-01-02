@@ -49,51 +49,66 @@ import axios from 'axios';
 function Actors() {
   const { t } = useTranslation();
   const [actors, setActors] = useState([]);
-  
+  const [locale, setLocale] = useState('en');
+
   useEffect(() => {
-    const fetchActors = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/actors');
-        setActors(response.data);
-      } catch (error) {
-        console.error('Error fetching actors:', error);
-      }
-    };
     fetchActors();
-  })
+  }, [locale]);
+
+  const fetchActors = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/actors', {
+        params: {
+          locale,
+        },
+      });
+      setActors(response.data);
+    } catch (error) {
+      console.error('Error fetching actors:', error);
+    }
+  };
 
   return (
-    <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10">
-      {actors.map((actor) => (
-        <div
-          key={actor.id}
-          className="p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col sm:flex-row items-center"
-        >
-          {/* Image Section */}
-          <img
-            src={actor.image} // Assuming `image` is a URL string
-            alt={t(`actors.${actor.id}.title`, { fallback: actor.title })}
-            className="w-52 h-80 object-cover rounded-lg"
-          />
-          {/* Text Section */}
-          <div className="sm:ml-8 mt-4 sm:mt-0 text-center sm:text-left">
-            <h2 className="text-orange-500 text-3xl font-black mb-4">
-              {t(`actors.${actor.id}.title`, { fallback: actor.title })}
-            </h2>
-            <h3 className="text-black text-lg font-semibold mb-4">
-              {t(`actors.${actor.id}.subtitle`, { fallback: actor.subtitle })}
-            </h3>
-            <p className="text-black text-base font-sansregular">
-              {t(`actors.${actor.id}.description`, {
-                fallback: actor.description,
-              })}
-            </p>
+    <div>
+      {/* Language Switcher */}
+      <div className="mb-4">
+        <button onClick={() => setLocale('en')} className="mr-2">
+          English
+        </button>
+        <button onClick={() => setLocale('zh')} className="mr-2">
+          中文
+        </button>
+      </div>
+      <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10">
+        {actors.map((actor) => (
+          <div
+            key={actor.id}
+            className="p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col sm:flex-row items-center"
+          >
+            {/* Image Section */}
+            <img
+              src={actor.image} // Assuming `image` is a URL string
+              alt={actor.title}
+              className="w-52 h-80 object-cover rounded-lg"
+            />
+            {/* Text Section */}
+            <div className="sm:ml-8 mt-4 sm:mt-0 text-center sm:text-left">
+              <h2 className="text-orange-500 text-3xl font-black mb-4">
+                {actor.title}
+              </h2>
+              <h3 className="text-black text-lg font-semibold mb-4">
+                {actor.subtitle}
+              </h3>
+              <p className="text-black text-base font-sansregular">
+                {actor.description}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
-      <p className="mt-5 pt-5 text-left text-xs font-bold text-gray-800">
-        {t('actors.note', 'Actors are dynamically loaded from the database.')}
-      </p>
+        ))}
+        <p className="mt-5 pt-5 text-left text-xs font-bold text-gray-800">
+          {t('actors.note')}
+        </p>
+      </div>
     </div>
   );
 }

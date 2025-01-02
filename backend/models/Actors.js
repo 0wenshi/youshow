@@ -35,6 +35,11 @@ const Actors = sequelize.define(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    locale:{
+      type: DataTypes.STRING(10),
+      allowNull: false,
+      defaultValue: 'en',
+    } // Add locale field
   },
   {
     tableName: 'actors',

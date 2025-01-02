@@ -14,6 +14,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get actors by locale
+router.get('/actors', async (req, res) => {
+  const { locale } = req.query;
+
+  try {
+    const whereCondition = locale ? { locale } : {};
+
+    const actors = await Actors.findAll({ where: whereCondition });
+
+    res.status(200).json(actors);
+  } catch (error) {
+    console.error('Error fetching actors:', error);
+    res.status(500).json({ message: 'Failed to fetch actors' });
+  }
+});
+
 // Add a new actor
 router.post('/', async (req, res) => {
   const { title, subtitle, description, image } = req.body; // Assuming the request body contains the required fields

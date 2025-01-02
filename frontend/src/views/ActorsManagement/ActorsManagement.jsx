@@ -89,7 +89,9 @@ const ActorsManagement = () => {
         />
         <button
           className={`w-full p-2 rounded-lg text-white ${
-            editingActor ? 'bg-orange-500 hover:bg-orange-600' : 'bg-teal-500 hover:bg-teal-600'
+            editingActor
+              ? 'bg-orange-500 hover:bg-orange-600'
+              : 'bg-teal-500 hover:bg-teal-600'
           }`}
           onClick={handleAddOrUpdate}
         >
