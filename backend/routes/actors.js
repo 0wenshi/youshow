@@ -3,19 +3,8 @@ const Actors = require('../models/Actors');
 
 const router = express.Router();
 
-// Get all actors
-router.get('/', async (req, res) => {
-  try {
-    const actors = await Actors.findAll();
-    res.status(200).json(actors);
-  } catch (error) {
-    console.error('Error fectching actors:', error);
-    res.status(500).json({ message: 'Failed to fetch actors' });
-  }
-});
-
 // Get actors by locale
-router.get('/actors', async (req, res) => {
+router.get('/', async (req, res) => {
   const { locale } = req.query;
 
   try {
@@ -29,6 +18,17 @@ router.get('/actors', async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch actors' });
   }
 });
+
+// Get all actors
+// router.get('/', async (req, res) => {
+//   try {
+//     const actors = await Actors.findAll();
+//     res.status(200).json(actors);
+//   } catch (error) {
+//     console.error('Error fectching actors:', error);
+//     res.status(500).json({ message: 'Failed to fetch actors' });
+//   }
+// });
 
 // Add a new actor
 router.post('/', async (req, res) => {
