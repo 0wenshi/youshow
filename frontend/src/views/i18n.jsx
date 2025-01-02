@@ -488,11 +488,11 @@ const resources = {
 };
 
 i18n
-  .use(LanguageDetector) // 自动检测用户语言
+  .use(LanguageDetector) // detect user language
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en', // 默认语言
+    fallbackLng: 'en', // default language
     interpolation: {
       escapeValue: false,
     },

@@ -135,7 +135,6 @@ function NavBar() {
           )}
 
           {/* Language Switcher */}
-          <div className="flex flex-1 justify-end items-center">
             <button
               type="button"
               onClick={toggleLanguage}
@@ -151,7 +150,6 @@ function NavBar() {
                 {locale === 'en' ? '中文' : 'English'}
               </span>
             </button>
-          </div>
 
           {/* Share Button */}
           <button
