@@ -18,9 +18,9 @@ function PerformancePlans() {
           <EventCards />
         </div>
       </div>
-      <div className="fixed bottom-10 right-10">
+      {/* <div className="fixed bottom-10 right-10">
         <SearchBox />
-      </div>
+      </div> */}
     </div>
   );
 }
