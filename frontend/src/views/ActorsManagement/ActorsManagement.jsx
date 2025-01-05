@@ -8,6 +8,7 @@ const ActorsManagement = () => {
     subtitle: '',
     description: '',
     image: '',
+    locale: '', // Add locale field
   });
   const [editingActor, setEditingActor] = useState(null);
 
@@ -35,7 +36,7 @@ const ActorsManagement = () => {
         await axios.post('http://localhost:3000/actors', formData);
       }
       fetchActors();
-      setFormData({ title: '', subtitle: '', description: '', image: '' });
+      setFormData({ title: '', subtitle: '', description: '', image: '', locale: '' }); // Reset form fields
       setEditingActor(null);
     } catch (error) {
       console.error('Error adding/updating actor:', error);
@@ -69,8 +70,7 @@ const ActorsManagement = () => {
           className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-teal-200"
           placeholder="Subtitle"
           value={formData.subtitle}
-          onChange={(e) =>
-            setFormData({ ...formData, subtitle: e.target.value })
+          onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })
           }
         />
         <textarea
@@ -86,6 +86,14 @@ const ActorsManagement = () => {
           placeholder="Image URL"
           value={formData.image}
           onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+        />
+        <input
+          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-teal-200"
+          placeholder="Locale"
+          value={formData.locale}
+          onChange={(e) =>
+            setFormData({ ...formData, locale: e.target.value })
+          }
         />
         <button
           className={`w-full p-2 rounded-lg text-white ${

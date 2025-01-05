@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
 
 // Add a new actor
 router.post('/', async (req, res) => {
-  const { title, subtitle, description, image } = req.body; // Assuming the request body contains the required fields
+  const { title, subtitle, description, image, locale } = req.body; // Assuming the request body contains the required fields
 
   try {
     const newActor = await Actors.create({
@@ -40,6 +40,7 @@ router.post('/', async (req, res) => {
       subtitle,
       description,
       image,
+      locale,
     });
     res.status(201).json(newActor);
   } catch (error) {
@@ -51,7 +52,7 @@ router.post('/', async (req, res) => {
 // Update an actor
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
-  const { title, subtitle, description, image } = req.body; // Assuming the request body contains the required fields
+  const { title, subtitle, description, image, locale } = req.body; // Assuming the request body contains the required fields
 
   try {
     const actor = await Actors.findByPk(id);
@@ -59,7 +60,7 @@ router.put('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Actors not found' });
     }
 
-    await actor.update({ title, subtitle, description, image });
+    await actor.update({ title, subtitle, description, image, locale });
     res.status(200).json({ message: 'Actor updated successfully', actor });
   } catch (error) {
     console.error('Error updating actor:', error);

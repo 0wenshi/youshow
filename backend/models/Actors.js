@@ -38,7 +38,6 @@ const Actors = sequelize.define(
     locale: {
       type: DataTypes.STRING(10),
       allowNull: false,
-      defaultValue: 'en',
     }, // Add locale field
   },
   {
