@@ -1,51 +1,32 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
+const ActorDetails = require('./ActorDetails');
+const ActorTimestamps = require('./ActorTimestamps');
 
 const Actors = sequelize.define(
   'Actors',
   {
-    id: {
+    actor_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    title: {
+    name: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    subtitle: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    image: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    locale: {
-      type: DataTypes.STRING(10),
-      allowNull: false,
-    }, // Add locale field
   },
   {
     tableName: 'actors',
-    timestamps: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
+    timestamps: false,
   }
 );
+
+// Associations
+Actors.hasMany(ActorDetails, { foreignKey: 'actor_id', onDelete: 'CASCADE' });
+ActorDetails.belongsTo(Actors, { foreignKey: 'actor_id' });
+
+Actors.hasOne(ActorTimestamps, { foreignKey: 'actor_id', onDelete: 'CASCADE' });
+ActorTimestamps.belongsTo(Actors, { foreignKey: 'actor_id' });
 
 module.exports = Actors;

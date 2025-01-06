@@ -7,7 +7,6 @@ function Actors() {
   const { t } = useTranslation();
   const { locale } = useContext(LocaleContext);
   const [actors, setActors] = useState([]);
-  // const [locale, setLocale] = useState('en');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -34,23 +33,6 @@ function Actors() {
 
   return (
     <div>
-      {/* Language Switcher */}
-      {/* <div className="mb-4 flex justify-center">
-        {['en', 'zh'].map((lang) => (
-          <button
-            key={lang}
-            onClick={() => setLocale(lang)}
-            className={`px-4 py-2 mx-2 border rounded-lg ${
-              locale === lang
-                ? 'bg-orange-500 text-white'
-                : 'bg-gray-200 text-black'
-            }`}
-          >
-            {lang === 'en' ? 'English' : '中文'}
-          </button>
-        ))}
-      </div> */}
-
       {/* Error Message */}
       {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 

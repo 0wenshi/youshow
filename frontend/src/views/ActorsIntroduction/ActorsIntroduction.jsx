@@ -14,9 +14,6 @@ function ActorsIntroduction() {
           <Actors />
         </div>
       </div>
-      {/* <div className="fixed bottom-10 right-10">
-        <SearchBox />
-      </div> */}
     </div>
   );
 }
