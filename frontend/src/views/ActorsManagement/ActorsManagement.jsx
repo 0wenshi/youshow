@@ -8,8 +8,8 @@ const ActorsManagement = () => {
     title: '',
     subtitle: '',
     description: '',
+    locale_code: '', // Add locale field
     image: '',
-    locale: '', // Add locale field
   });
   const [editingActor, setEditingActor] = useState(null);
 
@@ -24,7 +24,7 @@ const ActorsManagement = () => {
           locale,
         },
       });
-      console.log('Fetched actors:', response.data);
+      // console.log('Fetched actors:', response.data);
       setActors(response.data);
     } catch (error) {
       console.error('Error fetching actors:', error);
@@ -41,28 +41,79 @@ const ActorsManagement = () => {
     return null; // Return null if ActorDetails is not valid
   };
 
-  const handleAddOrUpdate = async () => {
+  const handleAdd = async () => {
     try {
-      if (editingActor) {
-        await axios.put(
-          `http://localhost:3000/actors/${editingActor.actor_id}`,
-          formData
-        );
-      } else {
-        await axios.post('http://localhost:3000/actors', formData);
-      }
-      fetchActors();
-      setFormData({
-        title: '',
-        subtitle: '',
-        description: '',
-        image: '',
-        locale: '',
-      }); // Reset form fields
-      setEditingActor(null);
+      // Add new actor
+      await axios.post('http://localhost:3000/actors', formData);
+      fetchActors(); // Refresh actor list
+      resetForm(); // Reset form fields
     } catch (error) {
-      console.error('Error adding/updating actor:', error);
+      console.error('Error adding actor:', error);
     }
+  };
+
+  const handleUpdate = async () => {
+    if (!editingActor) {
+      console.error('No actor selected for updating.');
+      return; // Ensure an actor is being edited
+    }
+
+    try {
+      // Restructure formData into the expected format
+      const requestData = {
+        name: editingActor.name, // Use the existing actor's name
+        details: [
+          {
+            title: formData.title,
+            subtitle: formData.subtitle,
+            description: formData.description,
+            image: formData.image,
+            locale_code: formData.locale, // Match the expected field name
+          },
+        ],
+      };
+      // console.log('Sending update request with data:', requestData);
+
+      // Send the PUT request with the correctly formatted data
+      const response = await axios.put(
+        `http://localhost:3000/actors/${editingActor.actor_id}`,
+        requestData
+      );
+
+      // console.log('Update response:', response.data);
+
+      // Refresh the actor list and reset the form
+      fetchActors();
+      resetForm();
+    } catch (error) {
+      console.error('Error updating actor:', error.response?.data || error);
+    }
+  };
+
+  const handleEdit = (actor) => {
+    const details = getLocalizedDetails(actor);
+
+    if (details) {
+      setFormData({
+        title: details.title || '',
+        subtitle: details.subtitle || '',
+        description: details.description || '',
+        image: details.image || '',
+        locale: details.Locale?.locale_code || locale,
+      });
+      setEditingActor(actor); // Set the actor being edited
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      title: '',
+      subtitle: '',
+      description: '',
+      image: '',
+      locale: '',
+    });
+    setEditingActor(null); // Clear editing state
   };
 
   const handleDelete = async (id) => {
@@ -140,9 +191,9 @@ const ActorsManagement = () => {
           className={`w-full p-2 rounded-lg text-white ${
             editingActor
               ? 'bg-orange-500 hover:bg-orange-600'
-              : 'bg-orange-500 hover:bg-orange-600'
+              : 'bg-teal-500 hover:bg-teal-600'
           }`}
-          onClick={handleAddOrUpdate}
+          onClick={editingActor ? handleUpdate : handleAdd}
         >
           {editingActor ? 'Update Actor' : 'Add Actor'}
         </button>
@@ -183,7 +234,7 @@ const ActorsManagement = () => {
                   <div className="flex space-x-2">
                     <button
                       className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                      onClick={() => setEditingActor(actor)}
+                      onClick={() => handleEdit(actor)}
                     >
                       Edit
                     </button>
