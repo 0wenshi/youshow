@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
         },
       ],
     });
-
+    // console.log('Query Result:', actors);
     res.status(200).json(actors);
   } catch (error) {
     console.error('Error fetching actors:', error);
