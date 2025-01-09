@@ -8,7 +8,7 @@ const ActorsManagement = () => {
     title: '',
     subtitle: '',
     description: '',
-    locale_code: '', // Add locale field
+    locale: '', // Add locale field
     image: '',
   });
   const [editingActor, setEditingActor] = useState(null);
@@ -24,7 +24,7 @@ const ActorsManagement = () => {
           locale,
         },
       });
-      // console.log('Fetched actors:', response.data);
+      console.log('Fetched actors:', response.data);
       setActors(response.data);
     } catch (error) {
       console.error('Error fetching actors:', error);
@@ -43,8 +43,21 @@ const ActorsManagement = () => {
 
   const handleAdd = async () => {
     try {
-      // Add new actor
-      await axios.post('http://localhost:3000/actors', formData);
+      // Structure the data as expected by the backend
+      const payload = {
+        details: [
+          {
+            title: formData.title,
+            subtitle: formData.subtitle,
+            description: formData.description,
+            locale_code: formData.locale,
+            image: formData.image,
+          },
+        ],
+      };
+  
+      // Send the structured data
+      await axios.post('http://localhost:3000/actors', payload);
       fetchActors(); // Refresh actor list
       resetForm(); // Reset form fields
     } catch (error) {
@@ -72,7 +85,7 @@ const ActorsManagement = () => {
           },
         ],
       };
-      // console.log('Sending update request with data:', requestData);
+      console.log('Sending update request with data:', requestData);
 
       // Send the PUT request with the correctly formatted data
       const response = await axios.put(
@@ -80,7 +93,7 @@ const ActorsManagement = () => {
         requestData
       );
 
-      // console.log('Update response:', response.data);
+      console.log('Update response:', response.data);
 
       // Refresh the actor list and reset the form
       fetchActors();
