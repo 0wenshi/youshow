@@ -55,7 +55,7 @@ const ActorsManagement = () => {
           },
         ],
       };
-  
+
       // Send the structured data
       await axios.post('http://localhost:3000/actors', payload);
       fetchActors(); // Refresh actor list

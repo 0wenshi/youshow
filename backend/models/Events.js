@@ -4,7 +4,7 @@ const sequelize = require('../config/db');
 const Events = sequelize.define(
   'Event',
   {
-    id: {
+    event_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,

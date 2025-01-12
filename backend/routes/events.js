@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 
     // Format the returned data
     const formattedEvents = events.map((event) => ({
-      id: event.id,
+      id: event.event_id,
       title: event.title,
       description: event.description,
       date: event.event_date,
@@ -52,7 +52,7 @@ router.get('/:year/:month', async (req, res) => {
     });
 
     const formattedEvents = events.map((event) => ({
-      id: event.id,
+      id: event.event_id,
       title: event.title,
       description: event.description,
       date: event.event_date,
