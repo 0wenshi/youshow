@@ -1,21 +1,22 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
-const ActorDetails = sequelize.define(
-  'ActorDetails',
+const EventDetails = sequelize.define(
+  'EventDetails',
   {
-    actor_details_id: {
+    event_details_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    actor_id: {
+    event_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'actors',
-        key: 'actor_id',
+        model: 'events',
+        key: 'event_id',
       },
+      onDelete: 'CASCADE',
     },
     locale_id: {
       type: DataTypes.INTEGER,
@@ -24,29 +25,33 @@ const ActorDetails = sequelize.define(
         model: 'locales',
         key: 'locale_id',
       },
-      onDelete: 'CASCADE', // When a locale is deleted, delete the corresponding actor details
-    },
-    title: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-    },
-    subtitle: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
+      onDelete: 'CASCADE',
     },
     description: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    location: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    price: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
     image: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    link: {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
   },
   {
-    tableName: 'actor_details',
+    tableName: 'event_details',
     timestamps: false,
   }
 );
 
-module.exports = ActorDetails;
+module.exports = EventDetails;

@@ -1,29 +1,32 @@
 const express = require('express');
 const { Op } = require('sequelize');
-const Event = require('../models/Events');
+const { Events, EventDetails, EventTimestamps, Locales } = require('../models');
 
 const router = express.Router();
 
-// Get all events
+// Get all events with details and timestamps
 router.get('/', async (req, res) => {
+  const { locale } = req.query;
+
   try {
-    const events = await Event.findAll();
+    const events = await Events.findAll({
+      include: [
+        {
+          model: EventDetails,
+          include: [
+            {
+              model: Locales,
+              where: locale ? { locale_code: locale } : {}, // Filter by locale if provided
+            },
+          ],
+        },
+        {
+          model: EventTimestamps,
+        },
+      ],
+    });
 
-    // Format the returned data
-    const formattedEvents = events.map((event) => ({
-      id: event.event_id,
-      title: event.title,
-      description: event.description,
-      date: event.event_date,
-      start_time: event.start_time,
-      end_time: event.end_time,
-      location: event.location,
-      price: event.price,
-      image: event.image,
-      link: event.link,
-    }));
-
-    res.json(formattedEvents);
+    res.status(200).json(events);
   } catch (error) {
     console.error('Error fetching events:', error.message);
     res.status(500).json({
@@ -32,36 +35,56 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Gets the events for the specified month
+// Get events for the specified month with details
 router.get('/:year/:month', async (req, res) => {
   const { year, month } = req.params;
 
   try {
-    const monthPadded = month.padStart(2, '0'); // Make sure the month is in double digits
+    const monthPadded = month.padStart(2, '0'); // Ensure double-digit month
     const lastDay = new Date(year, month, 0).getDate(); // Get the last day of the month
 
-    const events = await Event.findAll({
-      where: {
-        event_date: {
-          [Op.between]: [
-            `${year}-${monthPadded}-01`,
-            `${year}-${monthPadded}-${lastDay}`,
+    const events = await Events.findAll({
+      include: [
+        {
+          model: EventDetails,
+          include: [
+            {
+              model: Locales,
+              attributes: ['locale_code'], // Include locale_code
+            },
           ],
         },
-      },
+        {
+          model: EventTimestamps,
+          where: {
+            event_date: {
+              [Op.between]: [
+                `${year}-${monthPadded}-01`,
+                `${year}-${monthPadded}-${lastDay}`,
+              ],
+            },
+          },
+          attributes: ['event_date', 'start_time', 'end_time'],
+        },
+      ],
     });
 
     const formattedEvents = events.map((event) => ({
       id: event.event_id,
       title: event.title,
-      description: event.description,
-      date: event.event_date,
-      start_time: event.start_time,
-      end_time: event.end_time,
-      location: event.location,
-      price: event.price,
-      image: event.image,
-      link: event.link,
+      details: event.EventDetails.map((detail) => ({
+        description: detail.description,
+        location: detail.location,
+        image: detail.image,
+        link: detail.link,
+        locale: detail.Locale?.locale_code || 'unknown',
+        price: detail.price,
+      })),
+      timestamps: {
+        event_date: event.EventTimestamps?.event_date,
+        start_time: event.EventTimestamps?.start_time,
+        end_time: event.EventTimestamps?.end_time,
+      },
     }));
 
     res.json(formattedEvents);

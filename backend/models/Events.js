@@ -13,54 +13,10 @@ const Events = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    event_date: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-    },
-    start_time: {
-      type: DataTypes.TIME,
-      allowNull: true,
-    },
-    end_time: {
-      type: DataTypes.TIME,
-      allowNull: true,
-    },
-    location: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    price: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    image: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    link: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
   },
   {
     tableName: 'events',
-    timestamps: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
+    timestamps: false, // Handled in event_timestamps table
   }
 );
 

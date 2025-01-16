@@ -11,6 +11,7 @@ function EventCards() {
     const fetchEvents = async () => {
       try {
         const response = await axios.get('http://localhost:3000/events');
+        // console.log('Fetched events data:', response.data);
         setCards(response.data);
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -20,11 +21,15 @@ function EventCards() {
   }, []);
 
   const handleNavigation = (link) => {
-    if (link.startsWith('http') || link.startsWith('www')) {
+    if (link && (link.startsWith('http') || link.startsWith('www'))) {
       const externalLink = link.startsWith('www') ? `https://${link}` : link;
+      console.log('Navigating to external link:', externalLink);
       window.location.href = externalLink;
-    } else {
+    } else if (link) {
+      console.log('Navigating to internal link:', link);
       navigate(link);
+    } else {
+      console.warn('No link provided for navigation.');
     }
   };
 
@@ -54,8 +59,11 @@ function EventCards() {
             {/* Image Section */}
             <div className="relative w-full md:w-1/2 h-64 md:h-auto flex-shrink-0">
               <img
-                src={cards[currentSlide]?.image || '/images/Avatar.jpg'}
-                alt={cards[currentSlide]?.title}
+                src={
+                  cards[currentSlide]?.EventDetails?.[0]?.image ||
+                  '/images/Avatar.jpg'
+                }
+                alt={cards[currentSlide]?.title || 'Event'}
                 className="w-full h-full object-cover rounded-t-xl md:rounded-l-xl"
               />
             </div>
@@ -63,21 +71,50 @@ function EventCards() {
             {/* Text Section */}
             <div className="p-6 flex flex-col justify-between md:w-1/2">
               <div className="text-center md:text-left">
+                {/* Event Title */}
                 <h2 className="text-2xl font-bold text-black">
-                  {cards[currentSlide]?.title}
+                  {cards[currentSlide]?.title || 'Untitled Event'}
                 </h2>
+
+                {/* Event Description */}
                 <p className="text-lg text-gray-600 my-4">
-                  {cards[currentSlide]?.description}
+                  {cards[currentSlide]?.EventDetails?.[0]?.description ||
+                    'Description not available'}
                 </p>
-                <p className="text-orange-500 text-2xl font-semibold">
-                  {cards[currentSlide]?.price}
+
+                {/* Event Date and Time */}
+                <p className="text-sm text-gray-500">
+                  {`Date: ${
+                    cards[currentSlide]?.EventTimestamp?.event_date || 'TBA'
+                  }`}
+                </p>
+                <p className="text-sm text-gray-500">
+                  {`Time: ${
+                    cards[currentSlide]?.EventTimestamp?.start_time || 'TBA'
+                  } - ${
+                    cards[currentSlide]?.EventTimestamp?.end_time || 'TBA'
+                  }`}
+                </p>
+
+                {/* Event Location */}
+                <p className="text-gray-700">
+                  {`Location: ${
+                    cards[currentSlide]?.EventDetails?.[0]?.location || 'TBA'
+                  }`}
+                </p>
+
+                {/* Event Price */}
+                <p className="text-orange-500 text-2xl font-semibold my-2">
+                  {cards[currentSlide]?.EventDetails?.[0]?.price || 'TBA'}
                 </p>
               </div>
 
               {/* Button Section */}
               <div className="mt-4">
                 <button
-                  onClick={() => handleNavigation(cards[currentSlide]?.link)}
+                  onClick={() =>
+                    handleNavigation(cards[currentSlide]?.EventDetails?.[0]?.link)
+                  }
                   className="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors"
                 >
                   Buy tickets

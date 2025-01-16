@@ -1,22 +1,34 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
-const ActorTimestamps = sequelize.define(
-  'ActorTimestamps',
+const EventTimestamps = sequelize.define(
+  'EventTimestamps',
   {
-    actor_timestamp_id: {
+    event_timestamp_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    actor_id: {
+    event_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'actors',
-        key: 'actor_id',
+        model: 'events',
+        key: 'event_id',
       },
       onDelete: 'CASCADE',
+    },
+    event_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    start_time: {
+      type: DataTypes.TIME,
+      allowNull: true,
+    },
+    end_time: {
+      type: DataTypes.TIME,
+      allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
@@ -30,9 +42,9 @@ const ActorTimestamps = sequelize.define(
     },
   },
   {
-    tableName: 'actor_timestamps',
-    timestamps: false,
+    tableName: 'event_timestamps',
+    timestamps: false, // Handled explicitly in columns
   }
 );
 
-module.exports = ActorTimestamps;
+module.exports = EventTimestamps;
