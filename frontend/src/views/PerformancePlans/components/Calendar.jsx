@@ -16,30 +16,33 @@ const monthNames = [
   'December',
 ];
 
-// const events = {
-//   '2025-2': [12, 13, 14, 19, 20, 26],
-// };
-
 function Calendar() {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
-  //const [events, setEvents] = useState([]);
   const [eventDates, setEventDates] = useState([]); // Stores a list of event dates
 
-  // Get event data
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/events/${currentYear}/${currentMonth + 1}` // Request event data based on the current year and month
+        console.log(
+          `Fetching events for year: ${currentYear}, month: ${currentMonth + 1}`
         );
-        // Fetch event date
+        const response = await axios.get(
+          `http://localhost:3000/events/${currentYear}/${currentMonth + 1}`
+        );
+
+        // Log the full event data for debugging
+        console.log('Fetched events:', response.data);
+
+        // Extract event dates from event_timestamps
         const dates = response.data.map((event) => {
-          const eventDate = new Date(event.date); // Convert to a Date object
-          return eventDate.getDate(); // Keep only the date part
+          const eventDate = new Date(event.EventTimestamp.event_date); // Access event_date from EventTimestamp
+          return eventDate.getDate(); // Extract the day of the month
         });
-        //setEvents(response.data);
+
+        console.log('Extracted event dates:', dates);
+
         setEventDates(dates);
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -47,7 +50,7 @@ function Calendar() {
     };
 
     fetchEvents();
-  }, [currentMonth, currentYear]); // Reload the event data whenever the month or year changes
+  }, [currentMonth, currentYear]);
 
   const handlePrevMonth = () => {
     if (currentMonth === 0) {
@@ -149,7 +152,7 @@ function Calendar() {
                   : 'text-gray-900'
               }`}
             >
-              {eventDates.includes(day) ? 'Event' : 'Break'}
+              {eventDates.includes(day) ? 'Event' : ''}
             </span>
           </div>
         ))}

@@ -35,7 +35,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get events for the specified month with details
+// Get events for the specified month and year
 router.get('/:year/:month', async (req, res) => {
   const { year, month } = req.params;
 
@@ -46,15 +46,6 @@ router.get('/:year/:month', async (req, res) => {
     const events = await Events.findAll({
       include: [
         {
-          model: EventDetails,
-          include: [
-            {
-              model: Locales,
-              attributes: ['locale_code'], // Include locale_code
-            },
-          ],
-        },
-        {
           model: EventTimestamps,
           where: {
             event_date: {
@@ -64,30 +55,12 @@ router.get('/:year/:month', async (req, res) => {
               ],
             },
           },
-          attributes: ['event_date', 'start_time', 'end_time'],
+          attributes: ['event_date', 'start_time', 'end_time'], // Include only required fields
         },
       ],
     });
 
-    const formattedEvents = events.map((event) => ({
-      id: event.event_id,
-      title: event.title,
-      details: event.EventDetails.map((detail) => ({
-        description: detail.description,
-        location: detail.location,
-        image: detail.image,
-        link: detail.link,
-        locale: detail.Locale?.locale_code || 'unknown',
-        price: detail.price,
-      })),
-      timestamps: {
-        event_date: event.EventTimestamps?.event_date,
-        start_time: event.EventTimestamps?.start_time,
-        end_time: event.EventTimestamps?.end_time,
-      },
-    }));
-
-    res.json(formattedEvents);
+    res.json(events);
   } catch (error) {
     console.error('Error fetching events:', error.message);
     res.status(500).json({

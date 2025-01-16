@@ -113,7 +113,9 @@ function EventCards() {
               <div className="mt-4">
                 <button
                   onClick={() =>
-                    handleNavigation(cards[currentSlide]?.EventDetails?.[0]?.link)
+                    handleNavigation(
+                      cards[currentSlide]?.EventDetails?.[0]?.link
+                    )
                   }
                   className="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors"
                 >
