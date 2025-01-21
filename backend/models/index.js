@@ -52,13 +52,13 @@ EventDetails.belongsTo(Locales, {
 });
 
 // Sync models with the database
-sequelize
-  .sync({ alter: true }) // Use alter to update schema if needed
+sequelize.sync()
   .then(() => {
     console.log('Database synced successfully.');
   })
   .catch((error) => {
-    console.error('Error syncing database:', error);
+    console.error('Failed to connect to PostgreSQL database:', error.message);
+    console.error('Error details:', error);
   });
 
 // Export all models
