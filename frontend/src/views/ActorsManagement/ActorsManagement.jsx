@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
 
 const ActorsManagement = () => {
+  const { user } = useUser();
+  console.log('User in Management:', user);
+
+  // Redirect to homepage if user is not an admin
+  if (!user || user.role !== 'admin') {
+    return <Navigate to="/homepage" replace />;
+  }
+
   const [actors, setActors] = useState([]);
   const [locale, setLocale] = useState('en'); // Add locale state
   const [formData, setFormData] = useState({

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
 
 function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
+  const { setUser } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,6 +31,12 @@ function Login() {
         password,
       });
 
+      const { user, token } = response.data;
+
+      setUser(user); // Set the user in the context
+      console.log('Login Response:', response.data);
+
+      // rememberMe logic
       if (rememberMe) {
         localStorage.setItem('rememberUsernameOrEmail', usernameOrEmail);
         localStorage.setItem('rememberPassword', password);
@@ -37,7 +45,9 @@ function Login() {
         localStorage.removeItem('rememberPassword');
       }
 
-      localStorage.setItem('token', response.data.token);
+      // Save the token in local storage
+      localStorage.setItem('token', token);
+      // Redirect to the homepage
       navigate('/homepage');
     } catch (error) {
       setError(error.response?.data?.message || 'Login failed');

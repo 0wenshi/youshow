@@ -52,7 +52,8 @@ EventDetails.belongsTo(Locales, {
 });
 
 // Sync models with the database
-sequelize.sync()
+sequelize
+  .sync()
   .then(() => {
     console.log('Database synced successfully.');
   })

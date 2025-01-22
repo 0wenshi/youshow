@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchBox from '../CommonComponents/SearchBox';
 import Actors from './components/Actors';
 import NavBar from '../CommonComponents/NavBar';
 

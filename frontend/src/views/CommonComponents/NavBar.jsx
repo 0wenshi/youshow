@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import React, { useContext } from 'react';
 import { LocaleContext } from '../../context/LocaleContext';
+import { useUser } from '../../context/UserContext'; // Import the UserContext
 
 const navigation = [
   { key: 'plans', href: '/plans' },
@@ -23,17 +24,20 @@ function NavBar() {
   const location = useLocation();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation(); // Translation hook
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const timeoutRef = useRef(null);
   const { locale, setLocale } = useContext(LocaleContext);
+  const { user, setUser } = useUser(); // Access user and setUser from context
+  const [isLoggedIn, setIsLoggedIn] = useState(!!user);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
-  }, []);
+    // Sync isLoggedIn state with user context
+    setIsLoggedIn(!!user);
+  }, [user]);
 
   const handleLogout = () => {
+    setUser(null); // Clear user in context
+    localStorage.removeItem('user');
     localStorage.removeItem('token');
     setIsLoggedIn(false);
     navigate('/login');
@@ -150,7 +154,6 @@ function NavBar() {
               {locale === 'en' ? '中文' : 'English'}
             </span>
           </button>
-
           {/* Share Button */}
           <button
             type="button"
