@@ -25,18 +25,37 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.post('http://localhost:3000/auth/login', {
-        identifier: usernameOrEmail,
-        password,
-      });
+      // Step 1: Login API
+      const loginResponse = await axios.post(
+        'http://localhost:3000/auth/login',
+        {
+          identifier: usernameOrEmail,
+          password,
+        },
+        {
+          withCredentials: true, // Send cookies with the request
+        }
+      );
 
-      const { user, token } = response.data;
+      console.log('Login response:', loginResponse.data);
 
-      setUser(user); // Set the user in the context
-      console.log('Login Response:', response.data);
+      // Step 2: Validate User API
+      const validationResponse = await axios.get(
+        'http://localhost:3000/auth/user',
+        {
+          withCredentials: true, // Include cookies in this request as well
+        }
+      );
 
-      // rememberMe logic
+      console.log('Validation response:', validationResponse.data);
+
+      // Step 3: Set the user in context
+      setUser(validationResponse.data.user);
+      console.log('User set in context:', validationResponse.data.user);
+
+      // Handle "Remember Me" logic
       if (rememberMe) {
         localStorage.setItem('rememberUsernameOrEmail', usernameOrEmail);
         localStorage.setItem('rememberPassword', password);
@@ -45,11 +64,14 @@ function Login() {
         localStorage.removeItem('rememberPassword');
       }
 
-      // Save the token in local storage
-      localStorage.setItem('token', token);
-      // Redirect to the homepage
-      navigate('/homepage');
+      // Navigate to homepage or a specific role-based page
+      if (validationResponse.data.user.role === 'admin') {
+        navigate('/actorsmanagement');
+      } else {
+        navigate('/homepage');
+      }
     } catch (error) {
+      console.error('Login error:', error.response?.data || error.message);
       setError(error.response?.data?.message || 'Login failed');
     }
   };
@@ -78,6 +100,7 @@ function Login() {
                 type="text"
                 value={usernameOrEmail}
                 onChange={(e) => setUsernameOrEmail(e.target.value)}
+                placeholder="Username or Email"
                 required
                 className="w-full border border-gray-300 rounded-md p-2"
               />
@@ -90,6 +113,7 @@ function Login() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
                 required
                 className="w-full border border-gray-300 rounded-md p-2"
               />

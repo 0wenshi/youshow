@@ -25,7 +25,12 @@ const sequelize = require('./config/db');
 })();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173', // Replace with your frontend's URL
+    credentials: true, // Allow credentials (cookies)
+  })
+);
 app.use(bodyParser.json());
 
 // Serve static files from dist folder

@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import React, { useContext } from 'react';
 import { LocaleContext } from '../../context/LocaleContext';
-import { useUser } from '../../context/UserContext'; // Import the UserContext
+import { useUser } from '../../context/UserContext';
+import axios from 'axios';
 
 const navigation = [
   { key: 'plans', href: '/plans' },
@@ -35,12 +35,18 @@ function NavBar() {
     setIsLoggedIn(!!user);
   }, [user]);
 
-  const handleLogout = () => {
-    setUser(null); // Clear user in context
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-    navigate('/login');
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        'http://localhost:3000/auth/logout',
+        {},
+        { withCredentials: true }
+      );
+      setUser(null); // Clear the user context
+      navigate('/login'); // Redirect to the login page
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   };
 
   const handleMouseEnter = () => {

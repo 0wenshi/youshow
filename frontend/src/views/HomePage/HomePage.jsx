@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchBox from '../CommonComponents/SearchBox';
 import NavBar from '../CommonComponents/NavBar';
 import RotatingSlides from './components/RotatingSlides';
 
@@ -17,9 +16,6 @@ function HomePage() {
           </div>
         </div>
       </div>
-      {/* <div className="fixed bottom-10 right-10">
-        <SearchBox />
-      </div> */}
     </div>
   );
 }
