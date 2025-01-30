@@ -186,10 +186,8 @@ function EventPopup({ event, onClose }) {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="relative bg-white p-6 rounded-lg shadow-lg max-w-sm">
         <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-        <p className="text-gray-700 mb-1">
-          📍 Location: {details.location || 'Unknown'}
-        </p>
-        <p className="text-gray-700 mb-1">💰 Price: {details.price || 'N/A'}</p>
+        <p className="text-gray-700 mb-1">📍 {details.location || 'Unknown'}</p>
+        <p className="text-gray-700 mb-1">💰 {details.price || 'N/A'}</p>
         <p className="text-gray-700 mb-1">
           🕒{' '}
           {timestamp.start_time
