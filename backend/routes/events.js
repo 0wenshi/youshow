@@ -69,4 +69,40 @@ router.get('/:year/:month', async (req, res) => {
   }
 });
 
+// Get events for the specified date
+router.get('/:date', async (req, res) => {
+  const { date } = req.params; // Format: YYYY-MM-DD
+
+  try {
+    const events = await Events.findAll({
+      include: [
+        {
+          model: EventDetails,
+          attributes: ['event_id', 'description', 'location', 'price', 'link'], // Include only required fields
+          required: true, // Ensure the event details are included
+        },
+        {
+          model: EventTimestamps,
+          attributes: ['event_id', 'event_date', 'start_time', 'end_time'],
+          where: { event_date: date }, // Filter by the specified date
+          required: true, // Ensure the event timestamp is included
+        },
+      ],
+    });
+
+    if (events.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'No events found for the specified date' });
+    }
+
+    res.status(200).json(events);
+  } catch (error) {
+    console.error('Error fetching events:', error.message);
+    res.status(500).json({
+      message: 'An unexpected error occurred. Please try again later.',
+    });
+  }
+});
+
 module.exports = router;

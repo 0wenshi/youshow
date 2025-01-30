@@ -21,6 +21,7 @@ function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [eventDates, setEventDates] = useState([]); // Stores a list of event dates
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -69,17 +70,36 @@ function Calendar() {
       setCurrentMonth((prevMonth) => prevMonth + 1);
     }
   };
+  const handleDateClick = async (day) => {
+    // Fetch event details for the selected date
+    if (!eventDates.includes(day)) return;
+
+    const formattedDate = `${currentYear}-${(currentMonth + 1)
+      .toString()
+      .padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/events/${formattedDate}`
+      );
+      if (response.data.length > 0) {
+        setSelectedEvent(response.data[0]); // Display the first event
+      }
+    } catch (error) {
+      console.error('Error fetching event details:', error);
+    }
+  };
+
+  const closePopup = () => {
+    setSelectedEvent(null);
+  }; // Close the event popup
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
-  const dates = [];
-  for (let i = 0; i < firstDayOfMonth; i++) {
-    dates.push(null);
-  }
-  for (let i = 1; i <= daysInMonth; i++) {
-    dates.push(i);
-  }
+  const dates = Array.from({ length: firstDayOfMonth }, () => null).concat(
+    Array.from({ length: daysInMonth }, (_, i) => i + 1)
+  );
 
   const isToday = (day) => {
     return (
@@ -111,7 +131,7 @@ function Calendar() {
         </button>
 
         {/* Center Title */}
-        <h2 className="text-5xl font-semibold text-orange-700 text-center mx-4 flex-1">
+        <h2 className="text-2xl font-semibold text-orange-700 text-center">
           {monthNames[currentMonth]} {currentYear}
         </h2>
 
@@ -126,13 +146,9 @@ function Calendar() {
 
       {/* Weekdays */}
       <div className="grid grid-cols-7 text-center font-bold text-xl text-black mb-4">
-        <div>Sun</div>
-        <div>Mon</div>
-        <div>Tue</div>
-        <div>Wed</div>
-        <div>Thu</div>
-        <div>Fri</div>
-        <div>Sat</div>
+        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+          <div key={day}>{day}</div>
+        ))}
       </div>
 
       {/* Dates */}
@@ -140,22 +156,70 @@ function Calendar() {
         {dates.map((day, index) => (
           <div
             key={index}
-            className={`flex flex-col items-center justify-center rounded-lg text-lg font-medium ${
-              isToday(day) ? 'bg-orange-500 text-white font-bold' : 'text-black'
-            } ${eventDates.includes(day) ? 'border-4 border-orange-400' : ''}`}
+            className={`cursor-pointer flex flex-col items-center justify-center rounded-lg text-lg font-medium ${
+              eventDates.includes(day)
+                ? 'bg-orange-400 text-white font-bold'
+                : 'text-black'
+            }`}
+            onClick={() => day && handleDateClick(day)}
           >
-            <span>{day || ''}</span>
-            <span
-              className={`text-base mt-1 ${
-                eventDates.includes(day)
-                  ? 'bg-orange-400 px-1 py-0.5 rounded-sm text-white'
-                  : 'text-gray-900'
-              }`}
-            >
-              {eventDates.includes(day) ? 'Event' : ''}
-            </span>
+            {day || ''}
           </div>
         ))}
+      </div>
+
+      {selectedEvent && (
+        <EventPopup event={selectedEvent} onClose={closePopup} />
+      )}
+    </div>
+  );
+}
+
+function EventPopup({ event, onClose }) {
+  const details =
+    event.EventDetails && event.EventDetails.length > 0
+      ? event.EventDetails[0]
+      : {};
+  const timestamp = event.EventTimestamp || {};
+
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="relative bg-white p-6 rounded-lg shadow-lg max-w-sm">
+        <h3 className="text-xl font-bold mb-2">{event.title}</h3>
+        <p className="text-gray-700 mb-1">
+          📍 Location: {details.location || 'Unknown'}
+        </p>
+        <p className="text-gray-700 mb-1">💰 Price: {details.price || 'N/A'}</p>
+        <p className="text-gray-700 mb-1">
+          🕒{' '}
+          {timestamp.start_time
+            ? `${timestamp.start_time} - ${timestamp.end_time}`
+            : '-'}
+        </p>
+        <p className="text-gray-600">
+          🚀 {details.description || 'No description available'}
+        </p>
+        {details.link && (
+          <a
+            href={
+              details.link.startsWith('http')
+                ? details.link
+                : `https://${details.link}`
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline"
+          >
+            Buy tickets
+          </a>
+        )}
+
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-2xl font-bold"
+        >
+          &times;
+        </button>
       </div>
     </div>
   );
