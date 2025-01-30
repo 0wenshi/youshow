@@ -20,7 +20,7 @@ const slides = [
   },
 ];
 
-function RotatingSlides() {
+const RotatingSlides = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto-slide
@@ -109,6 +109,6 @@ function RotatingSlides() {
       </div>
     </div>
   );
-}
+};
 
 export default RotatingSlides;

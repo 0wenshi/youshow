@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
-function RentalDetail() {
+const RentalDetail = () => {
   const { t } = useTranslation();
 
   const details = t('rentalDetail.details', { returnObjects: true });
@@ -72,6 +72,6 @@ function RentalDetail() {
       </div>
     </div>
   );
-}
+};
 
 export default RentalDetail;

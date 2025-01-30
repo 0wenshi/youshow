@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
-function RecruitmentDetail() {
+const RecruitmentDetail = () => {
   const { t } = useTranslation();
 
   return (
@@ -70,6 +70,6 @@ function RecruitmentDetail() {
       </div>
     </div>
   );
-}
+};
 
 export default RecruitmentDetail;

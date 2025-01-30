@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from '../CommonComponents/NavBar';
 import PerformanceNotice from './components/PerformanceNotice';
 
-function Guidelines() {
+const Guidelines = () => {
   return (
     <div className="bg-[url('/images/background_2.jpg')] bg-cover min-h-screen items-center p-5">
       <div className="pt-0 px-96">
@@ -15,6 +15,6 @@ function Guidelines() {
       </div>
     </div>
   );
-}
+};
 
 export default Guidelines;

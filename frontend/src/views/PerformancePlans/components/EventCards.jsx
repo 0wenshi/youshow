@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function EventCards() {
+const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+
+const EventCards = () => {
   const navigate = useNavigate();
   const [cards, setCards] = useState([]); // Save dynamic data from the server
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide
@@ -10,7 +12,7 @@ function EventCards() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/events');
+        const response = await axios.get(`${API_URL}/events`);
         // console.log('Fetched events data:', response.data);
         setCards(response.data);
       } catch (error) {
@@ -137,6 +139,6 @@ function EventCards() {
       </div>
     </div>
   );
-}
+};
 
 export default EventCards;

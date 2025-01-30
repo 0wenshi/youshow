@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SearchBox() {
+const SearchBox = () => {
   return (
     <div className="fixed bottom-10 right-10">
       <div className="relative">
@@ -28,6 +28,6 @@ function SearchBox() {
       </div>
     </div>
   );
-}
+};
 
 export default SearchBox;

@@ -3,7 +3,7 @@ import SearchBox from '../CommonComponents/SearchBox';
 import NavBar from '../CommonComponents/NavBar';
 import RecruitmentDetail from './components/RecruitmentDetail';
 
-function Recruitment() {
+const Recruitment = () => {
   return (
     <div className="bg-[url('/images/background_2.jpg')] bg-cover min-h-screen  items-center p-5">
       <div className="pt-0 px-96">
@@ -19,6 +19,6 @@ function Recruitment() {
       </div> */}
     </div>
   );
-}
+};
 
 export default Recruitment;

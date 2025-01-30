@@ -32,7 +32,7 @@ const slides = [
   },
 ];
 
-function WonderfulReview() {
+const WonderfulReview = () => {
   const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -115,6 +115,6 @@ function WonderfulReview() {
       </div>
     </div>
   );
-}
+};
 
 export default WonderfulReview;

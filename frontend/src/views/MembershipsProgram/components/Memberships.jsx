@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function Memberships() {
+const Memberships = () => {
   const { t } = useTranslation();
 
   return (
@@ -41,6 +41,6 @@ function Memberships() {
       </div>
     </div>
   );
-}
+};
 
 export default Memberships;

@@ -16,7 +16,9 @@ const monthNames = [
   'December',
 ];
 
-function Calendar() {
+const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+
+const Calendar = () => {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
@@ -30,7 +32,7 @@ function Calendar() {
           `Fetching events for year: ${currentYear}, month: ${currentMonth + 1}`
         );
         const response = await axios.get(
-          `http://localhost:3000/events/${currentYear}/${currentMonth + 1}`
+          `${API_URL}/events/${currentYear}/${currentMonth + 1}`
         );
 
         // Log the full event data for debugging
@@ -79,9 +81,7 @@ function Calendar() {
       .padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     try {
-      const response = await axios.get(
-        `http://localhost:3000/events/${formattedDate}`
-      );
+      const response = await axios.get(`${API_URL}/events/${formattedDate}`);
       if (response.data.length > 0) {
         setSelectedEvent(response.data[0]); // Display the first event
       }
@@ -184,7 +184,7 @@ function Calendar() {
       )}
     </div>
   );
-}
+};
 
 function EventPopup({ event, onClose }) {
   const details =

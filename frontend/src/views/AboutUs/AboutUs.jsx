@@ -4,7 +4,7 @@ import NavBar from '../CommonComponents/NavBar';
 import ContactUs from './components/ContactUs';
 import WonderfulReview from './components/WonderfulReview';
 
-function AboutUs() {
+const AboutUs = () => {
   const { t } = useTranslation();
 
   return (
@@ -51,6 +51,6 @@ function AboutUs() {
       </div>
     </div>
   );
-}
+};
 
 export default AboutUs;

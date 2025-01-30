@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CurrentUserLevel() {
+const CurrentUserLevel = () => {
   // 模拟用户等级信息
   const user = {
     currentLevel: '普通会员',
@@ -64,6 +64,6 @@ function CurrentUserLevel() {
       </div>
     </div>
   );
-}
+};
 
 export default CurrentUserLevel;

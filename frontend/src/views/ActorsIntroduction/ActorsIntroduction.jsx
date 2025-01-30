@@ -2,7 +2,7 @@ import React from 'react';
 import Actors from './components/Actors';
 import NavBar from '../CommonComponents/NavBar';
 
-function ActorsIntroduction() {
+const ActorsIntroduction = () => {
   return (
     <div className="bg-[url('/images/background_2.jpg')] bg-cover min-h-screen items-center p-5">
       <div className="pt-0 px-4 pb-8">
@@ -15,6 +15,6 @@ function ActorsIntroduction() {
       </div>
     </div>
   );
-}
+};
 
 export default ActorsIntroduction;

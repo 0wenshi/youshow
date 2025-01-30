@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function ContactUs() {
+const ContactUs = () => {
   const { t } = useTranslation();
 
   return (
@@ -28,6 +28,6 @@ function ContactUs() {
       </div>
     </div>
   );
-}
+};
 
 export default ContactUs;

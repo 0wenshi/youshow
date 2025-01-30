@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function Register() {
+const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+
+const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +21,7 @@ function Register() {
     }
 
     try {
-      await axios.post('http://localhost:3000/auth/register', {
+      await axios.post(`${API_URL}/auth/register`, {
         username,
         email,
         password,
@@ -121,6 +123,6 @@ function Register() {
       </div>
     </div>
   );
-}
+};
 
 export default Register;

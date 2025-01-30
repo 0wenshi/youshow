@@ -3,7 +3,7 @@ import NavBar from '../CommonComponents/NavBar';
 import Calendar from './components/Calendar';
 import EventCards from './components/EventCards';
 
-function PerformancePlans() {
+const PerformancePlans = () => {
   return (
     <div className="bg-[url('/images/startbackground.jpg')] min-h-screen">
       <div className="fixed top-0 left-0 right-0 z-50">
@@ -19,6 +19,6 @@ function PerformancePlans() {
       </div>
     </div>
   );
-}
+};
 
 export default PerformancePlans;

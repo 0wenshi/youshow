@@ -4,6 +4,8 @@ import { Navigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import NavBar from '../CommonComponents/NavBar';
 
+const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+
 const ActorsManagement = () => {
   const { user } = useUser(); // Get user and setter from context
 
@@ -32,7 +34,7 @@ const ActorsManagement = () => {
 
   const fetchActors = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/actors', {
+      const response = await axios.get(`${API_URL}/actors`, {
         params: {
           locale,
         },
@@ -70,7 +72,7 @@ const ActorsManagement = () => {
       };
 
       // Send the structured data
-      await axios.post('http://localhost:3000/actors', payload);
+      await axios.post(`${API_URL}/actors`, payload);
       fetchActors(); // Refresh actor list
       resetForm(); // Reset form fields
     } catch (error) {
@@ -102,7 +104,7 @@ const ActorsManagement = () => {
 
       // Send the PUT request with the correctly formatted data
       const response = await axios.put(
-        `http://localhost:3000/actors/${editingActor.actor_id}`,
+        `${API_URL}/actors/${editingActor.actor_id}`,
         requestData
       );
 
@@ -144,7 +146,7 @@ const ActorsManagement = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/actors/${id}`);
+      await axios.delete(`${API_URL}/actors/${id}`);
       fetchActors();
     } catch (error) {
       console.error('Error deleting actor:', error);

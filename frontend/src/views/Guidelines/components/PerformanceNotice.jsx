@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
-function PerformanceNotice() {
+const PerformanceNotice = () => {
   const { t } = useTranslation();
 
   const rules = t('performanceNotice.rules', { returnObjects: true });
@@ -63,6 +63,6 @@ function PerformanceNotice() {
       </div>
     </div>
   );
-}
+};
 
 export default PerformanceNotice;

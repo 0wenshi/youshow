@@ -3,7 +3,9 @@ import { LocaleContext } from '../../../context/LocaleContext';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
-function Actors() {
+const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+
+const Actors = () => {
   const { t } = useTranslation();
   const { locale } = useContext(LocaleContext);
   const [actors, setActors] = useState([]);
@@ -17,7 +19,7 @@ function Actors() {
   const fetchActors = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:3000/actors', {
+      const response = await axios.get(`${API_URL}/actors`, {
         params: { locale },
       });
       console.log('Fetched actors:', response.data);
@@ -112,6 +114,6 @@ function Actors() {
       )}
     </div>
   );
-}
+};
 
 export default Actors;

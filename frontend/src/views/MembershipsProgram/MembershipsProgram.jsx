@@ -1,10 +1,9 @@
 import React from 'react';
 import Memberships from './components/Memberships';
-import SearchBox from '../CommonComponents/SearchBox';
 import CurrentUserLevel from './components/CurrentUserLevel';
 import NavBar from '../CommonComponents/NavBar';
 
-function MembershipsProgram() {
+const MembershipsProgram = () => {
   return (
     <div className="bg-[url('/images/background_2.jpg')] bg-cover min-h-screen items-center p-5">
       <div className="-mt-5 top-0 left-0 right-0 z-50">
@@ -18,11 +17,8 @@ function MembershipsProgram() {
           <Memberships />
         </div>
       </div>
-      {/* <div className="fixed bottom-10 right-10">
-        <SearchBox />
-      </div> */}
     </div>
   );
-}
+};
 
 export default MembershipsProgram;

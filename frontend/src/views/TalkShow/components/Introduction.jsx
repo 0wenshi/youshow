@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function Introduction() {
+const Introduction = () => {
   const { t } = useTranslation();
 
   return (
@@ -79,6 +79,6 @@ function Introduction() {
       <footer className="h-14"></footer>
     </div>
   );
-}
+};
 
 export default Introduction;

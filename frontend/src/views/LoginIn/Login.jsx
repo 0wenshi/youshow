@@ -3,7 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 
-function Login() {
+const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+
+const Login = () => {
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -29,7 +31,7 @@ function Login() {
     try {
       // Step 1: Login API
       const loginResponse = await axios.post(
-        'http://localhost:3000/auth/login',
+        `${API_URL}/auth/login`,
         {
           identifier: usernameOrEmail,
           password,
@@ -42,12 +44,9 @@ function Login() {
       console.log('Login response:', loginResponse.data);
 
       // Step 2: Validate User API
-      const validationResponse = await axios.get(
-        'http://localhost:3000/auth/user',
-        {
-          withCredentials: true, // Include cookies in this request as well
-        }
-      );
+      const validationResponse = await axios.get(`${API_URL}/auth/user`, {
+        withCredentials: true, // Include cookies in this request as well
+      });
 
       console.log('Validation response:', validationResponse.data);
 
@@ -150,6 +149,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

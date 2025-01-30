@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from '../CommonComponents/NavBar';
 import RotatingSlides from './components/RotatingSlides';
 
-function HomePage() {
+const HomePage = () => {
   return (
     <div className="bg-[url('/images/background_2.jpg')] bg-cover bg-center bg-no-repeat h-screen w-screen flex items-center justify-center">
       <div className="fixed top-0 left-0 right-0 z-50">
@@ -18,6 +18,6 @@ function HomePage() {
       </div>
     </div>
   );
-}
+};
 
 export default HomePage;

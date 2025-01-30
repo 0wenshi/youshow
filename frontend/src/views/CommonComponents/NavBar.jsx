@@ -20,7 +20,9 @@ const dropdownItems = [
   { key: 'actorsmanagement', href: '/actorsmanagement' },
 ];
 
-function NavBar() {
+const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+
+const NavBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation(); // Translation hook
@@ -37,11 +39,7 @@ function NavBar() {
 
   const handleLogout = async () => {
     try {
-      await axios.post(
-        'http://localhost:3000/auth/logout',
-        {},
-        { withCredentials: true }
-      );
+      await axios.post(`${API_URL}/auth/logout`, {}, { withCredentials: true });
       setUser(null); // Clear the user context
       navigate('/login'); // Redirect to the login page
     } catch (error) {
@@ -197,6 +195,6 @@ function NavBar() {
       ></div>
     </header>
   );
-}
+};
 
 export default NavBar;
