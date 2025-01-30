@@ -131,7 +131,7 @@ function Calendar() {
         </button>
 
         {/* Center Title */}
-        <h2 className="text-2xl font-semibold text-orange-700 text-center">
+        <h2 className="text-5xl font-semibold text-orange-700 text-center mx-4 flex-1">
           {monthNames[currentMonth]} {currentYear}
         </h2>
 
@@ -157,13 +157,24 @@ function Calendar() {
           <div
             key={index}
             className={`cursor-pointer flex flex-col items-center justify-center rounded-lg text-lg font-medium ${
+              isToday(day) ? 'bg-orange-500 text-white font-bold' : 'text-black'
+            } ${
               eventDates.includes(day)
                 ? 'bg-orange-400 text-white font-bold'
                 : 'text-black'
             }`}
             onClick={() => day && handleDateClick(day)}
           >
-            {day || ''}
+            <span>{day || ''}</span>
+            <span
+              className={`text-base mt-1 ${
+                eventDates.includes(day)
+                  ? 'bg-orange-400 px-1 py-0.5 rounded-xl text-white'
+                  : 'text-gray-900'
+              }`}
+            >
+              {eventDates.includes(day) ? 'Event' : ''}
+            </span>
           </div>
         ))}
       </div>
