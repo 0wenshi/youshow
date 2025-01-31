@@ -28,6 +28,7 @@ const resources = {
         note1: '*For details, please consult in-store staff.',
         note2:
           '**The final interpretation of the membership program is reserved by You Show Studio Limited.',
+        joinNow: 'Join Now',
       },
       wonderful_review: {
         title: 'Wonderful Review',
@@ -221,6 +222,7 @@ const resources = {
       memberships: {
         note1: '*详情请咨询店内工作人员',
         note2: '**会员计划最终解释权由 You Show Studio Limited 所有',
+        joinNow: '立即加入',
       },
       wonderful_review: {
         title: '精彩回顾',

@@ -1,44 +1,40 @@
 import React from 'react';
 
 const CurrentUserLevel = () => {
-  // 模拟用户等级信息
+  // mimic user data
   const user = {
-    currentLevel: '普通会员',
+    currentLevel: 'regular member',
     expiryDate: '2024.12.31',
-    progress: 35, // 当前进度（百分比）
+    progress: 35, // percentage
   };
 
-  const levels = ['普通', '银卡', '金卡', 'VIP'];
+  const levels = ['regular', 'silver card', 'gold card', 'VIP'];
 
   return (
     <div className="relative bg-orange-100 rounded-xl shadow-lg p-6 max-w-4xl mx-auto">
-      {/* 左上角 "当前等级" */}
-      <div className="absolute top-4 left-6 text-sm text-gray-800 font-bold">
-        当前等级
-      </div>
+      <div className="text-sm text-gray-800 font-bold mb-2">Current Level</div>
 
-      {/* 等级内容 */}
-      <div className="flex justify-between items-center">
-        {/* 等级信息 */}
+      {/* level */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
         <div>
           <h2 className="text-2xl font-bold text-orange-600 flex items-center">
             <span className="mr-2">🌟</span> {user.currentLevel}
           </h2>
           <p className="text-sm text-gray-600 mt-1">
-            {user.expiryDate}到期 ·{' '}
+            {user.expiryDate} expire ·{' '}
             <a href="#" className="text-orange-500 underline">
-              查看权益
+              View Benefits
             </a>
           </p>
         </div>
 
-        {/* 去升级按钮 */}
-        <button className="bg-orange-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-orange-600">
-          去升级 &gt;
+        {/* upgrate button */}
+        <button className="bg-orange-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-orange-600 mt-3 sm:mt-0">
+          To Upgrade &gt;
         </button>
       </div>
 
-      {/* 进度条 */}
+      {/* progress bar */}
       <div className="relative mt-6">
         <div className="h-3 bg-orange-200 rounded-full">
           <div
@@ -46,8 +42,8 @@ const CurrentUserLevel = () => {
             style={{ width: `${user.progress}%` }}
           ></div>
         </div>
-        {/* 小球标记 */}
-        <div className="flex justify-between mt-2">
+        {/* ball marker */}
+        <div className="flex justify-between mt-4">
           {levels.map((level, index) => (
             <div key={index} className="flex flex-col items-center">
               <div

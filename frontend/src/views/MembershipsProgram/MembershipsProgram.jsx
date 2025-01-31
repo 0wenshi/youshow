@@ -10,9 +10,9 @@ const MembershipsProgram = () => {
         <NavBar />
       </div>
       <div className="flex flex-col items-center w-full max-w-4xl mx-auto">
-        {/* <div className="w-full py-4 mt-10 mb-4 rounded-lg">
+        <div className="w-full py-4 mt-10 mb-4 rounded-lg">
           <CurrentUserLevel />
-        </div> */}
+        </div>
         <div className="-mt-8">
           <Memberships />
         </div>
