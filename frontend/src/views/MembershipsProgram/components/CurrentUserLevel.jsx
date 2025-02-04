@@ -1,17 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const benefitsData = {
+  Regular: ['Basic Support', 'Standard Discounts'],
+  Silver: ['Priority Support', 'Exclusive Discounts', 'Monthly Freebie'],
+  Gold: ['VIP Support', 'Special Events', 'Lounge Access', 'Bigger Discounts'],
+  VIP: [
+    'All Gold Perks',
+    'Private Concierge',
+    'Personalized Offers',
+    'Exclusive Lounge',
+  ],
+};
+
 const CurrentUserLevel = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Show a loading spinner
   const [error, setError] = useState(null); // Show an error message
+  const [showModal, setShowModal] = useState(false);
 
-  const levels = ['regular', 'silver card', 'gold card', 'VIP'];
+  const levels = ['Regular', 'Silver', 'Gold', 'VIP'];
 
   useEffect(() => {
     const fetchUserLevel = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/users/level');
+        const response = await axios.get('http://localhost:3000/users/level', {
+          withCredentials: true,
+        });
+
         setUser(response.data);
       } catch (error) {
         console.error('Error fetching user level:', error);
@@ -44,10 +60,13 @@ const CurrentUserLevel = () => {
             <span className="mr-2">🌟</span> {user.currentLevel}
           </h2>
           <p className="text-sm text-gray-600 mt-1">
-            {user.expiryDate} expire ·{' '}
-            <a href="#" className="text-orange-500 underline">
+            expire in {user.expiryDate}{' '}
+            <button
+              onClick={() => setShowModal(true)}
+              className="text-orange-500 underline"
+            >
               View Benefits
-            </a>
+            </button>
           </p>
         </div>
 
@@ -82,6 +101,41 @@ const CurrentUserLevel = () => {
           ))}
         </div>
       </div>
+
+      {/* Benefits Modal */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+            <button
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl font-bold"
+              onClick={() => setShowModal(false)}
+            >
+              &times;
+            </button>
+            <h3 className="text-xl font-bold mb-2 text-orange-600">
+              {user.currentLevel} Benefits
+            </h3>
+            <ul className="list-disc pl-5 text-gray-800">
+              {levels.map((level) => (
+                <li
+                  key={level}
+                  className={`${
+                    levels.indexOf(level) <= levels.indexOf(user.currentLevel)
+                      ? 'text-black'
+                      : 'text-gray-400 line-through'
+                  }`}
+                >
+                  {level === user.currentLevel ? (
+                    <strong>{benefitsData[level].join(', ')}</strong>
+                  ) : (
+                    benefitsData[level].join(', ')
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

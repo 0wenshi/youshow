@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { Sequelize } = require('sequelize');
 const User = require('../models/User');
 const cookieParser = require('cookie-parser');
-const { verifyAdmin } = require('../middlewares/verifyAdmin');
+const { verifyAdmin } = require('../middlewares/authenticate');
 require('dotenv').config(); // Load environment variables
 
 const router = express.Router();

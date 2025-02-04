@@ -3,14 +3,14 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-
+const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/events');
 const actorRoutes = require('./routes/actors');
 const usersRoutes = require('./routes/users');
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const sequelize = require('./config/db');
 
 // Database Connection
@@ -21,20 +21,23 @@ const sequelize = require('./config/db');
     await sequelize.sync({ alter: true }); // Synchronize models
     console.log('Models synchronized with PostgreSQL.');
   } catch (err) {
-    console.error('Failed to connect to PostgreSQL database:', err.message);
+    console.error('Failed to connect to PostgreSQL:', err.message);
+    process.exit(1); // Exit with error
   }
 })();
 
 // Middleware
 app.use(
   cors({
-    origin: 'http://localhost:5173', // Replace with your frontend's URL
-    credentials: true, // Allow credentials (cookies)
+    origin: 'http://localhost:5173', // Allow the React app to connect
+    credentials: true, // Allow cookies to be sent from the React app
   })
 );
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // Parse JSON from the request body
+app.use(bodyParser.urlencoded({ extended: true })); // Allow URLEncoded data
+app.use(cookieParser()); // Parse cookies
 
-// Serve static files from dist folder
+// Serve static files from the `dist` folder (React frontend)
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // API Routes
@@ -50,5 +53,5 @@ app.get('*', (req, res) => {
 
 // Start server
 app.listen(port, () => {
-  console.log(`Server is running on ${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
