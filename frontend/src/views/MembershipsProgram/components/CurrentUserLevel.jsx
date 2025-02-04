@@ -13,6 +13,8 @@ const benefitsData = {
   ],
 };
 
+const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+
 const CurrentUserLevel = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Show a loading spinner
@@ -24,7 +26,7 @@ const CurrentUserLevel = () => {
   useEffect(() => {
     const fetchUserLevel = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/users/level', {
+        const response = await axios.get(`${API_URL}/users/level`, {
           withCredentials: true,
         });
 

@@ -110,15 +110,20 @@ const NavBar = () => {
             </button>
             {showDropdown && (
               <div className="absolute left-0 mt-2 w-24 bg-orange-500 rounded-lg shadow-lg z-20">
-                {dropdownItems.map((item) => (
-                  <a
-                    key={item.key}
-                    href={item.href}
-                    className="block px-1 py-2 text-black text-sm font-semibold hover:text-orange-200 rounded"
-                  >
-                    {t(`dropdown.${item.key}`)}
-                  </a>
-                ))}
+                {dropdownItems
+                  .filter(
+                    (item) =>
+                      item.key !== 'actorsmanagement' || user?.role === 'admin' // Only show actorsmanagement to admin
+                  )
+                  .map((item) => (
+                    <a
+                      key={item.key}
+                      href={item.href}
+                      className="block px-1 py-2 text-black text-sm font-semibold hover:text-orange-200 rounded"
+                    >
+                      {t(`dropdown.${item.key}`)}
+                    </a>
+                  ))}
               </div>
             )}
           </div>
@@ -190,7 +195,7 @@ const NavBar = () => {
         async
       ></script>
       <div
-        class="elfsight-app-e4c2828d-37b3-45fa-b37a-114698f8cc79"
+        className="elfsight-app-e4c2828d-37b3-45fa-b37a-114698f8cc79"
         data-elfsight-app-lazy
       ></div>
     </header>
