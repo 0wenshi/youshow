@@ -24,6 +24,24 @@ const User = sequelize.define(
       allowNull: false,
       defaultValue: 'user', // Default role is user
     },
+    membership_level: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'regular', // Default membership level is regular
+    },
+    membership_expiry: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    progress: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 100,
+      },
+    },
   },
   {
     tableName: 'users',

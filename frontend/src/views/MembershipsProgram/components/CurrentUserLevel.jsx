@@ -1,20 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const CurrentUserLevel = () => {
-  // mimic user data
-  const user = {
-    currentLevel: 'regular member',
-    expiryDate: '2024.12.31',
-    progress: 35, // percentage
-  };
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // Show a loading spinner
+  const [error, setError] = useState(null); // Show an error message
 
   const levels = ['regular', 'silver card', 'gold card', 'VIP'];
 
+  useEffect(() => {
+    const fetchUserLevel = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/users/level');
+        setUser(response.data);
+      } catch (error) {
+        console.error('Error fetching user level:', error);
+        setError('An error occurred. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserLevel();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center text-grey-500">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500">{error}</div>;
+  }
+
   return (
     <div className="relative bg-orange-100 rounded-xl shadow-lg p-6 max-w-4xl mx-auto">
+      {/* current level title */}
       <div className="text-sm text-gray-800 font-bold mb-2">Current Level</div>
 
-      {/* level */}
+      {/* member info + to upgrade button */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
         <div>
           <h2 className="text-2xl font-bold text-orange-600 flex items-center">
@@ -42,7 +65,8 @@ const CurrentUserLevel = () => {
             style={{ width: `${user.progress}%` }}
           ></div>
         </div>
-        {/* ball marker */}
+
+        {/* membership level marker + spacing adjustment*/}
         <div className="flex justify-between mt-4">
           {levels.map((level, index) => (
             <div key={index} className="flex flex-col items-center">
