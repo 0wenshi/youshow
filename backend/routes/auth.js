@@ -47,7 +47,7 @@ router.post('/register', async (req, res) => {
     res.status(201).json({
       message: 'User registered successfully',
       user: {
-        id: newUser.id,
+        id: newUser.user_id,
         username: newUser.username,
         email: newUser.email,
       },
@@ -92,7 +92,7 @@ router.post('/login', async (req, res) => {
     // Generate JWT
     const token = jwt.sign(
       {
-        id: user.id,
+        id: user.user_id,
         username: user.username,
         email: user.email,
         role: user.role,
@@ -115,7 +115,7 @@ router.post('/login', async (req, res) => {
     res.status(200).json({
       message: 'Login successful',
       user: {
-        id: user.id,
+        id: user.user_id,
         username: user.username,
         email: user.email,
         role: user.role,

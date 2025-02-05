@@ -1,16 +1,17 @@
 // Import all models
 const ActorDetails = require('./ActorDetails');
-const Locales = require('./Locales');
-const ActorTimestamps = require('./ActorTimestamps');
-const sequelize = require('../config/db');
 const Actors = require('./Actors');
 const ActorsEvents = require('./ActorsEvents');
-const Events = require('./Events');
+const ActorTimestamps = require('./ActorTimestamps');
 const EventDetails = require('./EventDetails');
+const Events = require('./Events');
 const EventTimestamps = require('./EventTimestamps');
+const Locales = require('./Locales');
+const User = require('./User');
+const sequelize = require('../config/db');
+const Ticket = require('./Ticket');
 
-// Define relationships
-
+// Define relationships between models
 // Many-to-Many: Actors <-> Events through ActorsEvents
 Actors.belongsToMany(Events, {
   through: ActorsEvents, // Join table
@@ -26,20 +27,24 @@ Events.belongsToMany(Actors, {
 
 // One-to-Many: Events -> EventDetails
 Events.hasMany(EventDetails, {
-  foreignKey: 'event_id', // Foreign key in EventDetails pointing to Events
+  foreignKey: 'event_id',
+  as: 'details', // Foreign key in EventDetails pointing to Events
   onDelete: 'CASCADE', // Delete EventDetails when the parent Event is deleted
 });
 EventDetails.belongsTo(Events, {
   foreignKey: 'event_id', // Foreign key in EventDetails pointing to Events
+  as: 'event',
 });
 
 // One-to-One: Events -> EventTimestamps
 Events.hasOne(EventTimestamps, {
-  foreignKey: 'event_id', // Foreign key in EventTimestamps pointing to Events
-  onDelete: 'CASCADE', // Delete EventTimestamps when the parent Event is deleted
+  foreignKey: 'event_id',
+  as: 'timestamps',
+  onDelete: 'CASCADE',
 });
 EventTimestamps.belongsTo(Events, {
-  foreignKey: 'event_id', // Foreign key in EventTimestamps pointing to Events
+  foreignKey: 'event_id',
+  as: 'event',
 });
 
 // One-to-Many: Locales -> EventDetails
@@ -49,6 +54,24 @@ Locales.hasMany(EventDetails, {
 });
 EventDetails.belongsTo(Locales, {
   foreignKey: 'locale_id', // Foreign key in EventDetails pointing to Locales
+});
+
+User.hasMany(Ticket, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE',
+});
+
+Events.hasMany(Ticket, {
+  foreignKey: 'event_id',
+  onDelete: 'CASCADE',
+});
+
+Ticket.belongsTo(User, {
+  foreignKey: 'user_id',
+});
+
+Ticket.belongsTo(Events, {
+  foreignKey: 'event_id',
 });
 
 // Sync models with the database
@@ -65,12 +88,14 @@ sequelize
 // Export all models
 module.exports = {
   sequelize,
-  Actors,
-  Events,
-  EventDetails,
-  EventTimestamps,
-  ActorsEvents,
   ActorDetails,
-  Locales,
+  Actors,
+  ActorsEvents,
   ActorTimestamps,
+  EventDetails,
+  Events,
+  EventTimestamps,
+  Locales,
+  Ticket,
+  User,
 };

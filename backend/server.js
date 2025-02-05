@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/events');
 const actorRoutes = require('./routes/actors');
 const usersRoutes = require('./routes/users');
+const purchaseTicketsRoutes = require('./routes/purchaseTickets');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -45,6 +46,7 @@ app.use('/auth', authRoutes);
 app.use('/events', eventRoutes);
 app.use('/actors', actorRoutes);
 app.use('/users', usersRoutes);
+app.use('/tickets', purchaseTicketsRoutes);
 
 // Catch-all route to serve React app
 app.get('*', (req, res) => {
