@@ -42,11 +42,11 @@ app.use(cookieParser()); // Parse cookies
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // API Routes
+app.use('/actors', actorRoutes);
 app.use('/auth', authRoutes);
 app.use('/events', eventRoutes);
-app.use('/actors', actorRoutes);
-app.use('/users', usersRoutes);
 app.use('/tickets', purchaseTicketsRoutes);
+app.use('/users', usersRoutes);
 
 // Catch-all route to serve React app
 app.get('*', (req, res) => {

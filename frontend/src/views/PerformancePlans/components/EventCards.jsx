@@ -22,17 +22,9 @@ const EventCards = () => {
     fetchEvents();
   }, []);
 
-  const handleNavigation = (link) => {
-    if (link && (link.startsWith('http') || link.startsWith('www'))) {
-      const externalLink = link.startsWith('www') ? `https://${link}` : link;
-      console.log('Navigating to external link:', externalLink);
-      window.location.href = externalLink;
-    } else if (link) {
-      console.log('Navigating to internal link:', link);
-      navigate(link);
-    } else {
-      console.warn('No link provided for navigation.');
-    }
+  const handleBooking = (eventId) => {
+    console.log(`Navigating to ticket booking for event ID: ${eventId}`);
+    navigate(`/tickets/${eventId}`);
   };
 
   const nextSlide = () => {
@@ -62,7 +54,7 @@ const EventCards = () => {
             <div className="relative w-full md:w-1/2 h-64 md:h-auto flex-shrink-0">
               <img
                 src={
-                  cards[currentSlide]?.EventDetails?.[0]?.image ||
+                  cards[currentSlide]?.details?.[0]?.image ||
                   '/images/Avatar.jpg'
                 }
                 alt={cards[currentSlide]?.title || 'Event'}
@@ -80,45 +72,39 @@ const EventCards = () => {
 
                 {/* Event Description */}
                 <p className="text-lg text-gray-600 my-4">
-                  {cards[currentSlide]?.EventDetails?.[0]?.description ||
+                  {cards[currentSlide]?.details?.[0]?.description ||
                     'Description not available'}
                 </p>
 
                 {/* Event Date and Time */}
                 <p className="text-sm text-gray-500">
                   {`Date: ${
-                    cards[currentSlide]?.EventTimestamp?.event_date || 'TBA'
+                    cards[currentSlide]?.timestamps?.event_date || 'TBA'
                   }`}
                 </p>
                 <p className="text-sm text-gray-500">
                   {`Time: ${
-                    cards[currentSlide]?.EventTimestamp?.start_time || 'TBA'
-                  } - ${
-                    cards[currentSlide]?.EventTimestamp?.end_time || 'TBA'
-                  }`}
+                    cards[currentSlide]?.timestamps?.start_time || 'TBA'
+                  } - ${cards[currentSlide]?.timestamps?.end_time || 'TBA'}`}
                 </p>
 
                 {/* Event Location */}
                 <p className="text-gray-700">
                   {`Location: ${
-                    cards[currentSlide]?.EventDetails?.[0]?.location || 'TBA'
+                    cards[currentSlide]?.details?.[0]?.location || 'TBA'
                   }`}
                 </p>
 
                 {/* Event Price */}
                 <p className="text-orange-500 text-2xl font-semibold my-2">
-                  {cards[currentSlide]?.EventDetails?.[0]?.price || 'TBA'}
+                  {cards[currentSlide]?.details?.[0]?.price || 'TBA'}
                 </p>
               </div>
 
               {/* Button Section */}
               <div className="mt-4">
                 <button
-                  onClick={() =>
-                    handleNavigation(
-                      cards[currentSlide]?.EventDetails?.[0]?.link
-                    )
-                  }
+                  onClick={() => handleBooking(cards[currentSlide]?.event_id)}
                   className="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors"
                 >
                   Buy tickets

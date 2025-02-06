@@ -40,7 +40,7 @@ const Calendar = () => {
 
         // Extract event dates from event_timestamps
         const dates = response.data.map((event) => {
-          const eventDate = new Date(event.EventTimestamp.event_date); // Access event_date from EventTimestamp
+          const eventDate = new Date(event.timestamps.event_date); // Access event_date from EventTimestamp
           return eventDate.getDate(); // Extract the day of the month
         });
 
@@ -82,8 +82,11 @@ const Calendar = () => {
 
     try {
       const response = await axios.get(`${API_URL}/events/${formattedDate}`);
+
       if (response.data.length > 0) {
         setSelectedEvent(response.data[0]); // Display the first event
+      } else {
+        setSelectedEvent(null); // Clear the selected event
       }
     } catch (error) {
       console.error('Error fetching event details:', error);
@@ -187,23 +190,24 @@ const Calendar = () => {
 };
 
 function EventPopup({ event, onClose }) {
-  const details =
-    event.EventDetails && event.EventDetails.length > 0
-      ? event.EventDetails[0]
-      : {};
-  const timestamp = event.EventTimestamp || {};
+  const details = event.details?.[0] || {};
+  const timestamp = event.timestamps || {};
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="relative bg-white p-6 rounded-lg shadow-lg max-w-sm">
-        <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-        <p className="text-gray-700 mb-1">📍 {details.location || 'Unknown'}</p>
+        <h3 className="text-xl font-bold mb-2">
+          {event.title || 'Unknown Event'}
+        </h3>
+        <p className="text-gray-700 mb-1">
+          📍 {details.location || 'Unknown Venue'}
+        </p>
         <p className="text-gray-700 mb-1">💰 {details.price || 'N/A'}</p>
         <p className="text-gray-700 mb-1">
-          🕒{' '}
+          🕒 {timestamp.event_date || 'Date not available'}{' '}
           {timestamp.start_time
-            ? `${timestamp.start_time} - ${timestamp.end_time}`
-            : '-'}
+            ? `| ${timestamp.start_time} - ${timestamp.end_time}`
+            : ''}
         </p>
         <p className="text-gray-600">
           🚀 {details.description || 'No description available'}
@@ -222,7 +226,6 @@ function EventPopup({ event, onClose }) {
             Buy tickets
           </a>
         )}
-
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-2xl font-bold"

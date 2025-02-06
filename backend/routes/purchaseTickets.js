@@ -13,25 +13,30 @@ router.post('/purchase', async (req, res) => {
   try {
     const { user_id, event_id, seat } = req.body;
     console.log('Request body:', req.body);
+    if (!user_id) {
+      return res
+        .status(401)
+        .json({ message: 'User not authenticated. Please log in.' });
+    }
 
     // get user and event details
     const user = await User.findByPk(user_id);
     // get event details
     const event = await Events.findByPk(event_id, {
-        include: [
-          {
-            model: EventDetails,
-            as: 'details',
-            attributes: ['description', 'location', 'price'],
-          },
-          {
-            model: EventTimestamps,
-            as: 'timestamps',
-            attributes: ['event_date', 'start_time', 'end_time'],
-          },
-        ],
-        raw: false, // return the data as an object
-      });      
+      include: [
+        {
+          model: EventDetails,
+          as: 'details',
+          attributes: ['description', 'location', 'price'],
+        },
+        {
+          model: EventTimestamps,
+          as: 'timestamps',
+          attributes: ['event_date', 'start_time', 'end_time'],
+        },
+      ],
+      raw: false, // return the data as an object
+    });
     //   console.log('Timestamps Type:', typeof event.timestamps);
     //   console.log('Timestamps Data:', JSON.stringify(event.timestamps, null, 2));
     if (!user) {
