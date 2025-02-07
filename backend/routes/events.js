@@ -32,42 +32,7 @@ router.get('/', async (req, res) => {
 
     res.status(200).json(events);
   } catch (error) {
-    console.error('Error fetching events:', error.message);
-    res.status(500).json({
-      message: 'An unexpected error occurred. Please try again later.',
-    });
-  }
-});
-
-// Get events for the specified month and year
-router.get('/:year/:month', async (req, res) => {
-  const { year, month } = req.params;
-
-  try {
-    const monthPadded = month.padStart(2, '0'); // Ensure double-digit month
-    const lastDay = new Date(year, month, 0).getDate(); // Get the last day of the month
-
-    const events = await Events.findAll({
-      include: [
-        {
-          model: EventTimestamps,
-          as: 'timestamps',
-          where: {
-            event_date: {
-              [Op.between]: [
-                `${year}-${monthPadded}-01`,
-                `${year}-${monthPadded}-${lastDay}`,
-              ],
-            },
-          },
-          attributes: ['event_date', 'start_time', 'end_time'], // Include only required fields
-        },
-      ],
-    });
-    console.log('Events Data:', JSON.stringify(events, null, 2));
-    res.json(events);
-  } catch (error) {
-    console.error('Error fetching events:', error.message);
+    console.error('Error fetching events:', error.stack);
     res.status(500).json({
       message: 'An unexpected error occurred. Please try again later.',
     });
@@ -75,7 +40,7 @@ router.get('/:year/:month', async (req, res) => {
 });
 
 // Gets the event details for the specified event_id
-router.get('/:id', async (req, res) => {
+router.get('/by-id/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -98,15 +63,16 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Event not found' });
     }
 
+    console.log('Event found:', JSON.stringify(event, null, 2));
     res.status(200).json(event);
   } catch (error) {
-    console.error('Error fetching event:', error);
+    console.error('Error fetching event:', error.stack);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
 // Get events for the specified date
-router.get('/:date', async (req, res) => {
+router.get('/by-date/:date', async (req, res) => {
   const { date } = req.params; // Format: YYYY-MM-DD
 
   try {
@@ -115,8 +81,8 @@ router.get('/:date', async (req, res) => {
         {
           model: EventDetails,
           as: 'details',
-          attributes: ['event_id', 'description', 'location', 'price', 'link'], // Include only required fields
-          required: true, // Ensure the event details are included
+          attributes: ['event_id', 'description', 'location', 'price', 'link'],
+          required: false, // Allow null values
         },
         {
           model: EventTimestamps,
@@ -134,12 +100,55 @@ router.get('/:date', async (req, res) => {
         .json({ message: 'No events found for the specified date' });
     }
 
+    console.log('Events found:', JSON.stringify(events, null, 2));
     res.status(200).json(events);
   } catch (error) {
-    console.error('Error fetching events:', error.message);
-    res.status(500).json({
-      message: 'An unexpected error occurred. Please try again later.',
+    console.error('Error fetching events:', error.stack);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+// Get events for the specified month and year
+router.get('/by-month/:year/:month', async (req, res) => {
+  const { year, month } = req.params;
+  try {
+    const monthPadded = month.padStart(2, '0'); // Make sure the month is in double digits
+    const firstDay = `${year}-${monthPadded}-01`;
+    const lastDay = new Date(year, month, 0).toISOString().split('T')[0];
+
+    console.log(`Fetching events for ${year}-${monthPadded}...`);
+
+    const events = await Events.findAll({
+      include: [
+        {
+          model: EventTimestamps,
+          as: 'timestamps',
+          attributes: ['event_date', 'start_time', 'end_time'],
+          where: {
+            event_date: { [Op.between]: [firstDay, lastDay] },
+          },
+          required: true, // Only time stamped events are returned
+        },
+        {
+          model: EventDetails,
+          as: 'details',
+          attributes: ['description', 'location', 'price'],
+          required: false,
+        },
+      ],
     });
+
+    if (events.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'No events found for this month' });
+    }
+
+    console.log('Monthly Events Found:', JSON.stringify(events, null, 2));
+    res.status(200).json(events);
+  } catch (error) {
+    console.error('Error fetching monthly events:', error.stack);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const monthNames = [
@@ -32,7 +33,7 @@ const Calendar = () => {
           `Fetching events for year: ${currentYear}, month: ${currentMonth + 1}`
         );
         const response = await axios.get(
-          `${API_URL}/events/${currentYear}/${currentMonth + 1}`
+          `${API_URL}/events/by-month/${currentYear}/${currentMonth + 1}`
         );
 
         // Log the full event data for debugging
@@ -81,7 +82,9 @@ const Calendar = () => {
       .padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     try {
-      const response = await axios.get(`${API_URL}/events/${formattedDate}`);
+      const response = await axios.get(
+        `${API_URL}/events/by-date/${formattedDate}`
+      );
 
       if (response.data.length > 0) {
         setSelectedEvent(response.data[0]); // Display the first event
@@ -192,6 +195,12 @@ const Calendar = () => {
 function EventPopup({ event, onClose }) {
   const details = event.details?.[0] || {};
   const timestamp = event.timestamps || {};
+  const navigate = useNavigate();
+
+  const handleBooking = () => {
+    console.log(`Navigating to ticket booking for event ID: ${event.event_id}`);
+    navigate(`/tickets/${event.event_id}`);
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -212,20 +221,12 @@ function EventPopup({ event, onClose }) {
         <p className="text-gray-600">
           🚀 {details.description || 'No description available'}
         </p>
-        {details.link && (
-          <a
-            href={
-              details.link.startsWith('http')
-                ? details.link
-                : `https://${details.link}`
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 underline"
-          >
-            Buy tickets
-          </a>
-        )}
+        <button
+          onClick={handleBooking}
+          className="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors mt-4"
+        >
+          Buy tickets
+        </button>
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-2xl font-bold"

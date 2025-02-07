@@ -35,7 +35,7 @@ const TicketBooking = () => {
 
     const fetchEventDetails = async () => {
       try {
-        const response = await axios.get(`${API_URL}/events/${eventId}`, {
+        const response = await axios.get(`${API_URL}/events/by-id/${eventId}`, {
           withCredentials: true,
         });
         console.log('Event Details:', response.data);
