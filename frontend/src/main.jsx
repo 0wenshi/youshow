@@ -19,6 +19,7 @@ import Guidelines from './views/Guidelines/Guidelines';
 import Rental from './views/Rental/Rental';
 import Recruitment from './views/Recruitment/Recruitment';
 import ActorsManagement from './views/ActorsManagement/ActorsManagement';
+import EventsManagement from './views/EventsManagement/EventsManagement';
 import TicketBooking from './views/TicketBooking/TicketBooking';
 import TicketConfirmation from './views/TicketConfirmation/TicketConfirmation';
 
@@ -44,6 +45,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/rental" element={<Rental />} />
             <Route path="/recruitment" element={<Recruitment />} />
             <Route path="/actorsmanagement" element={<ActorsManagement />} />
+            <Route path="/eventsmanagement" element={<EventsManagement />} />
             <Route path="/tickets/:eventId" element={<TicketBooking />} />
             <Route
               path="/confirmation/:orderId"

@@ -20,6 +20,7 @@ const resources = {
         rental: 'Venue Rental',
         recruitment: 'Recruitment',
         actorsmanagement: 'Actors Management',
+        eventsmanagement: 'Events Management',
       },
       actors: {
         note: '*Sorted alphabetically by name',
@@ -215,6 +216,7 @@ const resources = {
         rental: '场地租赁',
         recruitment: '新人招募',
         actorsmanagement: '演员管理',
+        eventsmanagement: '活动管理',
       },
       actors: {
         note: '*按照名字首字母顺序排列',
@@ -391,6 +393,27 @@ const resources = {
       },
     },
   },
+  thai: {
+    translation: {
+      navbar: {
+        plans: 'แผนการแสดง',
+        actorsintroduction: 'นักแสดง',
+        memberships: 'โปรแกรมสมาชิก',
+        about: 'เกี่ยวกับเรา',
+        more: 'เพิ่มเติม',
+        login: 'เข้าสู่ระบบ',
+        logout: 'ออกจากระบบ',
+      },
+      dropdown: {
+        talkshow: 'ทอล์กโชว์',
+        guidelines: 'แนวทางการแสดง',
+        rental: 'การเช่าสถานที่',
+        recruitment: 'การรับสมัคร',
+        actorsmanagement: 'การจัดการนักแสดง',
+        eventsmanagement: 'การจัดการกิจกรรม',
+      },
+    },
+  },
 };
 
 i18n
@@ -398,7 +421,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en', // default language
+    fallbackLng: ['en', 'zh', 'thai'],
     interpolation: {
       escapeValue: false,
     },

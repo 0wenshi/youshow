@@ -18,19 +18,27 @@ const dropdownItems = [
   { key: 'rental', href: '/rental' },
   { key: 'recruitment', href: '/recruitment' },
   { key: 'actorsmanagement', href: '/actorsmanagement' },
+  { key: 'eventsmanagement', href: '/eventsmanagement' },
 ];
 
+const languageOptions = [
+  { code: 'en', label: 'English' },
+  { code: 'zh', label: '中文' },
+  { code: 'thai', label: 'ไทย' },
+];
 const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
 
 const NavBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation(); // Translation hook
-  const [showDropdown, setShowDropdown] = useState(false);
-  const timeoutRef = useRef(null);
   const { locale, setLocale } = useContext(LocaleContext);
   const { user, setUser } = useUser(); // Access user and setUser from context
   const [isLoggedIn, setIsLoggedIn] = useState(!!user);
+
+  const [showMoreDropdown, setShowMoreDropdown] = useState(false);
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     // Sync isLoggedIn state with user context
@@ -47,25 +55,35 @@ const NavBar = () => {
     }
   };
 
+  const toggleMoreDropdown = () => {
+    setShowMoreDropdown(!showMoreDropdown);
+    setShowLanguageDropdown(false);
+  };
+
+  const toggleLanguageDropdown = () => {
+    setShowLanguageDropdown(!showLanguageDropdown);
+    setShowMoreDropdown(false);
+  };
+
+  const changeLanguage = (newLocale) => {
+    i18n.changeLanguage(newLocale);
+    setLocale(newLocale);
+    setShowLanguageDropdown(false);
+  };
+
   const handleMouseEnter = () => {
     clearTimeout(timeoutRef.current);
-    setShowDropdown(true);
+    setShowMoreDropdown(true);
   };
 
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
-      setShowDropdown(false);
+      setShowMoreDropdown(false);
     }, 300);
   };
 
-  const toggleLanguage = () => {
-    const newLocale = i18n.language === 'en' ? 'zh' : 'en';
-    i18n.changeLanguage(newLocale); // Change static text language
-    setLocale(newLocale); // Update dynamic data language
-  };
-
   return (
-    <header className="bg-orange-500 rounded-full shadow-lg max-w-6xl my-2 mx-auto">
+    <header className="bg-orange-500 rounded-full shadow-lg max-w-7xl my-2 mx-auto">
       <nav aria-label="Global" className="flex px-6">
         {/* Logo */}
         <div className="flex flex-1">
@@ -105,15 +123,20 @@ const NavBar = () => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <button className="text-lg font-bold text-black hover:text-orange-200">
+            <button
+              className="text-lg font-bold text-black hover:text-orange-200"
+              onClick={toggleMoreDropdown}
+            >
               {t('navbar.more')}
             </button>
-            {showDropdown && (
+            {showMoreDropdown && (
               <div className="absolute left-0 mt-2 w-24 bg-orange-500 rounded-lg shadow-lg z-20">
                 {dropdownItems
                   .filter(
                     (item) =>
-                      item.key !== 'actorsmanagement' || user?.role === 'admin' // Only show actorsmanagement to admin
+                      (item.key !== 'actorsmanagement' &&
+                        item.key !== 'eventsmanagement') ||
+                      user?.role === 'admin' // Only show actorsmanagement to admin
                   )
                   .map((item) => (
                     <a
@@ -130,43 +153,63 @@ const NavBar = () => {
         </div>
 
         {/* Additional Buttons */}
-        <div className="flex flex-1 justify-end gap-x-2">
+        <div className="flex flex-1 justify-end gap-x-6">
           {isLoggedIn ? (
             <button
               onClick={handleLogout}
-              className="text-xs font-bold text-black hover:text-orange-200"
+              className="text-xs font-bold text-black hover:text-orange-200 ml-4"
             >
               {t('navbar.logout')} <span aria-hidden="true">&rarr;</span>
             </button>
           ) : (
             <a
               href="/login"
-              className="text-xs font-bold text-black hover:text-orange-200"
+              className="text-xs font-bold text-black hover:text-orange-200 ml-4"
             >
               {t('navbar.login')} <span aria-hidden="true">&rarr;</span>
             </a>
           )}
+          <div className="relative ml-4">
+            {/* Click to expand the drop-down menu */}
+            <button
+              type="button"
+              onClick={toggleLanguageDropdown}
+              className="flex items-center gap-1 text-black hover:text-orange-200"
+              aria-label="Translate"
+            >
+              <img
+                src="/images/translate-icon.svg"
+                alt="Translate"
+                className="h-6 w-6 align-middle"
+              />
+              <span className="text-sm font-semibold">
+                {languageOptions.find((lang) => lang.code === locale)?.label ||
+                  'Language'}
+              </span>
+            </button>
 
-          {/* Language Switcher */}
-          <button
-            type="button"
-            onClick={toggleLanguage}
-            className="text-black hover:text-gray-700 flex items-center gap-1"
-            aria-label="Translate"
-          >
-            <img
-              src="/images/translate-icon.svg"
-              alt="Translate"
-              className="h-6 w-6"
-            />
-            <span className="text-sm font-semibold">
-              {locale === 'en' ? '中文' : 'English'}
-            </span>
-          </button>
+            {/* Language Dropdown */}
+            {showLanguageDropdown && (
+              <div className="absolute right-15 mt-2 w-24 bg-orange-500 rounded-lg shadow-lg z-20">
+                {languageOptions.map(({ code, label }) => (
+                  <button
+                    key={code}
+                    onClick={() => changeLanguage(code)}
+                    className={`block w-full px-4 py-2 text-black text-sm font-semibold hover:text-orange-200 ${
+                      locale === code ? 'font-bold text-orange-200' : ''
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
           {/* Share Button */}
           <button
             type="button"
-            className="text-black hover:text-gray-700"
+            className="text-black hover:text-gray-700 ml-4"
             aria-label="Share"
             onClick={() => {
               if (navigator.share) {
