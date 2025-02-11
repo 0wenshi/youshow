@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
 import { useUser } from '../../../context/UserContext';
 
 const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
@@ -9,12 +8,6 @@ const Actors = () => {
   const { user } = useUser(); // Get user and setter from context
 
   console.log('User in ActorsManagement:', user);
-
-  // Redirect if the user is not an admin
-  if (!user || user.role !== 'admin') {
-    console.warn('User not logged in or not an admin. Redirecting...');
-    return <Navigate to="/login" replace />;
-  }
 
   const [actors, setActors] = useState([]);
   const [locale, setLocale] = useState('en'); // Add locale state
