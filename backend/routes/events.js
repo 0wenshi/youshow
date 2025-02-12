@@ -192,6 +192,7 @@ router.post('/', async (req, res) => {
             location: detail.location,
             price: detail.price,
             image: detail.image,
+            capacity: detail.capacity,
           });
           console.log(`EventDetail created for locale ${detail.locale_code}`);
         })
@@ -270,6 +271,7 @@ router.put('/:id', async (req, res) => {
             location: detail.location,
             price: detail.price,
             image: detail.image,
+            capacity: detail.capacity,
           });
         })
       );

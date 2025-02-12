@@ -47,6 +47,10 @@ const EventDetails = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: true,
     },
+    capacity: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   },
   {
     tableName: 'event_details',
