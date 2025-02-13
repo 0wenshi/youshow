@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from '../../../context/UserContext';
-import { LoadScript, Autocomplete } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
+import {
+  GOOGLE_MAPS_API_KEY,
+  GOOGLE_MAPS_LIBRARIES,
+  API_URL,
+} from '../../../../config';
 import Swal from 'sweetalert2';
-
-const API_URL = import.meta.env.VITE_API_URL;
-const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 const Events = () => {
   const { user } = useUser(); // Get user information
-  console.log('User in EventsManagement:', user);
+  // console.log('User in EventsManagement:', user);
 
   const [events, setEvents] = useState([]);
   const [locale, setLocale] = useState('en'); // language switch
@@ -171,13 +173,13 @@ const Events = () => {
       cancelButtonText: 'Cancel',
     });
 
-    if(result.isConfirmed) {
+    if (result.isConfirmed) {
       try {
         await axios.delete(`${API_URL}/events/${id}`);
         Swal.fire('Deleted!', 'Event has been deleted.', 'success');
         fetchEvents();
       } catch (error) {
-        Swal.fire("Error!", "Failed to delete event.", "error");
+        Swal.fire('Error!', 'Failed to delete event.', 'error');
       }
     }
   };
@@ -263,7 +265,7 @@ const Events = () => {
           {/* Google Maps Autocomplete */}
           <LoadScript
             googleMapsApiKey={GOOGLE_MAPS_API_KEY}
-            libraries={['places']}
+            libraries={GOOGLE_MAPS_LIBRARIES}
           >
             <Autocomplete
               onLoad={handleLoad}
@@ -279,7 +281,7 @@ const Events = () => {
               />
             </Autocomplete>
           </LoadScript>
-          
+
           <input
             className="w-full p-2 border rounded-lg"
             placeholder="Price (e.g. $10)"
