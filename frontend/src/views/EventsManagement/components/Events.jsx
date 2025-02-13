@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from '../../../context/UserContext';
-import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
+import { LoadScript, Autocomplete } from '@react-google-maps/api';
 import {
   GOOGLE_MAPS_API_KEY,
   GOOGLE_MAPS_LIBRARIES,
   API_URL,
 } from '../../../../config';
 import Swal from 'sweetalert2';
+import GoogleMapComponent from '../../CommonComponents/GoogleMapComponent';
 
 const Events = () => {
   const { user } = useUser(); // Get user information
@@ -363,20 +364,11 @@ const Events = () => {
                   <td className="p-2">{event.timestamps?.end_time || 'N/A'}</td>
                   <td className="p-2">
                     {details.location ? (
-                      <iframe
-                        width="200"
-                        height="150"
-                        style={{ border: 0 }}
-                        loading="lazy"
-                        allowFullScreen
-                        referrerPolicy="no-referrer-when-downgrade"
-                        src={`https://www.google.com/maps/embed/v1/place?key=${GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(details.location)}`}
-                      />
+                      <GoogleMapComponent address={details.location} />
                     ) : (
                       'N/A'
                     )}
                   </td>
-
                   <td className="p-2">
                     {details.price
                       ? `$${details.price.replace(/^\$/, '')}`
