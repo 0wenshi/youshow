@@ -14,7 +14,7 @@ const verifyUser = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     // Attach user info to request object
-    req.user = decoded; // Now req.user contains { id, email, role, ... }
+    req.user = decoded; // Store user information in req.user
     next();
   } catch (err) {
     console.error('Token verification error:', err);

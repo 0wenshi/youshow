@@ -1,10 +1,11 @@
 const express = require('express');
 const { Actors, ActorDetails, Locales, ActorTimestamps } = require('../models');
+const { verifyUser, verifyAdmin } = require('../middlewares/authenticate');
 
 const router = express.Router();
 
 // Get actors by locale
-router.get('/', async (req, res) => {
+router.get('/', verifyUser, async (req, res) => {
   const { locale } = req.query;
 
   try {
@@ -33,7 +34,7 @@ router.get('/', async (req, res) => {
 });
 
 // Add a new actor with details
-router.post('/', async (req, res) => {
+router.post('/', verifyAdmin, async (req, res) => {
   const { details, timestamps } = req.body; // details is an array of { title, subtitle, description, image, locale_code }
 
   try {
@@ -82,7 +83,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update an actor and its details
-router.put('/:id', async (req, res) => {
+router.put('/:id', verifyAdmin, async (req, res) => {
   const { id } = req.params;
   const { details, timestamps } = req.body;
 
@@ -135,7 +136,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete an actor and its details
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifyAdmin, async (req, res) => {
   const { id } = req.params;
 
   try {

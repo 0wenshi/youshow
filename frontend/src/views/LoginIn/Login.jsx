@@ -14,15 +14,17 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedUsernameOrEmail = localStorage.getItem(
-      'rememberUsernameOrEmail'
-    );
-    const savedPassword = localStorage.getItem('rememberPassword');
-    if (savedUsernameOrEmail && savedPassword) {
-      setUsernameOrEmail(savedUsernameOrEmail);
-      setPassword(savedPassword);
-      setRememberMe(true);
-    }
+    setTimeout(() => {
+      const savedRememberMe = localStorage.getItem('rememberMe');
+      const savedUsernameOrEmail = localStorage.getItem(
+        'rememberUsernameOrEmail'
+      );
+
+      if (savedRememberMe === 'true' && savedUsernameOrEmail) {
+        setUsernameOrEmail(savedUsernameOrEmail);
+        setRememberMe(true);
+      }
+    }, 500);
   }, []);
 
   const handleLogin = async (e) => {
@@ -37,30 +39,30 @@ const Login = () => {
           password,
         },
         {
-          withCredentials: true, // Send cookies with the request
+          withCredentials: true, // Send HttpOnly cookies with the request
         }
       );
 
-      console.log('Login response:', loginResponse.data);
+      //console.log('Login response:', loginResponse.data);
 
       // Step 2: Validate User API
       const validationResponse = await axios.get(`${API_URL}/auth/user`, {
         withCredentials: true, // Include cookies in this request as well
       });
 
-      console.log('Validation response:', validationResponse.data);
+      //console.log('Validation response:', validationResponse.data);
 
       // Step 3: Set the user in context
       setUser(validationResponse.data.user);
-      console.log('User set in context:', validationResponse.data.user);
+      //console.log('User set in context:', validationResponse.data.user);
 
       // Handle "Remember Me" logic
       if (rememberMe) {
+        localStorage.setItem('rememberMe', 'true');
         localStorage.setItem('rememberUsernameOrEmail', usernameOrEmail);
-        localStorage.setItem('rememberPassword', password);
       } else {
+        localStorage.removeItem('rememberMe');
         localStorage.removeItem('rememberUsernameOrEmail');
-        localStorage.removeItem('rememberPassword');
       }
 
       // Navigate to homepage or a specific role-based page
@@ -90,18 +92,25 @@ const Login = () => {
         {/* Right Section */}
         <div className="flex-1 p-8">
           <h2 className="text-3xl font-bold mb-6 text-gray-800">Sign in</h2>
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form
+            action="/"
+            method="POST"
+            onSubmit={handleLogin}
+            className="space-y-4"
+          >
             <div>
               <label className="block text-sm font-medium text-gray-600">
                 Username or Email
               </label>
               <input
                 type="text"
-                value={usernameOrEmail}
+                name="username"
+                defaultValue={usernameOrEmail}
                 onChange={(e) => setUsernameOrEmail(e.target.value)}
                 placeholder="Username or Email"
                 required
                 className="w-full border border-gray-300 rounded-md p-2"
+                autoComplete="username"
               />
             </div>
             <div>
@@ -110,11 +119,13 @@ const Login = () => {
               </label>
               <input
                 type="password"
-                value={password}
+                name="password"
+                defaultValue={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 required
                 className="w-full border border-gray-300 rounded-md p-2"
+                autoComplete="current-password"
               />
             </div>
             <div className="flex items-center">
@@ -125,7 +136,10 @@ const Login = () => {
                 id="rememberMe"
                 className="mr-2"
               />
-              <label htmlFor="rememberMe" className="text-sm text-gray-600">
+              <label
+                htmlFor="rememberMe"
+                className="text-sm text-gray-600 cursor-pointer"
+              >
                 Remember me
               </label>
             </div>
@@ -136,6 +150,7 @@ const Login = () => {
             >
               Log in
             </button>
+            <input type="submit" hidden />
           </form>
           <div className="flex justify-between items-center mt-4">
             <a

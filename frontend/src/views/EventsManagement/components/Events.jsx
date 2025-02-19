@@ -40,7 +40,7 @@ const Events = () => {
       const response = await axios.get(`${API_URL}/events`, {
         params: { locale }, // API only requests events for the current language
       });
-      console.log('Fetched events:', response.data);
+      //console.log('Fetched events:', response.data);
       setEvents(response.data);
     } catch (error) {
       console.error('Error fetching events:', error);

@@ -1,11 +1,12 @@
 const express = require('express');
 const { Op } = require('sequelize');
 const { Events, EventDetails, EventTimestamps, Locales } = require('../models');
+const { verifyUser, verifyAdmin } = require('../middlewares/authenticate');
 
 const router = express.Router();
 
 // Get all events (locale filtering supported)
-router.get('/', async (req, res) => {
+router.get('/', verifyUser, async (req, res) => {
   const { locale } = req.query;
 
   try {
@@ -40,7 +41,7 @@ router.get('/', async (req, res) => {
 });
 
 // Gets the event details for the specified event_id
-router.get('/by-id/:id', async (req, res) => {
+router.get('/by-id/:id', verifyUser, async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -63,7 +64,7 @@ router.get('/by-id/:id', async (req, res) => {
       return res.status(404).json({ message: 'Event not found' });
     }
 
-    console.log('Event found:', JSON.stringify(event, null, 2));
+    // console.log('Event found:', JSON.stringify(event, null, 2));
     res.status(200).json(event);
   } catch (error) {
     console.error('Error fetching event:', error.stack);
@@ -72,7 +73,7 @@ router.get('/by-id/:id', async (req, res) => {
 });
 
 // Get events for the specified date
-router.get('/by-date/:date', async (req, res) => {
+router.get('/by-date/:date', verifyUser, async (req, res) => {
   const { date } = req.params; // Format: YYYY-MM-DD
 
   try {
@@ -109,7 +110,7 @@ router.get('/by-date/:date', async (req, res) => {
 });
 
 // Get events for the specified month and year
-router.get('/by-month/:year/:month', async (req, res) => {
+router.get('/by-month/:year/:month', verifyUser, async (req, res) => {
   const { year, month } = req.params;
   try {
     const monthPadded = month.padStart(2, '0'); // Make sure the month is in double digits
@@ -153,7 +154,7 @@ router.get('/by-month/:year/:month', async (req, res) => {
 });
 
 // Create a new event
-router.post('/', async (req, res) => {
+router.post('/', verifyAdmin, async (req, res) => {
   const { title, details, timestamps } = req.body;
 
   if (!title) {
@@ -161,12 +162,12 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    console.log('Creating event with title:', title);
+    //console.log('Creating event with title:', title);
 
     // create Event
     const newEvent = await Events.create({ title });
 
-    console.log('Event created:', newEvent);
+    //console.log('Event created:', newEvent);
 
     // handle EventDetails (multilingual)
     if (details && details.length > 0) {
@@ -188,11 +189,7 @@ router.post('/', async (req, res) => {
           await EventDetails.create({
             event_id: newEvent.event_id,
             locale_id: locale.locale_id,
-            description: detail.description,
-            location: detail.location,
-            price: detail.price,
-            image: detail.image,
-            capacity: detail.capacity,
+            ...detail,
           });
           console.log(`EventDetail created for locale ${detail.locale_code}`);
         })
@@ -205,14 +202,12 @@ router.post('/', async (req, res) => {
     if (timestamps && timestamps.length > 0) {
       await Promise.all(
         timestamps.map(async (timestamp) => {
-          console.log(`Creating timestamp for event ${newEvent.event_id}...`);
+          //console.log(`Creating timestamp for event ${newEvent.event_id}...`);
           await EventTimestamps.create({
             event_id: newEvent.event_id,
-            event_date: timestamp.event_date,
-            start_time: timestamp.start_time,
-            end_time: timestamp.end_time,
+            ...timestamp,
           });
-          console.log(`Timestamp created for ${timestamp.event_date}`);
+          //console.log(`Timestamp created for ${timestamp.event_date}`);
         })
       );
     } else {
@@ -224,14 +219,12 @@ router.post('/', async (req, res) => {
       .json({ message: 'Event created successfully!', event: newEvent });
   } catch (error) {
     console.error('Error creating event:', error);
-    res
-      .status(500)
-      .json({ message: 'Internal Server Error', error: error.message });
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
 // Update an existing event
-router.put('/:id', async (req, res) => {
+router.put('/:id', verifyAdmin, async (req, res) => {
   const { id } = req.params;
   const { title, details, timestamps } = req.body;
 
@@ -267,11 +260,7 @@ router.put('/:id', async (req, res) => {
           await EventDetails.create({
             event_id: id,
             locale_id: locale.locale_id,
-            description: detail.description,
-            location: detail.location,
-            price: detail.price,
-            image: detail.image,
-            capacity: detail.capacity,
+            ...detail,
           });
         })
       );
@@ -287,9 +276,7 @@ router.put('/:id', async (req, res) => {
         timestamps.map(async (timestamp) => {
           await EventTimestamps.create({
             event_id: id,
-            event_date: timestamp.event_date,
-            start_time: timestamp.start_time,
-            end_time: timestamp.end_time,
+            ...timestamp,
           });
         })
       );
@@ -299,14 +286,12 @@ router.put('/:id', async (req, res) => {
     res.status(200).json({ message: 'Event updated successfully!' });
   } catch (error) {
     console.error('Error updating event:', error);
-    res
-      .status(500)
-      .json({ message: 'Internal Server Error', error: error.message });
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
 // Delete an event and its details
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifyAdmin, async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -326,14 +311,11 @@ router.delete('/:id', async (req, res) => {
 
     // delete Events
     await event.destroy();
-    console.log('Event deleted successfully!');
 
     res.status(200).json({ message: 'Event deleted successfully!' });
   } catch (error) {
     console.error('Error deleting event:', error);
-    res
-      .status(500)
-      .json({ message: 'Internal Server Error', error: error.message });
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 

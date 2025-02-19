@@ -4,11 +4,11 @@ const jwt = require('jsonwebtoken');
 const { Sequelize } = require('sequelize');
 const User = require('../models/User');
 const cookieParser = require('cookie-parser');
-const { verifyAdmin } = require('../middlewares/authenticate');
+const { verifyUser, verifyAdmin } = require('../middlewares/authenticate');
 require('dotenv').config(); // Load environment variables
 
 const router = express.Router();
-const SECRET_KEY = process.env.JWT_SECRET || 'fallback_default_key'; // Use env or fallback
+const SECRET_KEY = process.env.JWT_SECRET;
 
 // Use cookie parser middleware
 router.use(cookieParser());
@@ -42,6 +42,7 @@ router.post('/register', async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      role: 'user', // Default role is user
     });
 
     res.status(201).json({
@@ -62,14 +63,13 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { identifier, password } = req.body;
 
-  console.log('Request body:', req.body);
+  //console.log('Request body:', req.body);
 
   try {
-    // Check if all fields are provided
     if (!identifier || !password) {
       return res
         .status(400)
-        .json({ message: 'Identifier and password are required' });
+        .json({ message: 'Username/email and password are required' });
     }
 
     // Find user by username or email
@@ -101,7 +101,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    console.log('Generated JWT:', token);
+    // console.log('Generated JWT:', token);
 
     // Set the JWT in an HttpOnly cookie
     res.cookie('token', token, {
@@ -134,8 +134,8 @@ router.post('/logout', (req, res) => {
 });
 
 // Get user route
-router.get('/user', async (req, res) => {
-  console.log('Cookies:', req.cookies); // Log all cookies
+router.get('/user', verifyUser, async (req, res) => {
+  // console.log('Cookies:', req.cookies); // Log all cookies
 
   const token = req.cookies.token; // Read the token from cookies
   if (!token) {
@@ -145,7 +145,7 @@ router.get('/user', async (req, res) => {
 
   try {
     const decoded = jwt.verify(token, SECRET_KEY); // Verify the token
-    console.log('Decoded token:', decoded); // Log decoded token
+    // console.log('Decoded token:', decoded); // Log decoded token
 
     const user = await User.findByPk(decoded.id); // Fetch the user by ID
     if (!user) {

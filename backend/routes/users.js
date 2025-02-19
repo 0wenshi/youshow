@@ -6,7 +6,7 @@ const { verifyUser } = require('../middlewares/authenticate');
 // Get user level details (Only for logged-in users)
 router.get('/level', verifyUser, async (req, res) => {
   try {
-    // 🔹 Get the user ID from the request object
+    // Get the user ID from the request object
     const userId = req.user.id; // Get the user ID from the request object
     console.log('req.user:', req.user);
 
@@ -17,7 +17,7 @@ router.get('/level', verifyUser, async (req, res) => {
     }
     console.log(`Fetching membership details for user ID: ${userId}`);
 
-    // 🔹 Fetch the user by ID
+    // Fetch the user by ID
     const user = await User.findByPk(userId, {
       attributes: ['membership_level', 'membership_expiry', 'progress'],
     });

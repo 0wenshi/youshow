@@ -7,20 +7,23 @@ const {
   EventTimestamps,
   Ticket,
 } = require('../models');
+const { verifyUser } = require('../middlewares/authenticate');
 const router = express.Router();
 
-router.post('/purchase', async (req, res) => {
+router.post('/purchase', verifyUser, async (req, res) => {
   try {
-    const { user_id, event_id, seat } = req.body;
+    const { event_id, seat } = req.body;
+    const user_id = req.user.id; // Gets the user ID from the JWT
+
     console.log('Request body:', req.body);
-    if (!user_id) {
+
+    const user = await User.findByPk(user_id);
+    if (!user) {
       return res
         .status(401)
         .json({ message: 'User not authenticated. Please log in.' });
     }
 
-    // get user and event details
-    const user = await User.findByPk(user_id);
     // get event details
     const event = await Events.findByPk(event_id, {
       include: [
@@ -39,9 +42,6 @@ router.post('/purchase', async (req, res) => {
     });
     //   console.log('Timestamps Type:', typeof event.timestamps);
     //   console.log('Timestamps Data:', JSON.stringify(event.timestamps, null, 2));
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
     if (!event) {
       return res.status(404).json({ message: 'Event not found' });
     }
