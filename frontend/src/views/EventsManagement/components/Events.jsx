@@ -72,6 +72,7 @@ const Events = () => {
               ? formData.price
               : `$${formData.price}`,
             image: formData.image,
+            capacity: formData.capacity,
           },
         ],
         timestamps: [
@@ -106,6 +107,7 @@ const Events = () => {
               ? formData.price
               : `$${formData.price}`,
             image: formData.image,
+            capacity: formData.capacity,
           },
         ],
         timestamps: [
@@ -141,6 +143,7 @@ const Events = () => {
         price: details.price || '',
         image: details.image || '',
         locale: details.locale_code || locale,
+        capacity: details.capacity || '',
       });
       setEditingEvent(event);
     }
