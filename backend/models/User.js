@@ -25,14 +25,14 @@ const User = sequelize.define(
       allowNull: false,
     },
     role: {
-      type: DataTypes.STRING,
+      type: 'user_role_enum',
       allowNull: false,
       defaultValue: 'user', // Default role is user
     },
     membership_level: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'regular', // Default membership level is regular
+      defaultValue: 'Regular',
     },
     membership_expiry: {
       type: DataTypes.DATE,

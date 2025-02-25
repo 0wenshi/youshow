@@ -4,7 +4,11 @@ const jwt = require('jsonwebtoken');
 const { Sequelize } = require('sequelize');
 const User = require('../models/User');
 const cookieParser = require('cookie-parser');
-const { verifyUser, verifyAdmin } = require('../middlewares/authenticate');
+const {
+  verifyUser,
+  verifyAdmin,
+  verifyRole,
+} = require('../middlewares/authenticate');
 require('dotenv').config(); // Load environment variables
 
 const router = express.Router();
@@ -15,12 +19,16 @@ router.use(cookieParser());
 
 // Register route
 router.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, role } = req.body;
 
   try {
     // Check if all fields are provided
     if (!username || !email || !password) {
       return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    if (!['user', 'admin', 'actors'].includes(role)) {
+      return res.status(400).json({ message: 'Invalid role' });
     }
 
     // Check whether the username or email address already exists
@@ -38,11 +46,12 @@ router.post('/register', async (req, res) => {
 
     // Hash the password and save the user
     const hashedPassword = await bcrypt.hash(password, 12); // Use 12 salt rounds
+
     const newUser = await User.create({
       username,
       email,
       password: hashedPassword,
-      role: 'user', // Default role is user
+      role: role,
     });
 
     res.status(201).json({
@@ -51,6 +60,7 @@ router.post('/register', async (req, res) => {
         id: newUser.user_id,
         username: newUser.username,
         email: newUser.email,
+        role: newUser.role,
       },
     });
   } catch (error) {
@@ -166,6 +176,14 @@ router.get('/admin-dashboard', verifyAdmin, (req, res) => {
 router.post('/manage-users', verifyAdmin, (req, res) => {
   // Perform admin actions like managing users
   res.status(200).json({ message: 'User management actions completed' });
+});
+
+router.get('/actorsmanagement', verifyRole(['actors', 'admin']), (req, res) => {
+  res.status(200).json({ message: 'Welcome to the actors dashboard' });
+});
+
+router.get('/eventsmanagement', verifyRole(['admin']), (req, res) => {
+  res.status(200).json({ message: 'Events Management Dashboard' });
 });
 
 module.exports = router;

@@ -32,4 +32,18 @@ const verifyAdmin = (req, res, next) => {
   });
 };
 
-module.exports = { verifyUser, verifyAdmin };
+// Generic middleware to verify roles
+const verifyRole = (roles) => {
+  return (req, res, next) => {
+    verifyUser(req, res, () => {
+      if (!roles.includes(req.user.role)) {
+        return res
+          .status(403)
+          .json({ message: 'Forbidden: Insufficient permissions' });
+      }
+      next();
+    });
+  };
+};
+
+module.exports = { verifyUser, verifyAdmin, verifyRole };

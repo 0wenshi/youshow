@@ -9,6 +9,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState('user'); // store the role in state
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -25,7 +26,9 @@ const Register = () => {
         username,
         email,
         password,
+        role, // send the role to the backend
       });
+
       alert('Registration successful!');
       navigate('/login');
     } catch (error) {
@@ -78,7 +81,7 @@ const Register = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-600">
-                Repeat Password
+                Confirm Password
               </label>
               <input
                 type="password"
@@ -88,7 +91,24 @@ const Register = () => {
                 className="w-full border border-gray-300 rounded-md p-2"
               />
             </div>
+            {/* add a slect drop-down menu */}
+            <div>
+              <label className="block text-sm font-medium text-gray-600">
+                Select Role
+              </label>
+              <select
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full border border-gray-300 rounded-md p-2"
+              >
+                <option value="user">User</option>
+                <option value="actors">Actor</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+
             {error && <p className="text-red-500 text-sm">{error}</p>}
+
             <div className="flex items-center">
               <input type="checkbox" required className="mr-2" />
               <label className="text-sm text-gray-600">

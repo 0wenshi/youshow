@@ -67,6 +67,8 @@ const Login = () => {
 
       // Navigate to homepage or a specific role-based page
       if (validationResponse.data.user.role === 'admin') {
+        navigate('/eventsmanagement');
+      } else if (validationResponse.data.user.role === 'actors') {
         navigate('/actorsmanagement');
       } else {
         navigate('/homepage');
