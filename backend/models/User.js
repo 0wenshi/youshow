@@ -41,9 +41,9 @@ const User = sequelize.define(
     progress: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 0,
+      defaultValue: 25,
       validate: {
-        min: 0,
+        min: 25,
         max: 100,
       },
     },

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const benefitsData = {
   Regular: ['Basic Support', 'Standard Discounts'],
@@ -15,13 +16,16 @@ const benefitsData = {
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+const levels = ['Regular', 'Silver', 'Gold', 'VIP'];
+const prices = { Silver: 10, Gold: 20, VIP: 50 };
+
 const CurrentUserLevel = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Show a loading spinner
   const [error, setError] = useState(null); // Show an error message
-  const [showModal, setShowModal] = useState(false);
-
-  const levels = ['Regular', 'Silver', 'Gold', 'VIP'];
+  const [showBenefitsModal, setShowBenefitsModal] = useState(false); // Show benefits modal
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false); // Show upgrade modal
+  const [selectedLevel, setSelectedLevel] = useState(null);
 
   useEffect(() => {
     const fetchUserLevel = async () => {
@@ -41,6 +45,35 @@ const CurrentUserLevel = () => {
 
     fetchUserLevel();
   }, []);
+
+  const handlePayment = async () => {
+    if (!selectedLevel) {
+      Swal.fire(
+        'Error',
+        'Please select a membership level to upgrade!',
+        'error'
+      );
+      return;
+    }
+
+    try {
+      // Send the request to the back-end to process the payment
+      const response = await axios.post(
+        `${API_URL}/users/upgrade`,
+        { newLevel: selectedLevel },
+        { withCredentials: true }
+      );
+
+      // Update user status
+      setUser(response.data);
+      setShowUpgradeModal(false);
+
+      Swal.fire('Success', 'Your membership has been upgraded!', 'success');
+    } catch (error) {
+      console.error('Error upgrading membership:', error);
+      Swal.fire('Error', 'Payment failed, please try again.', 'error');
+    }
+  };
 
   if (loading) {
     return <div className="text-center text-grey-500">Loading...</div>;
@@ -62,9 +95,9 @@ const CurrentUserLevel = () => {
             <span className="mr-2">🌟</span> {user.currentLevel}
           </h2>
           <p className="text-sm text-gray-600 mt-1">
-            expire in {user.expiryDate}{' '}
+            Expire in {user.expiryDate}{' '}
             <button
-              onClick={() => setShowModal(true)}
+              onClick={() => setShowBenefitsModal(true)}
               className="text-orange-500 underline"
             >
               View Benefits
@@ -72,8 +105,10 @@ const CurrentUserLevel = () => {
           </p>
         </div>
 
-        {/* upgrate button */}
-        <button className="bg-orange-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-orange-600 mt-3 sm:mt-0">
+        <button
+          onClick={() => setShowUpgradeModal(true)}
+          className="bg-orange-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-orange-600 mt-3 sm:mt-0"
+        >
           To Upgrade &gt;
         </button>
       </div>
@@ -87,7 +122,7 @@ const CurrentUserLevel = () => {
           ></div>
         </div>
 
-        {/* membership level marker + spacing adjustment*/}
+        {/* membership level marker */}
         <div className="flex justify-between mt-4">
           {levels.map((level, index) => (
             <div key={index} className="flex flex-col items-center">
@@ -105,12 +140,12 @@ const CurrentUserLevel = () => {
       </div>
 
       {/* Benefits Modal */}
-      {showModal && (
+      {showBenefitsModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
             <button
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl font-bold"
-              onClick={() => setShowModal(false)}
+              onClick={() => setShowBenefitsModal(false)}
             >
               &times;
             </button>
@@ -118,23 +153,55 @@ const CurrentUserLevel = () => {
               {user.currentLevel} Benefits
             </h3>
             <ul className="list-disc pl-5 text-gray-800">
-              {levels.map((level) => (
-                <li
-                  key={level}
-                  className={`${
-                    levels.indexOf(level) <= levels.indexOf(user.currentLevel)
-                      ? 'text-black'
-                      : 'text-gray-400 line-through'
-                  }`}
-                >
-                  {level === user.currentLevel ? (
-                    <strong>{benefitsData[level].join(', ')}</strong>
-                  ) : (
-                    benefitsData[level].join(', ')
-                  )}
-                </li>
+              {benefitsData[user.currentLevel].map((benefit, index) => (
+                <li key={index}>{benefit}</li>
               ))}
             </ul>
+          </div>
+        </div>
+      )}
+
+      {/* Payment Modal */}
+      {showUpgradeModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+            <button
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl font-bold"
+              onClick={() => setShowUpgradeModal(false)}
+            >
+              &times;
+            </button>
+            <h3 className="text-xl font-bold mb-2 text-orange-600">
+              Upgrade Membership
+            </h3>
+            <p className="text-gray-700 mb-4">
+              {' '}
+              Choose your desired membership level:
+            </p>
+            <div className="space-y-2">
+              {Object.keys(prices).map((level) => (
+                <div key={level} className="flex items-center">
+                  <input
+                    type="radio"
+                    id={level}
+                    name="membershipLevel"
+                    value={level}
+                    checked={selectedLevel === level}
+                    onChange={(e) => setSelectedLevel(e.target.value)}
+                    className="mr-2"
+                  />
+                  <label htmlFor={level} className="text-gray-800">
+                    {level} - ${prices[level]}
+                  </label>
+                </div>
+              ))}
+            </div>
+            <button
+              className="mt-4 bg-green-500 text-white py-2 px-4 rounded-lg font-bold hover:bg-green-600 w-full"
+              onClick={handlePayment}
+            >
+              Pay & Upgrade
+            </button>
           </div>
         </div>
       )}
